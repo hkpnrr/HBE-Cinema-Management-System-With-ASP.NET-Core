@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8TmzuYzGBOSl3naGBiXdbMXMBabeSilMkswFxmrpfPFt2z1fIXGXVPn24aDiiUVqAC/8TQDrJb523ine9ieUQg==",
+  "dgSpecHash": "Zow7KcGcw15UmQ94ks+tgwaiEEPn7ODvuxDQofjpV9lRO4es0y2SqXs2qJzRGK1oDt6uHTrXYE7F7tKFL/bXFA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+  "projectFilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\90555\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\90555\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

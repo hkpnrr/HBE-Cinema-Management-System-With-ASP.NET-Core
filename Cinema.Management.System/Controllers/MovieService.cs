@@ -12,11 +12,11 @@ namespace Cinema.Management.System.Controllers
         public Movie getMovie()
         {
 
-            //database connection düzeltildi
+            
             string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand comm = new SqlCommand("SELECT * FROM MOVIE", conn);
-
+            //githuba deneme yorum
             //SqlCommand comm = new SqlCommand("SELECT * FROM CUSTOMER WHERE NAME=@name, conn);
             //comm.Parameters.Add("@name", name);
 

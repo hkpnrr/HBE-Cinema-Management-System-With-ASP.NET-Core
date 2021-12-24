@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {}
+    "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {
+    "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+        "projectUniqueName": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
         "projectName": "Cinema.Management.System",
-        "projectPath": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+        "projectPath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
         "packagesPath": "C:\\Users\\90555\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\obj\\",
+        "outputPath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\90555\\AppData\\Roaming\\NuGet\\NuGet.Config",
