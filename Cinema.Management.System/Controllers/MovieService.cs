@@ -11,7 +11,9 @@ namespace Cinema.Management.System.Controllers
     {
         public Movie getMovie()
         {
-            string connString = "Server=DESKTOP-77SAD3C\\SQLEXPRESS;Database=denemece;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
+
+            //database connection düzeltildi
+            string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand comm = new SqlCommand("SELECT * FROM MOVIE", conn);
 
