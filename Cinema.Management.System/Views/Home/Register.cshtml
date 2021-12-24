@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up!- HBE CINEMA HALL</title>
+    <link rel="stylesheet" href="~/css/register.css">
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign up</h1>
+                <input type="text" placeholder="Name" required />
+                <input type="text" placeholder="Surname" required />
+                <input type="email" placeholder="Email" required />
+                <input type="password" placeholder="Password" required />
+                <input type="date" placeholder="Birthdate" required />
+                <input type="tel" name="Phone" placeholder="Phone" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10"
+                       title="Ten digits code" required />
+                <button>Sign Up</button>
+            </form>
+
+
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+    </div>
+    <a asp-controller="Home" asp-action="Login">
+        <p id="haveacc" style="text-decoration: underline; ">Already have an account?</p>
+    </a>
+
+
+
+</body>
+
+</html>
