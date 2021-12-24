@@ -16,7 +16,7 @@ namespace Cinema.Management.System.Controllers
             string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand comm = new SqlCommand("SELECT * FROM MOVIE", conn);
-            //githuba deneme yorum
+            Console.Write("DENEME");
             //SqlCommand comm = new SqlCommand("SELECT * FROM CUSTOMER WHERE NAME=@name, conn);
             //comm.Parameters.Add("@name", name);
 
