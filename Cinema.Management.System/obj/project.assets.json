@@ -454,19 +454,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\90555\\.nuget\\packages\\": {}
+    "C:\\Users\\Ekin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+      "projectUniqueName": "c:\\Users\\Ekin\\Desktop\\ANAN\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
       "projectName": "Cinema.Management.System",
-      "projectPath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
-      "packagesPath": "C:\\Users\\90555\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\obj\\",
+      "projectPath": "c:\\Users\\Ekin\\Desktop\\ANAN\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+      "packagesPath": "C:\\Users\\Ekin\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Ekin\\Desktop\\ANAN\\Cinema\\Cinema.Management.System\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\90555\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ekin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -515,7 +515,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }
