@@ -77,7 +77,7 @@
     <hr style="border-top: 5px solid red;">
     <br>
 
-    
+
     <div class="container" id="background">
         <div style="color: white;">
             <a href="#" class="navbar-brand ">HBE CINEMA HALL</a>
@@ -117,53 +117,144 @@
             </div>
         </div>
 
+        <div class="container">
 
-        <div id="slider-onShowing" class="carousel slide carousel-fade my-3" data-bs-ride="carousel">
+
+         <div id="slider-onShowing" class="carousel slide carousel-fade my-3" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#slider-onShowing" data-bs-slide-to="0" class="active"
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    @if (@Model[i].isShowing && i == 0)
+                    {
+                        <button type="button" data-bs-target="#slider-onShowing" data-bs-slide-to="@i" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#slider-onShowing" data-bs-slide-to="1"
+                    }
+                    else if (@Model[i].isShowing && i!=0)
+                    {
+                        <button type="button" data-bs-target="#slider-onShowing" data-bs-slide-to="@i"
                     aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#slider-onShowing" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
+                    }
+
+                }
+
+                
+            </div> 
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <!-- Afişine tıklayınca film'in sayfasına gitsin burda-->
-                    <!-- YAZSINI ALTA ALAMADIM -->
-                    <a href="promo1.png"><img class="d-block w-100 img-fluid" src="~/img/promo1.png" alt=""></a>
-                    <div class="carousel-caption carousel-caption2 d-none d-md-block">
-                        <h5>@Model[0].movieName</h5>
-                        <p>@Model[0].movieDuration</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a href="promo2.png"><img class="d-block w-100 img-fluid" src="~/img/promo2.png" alt=""></a>
-                    <div class="carousel-caption carousel-caption2 d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a href="promo3.png"><img class="d-block w-100 img-fluid" src="~/img/promo3.png" alt=""></a>
-                    <div class="carousel-caption carousel-caption2 d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                </div>
+
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    @if (@Model[i].isShowing && i == 0)
+                    {
+                        <div class="carousel-item active">
+                            <a href="promo2.png"><img class="d-block  w-100 img-fluid" src="@Model[i].moviePosterUrl" alt=""></a>
+                            <div class="carousel-caption carousel-caption2 d-none d-md-block">
+                                <h5>@Model[i].movieName</h5>
+                                <p>@Model[i].movieSummary</p>
+                            </div>
+                        </div>
+                    }
+                    else if (@Model[i].isShowing && i!=0)
+                    {
+                        <div class="carousel-item">
+                            <a href="promo2.png"><img class="d-block w-100 img-fluid" src="@Model[i].moviePosterUrl" alt=""></a>
+                            <div class="carousel-caption carousel-caption2 d-none d-md-block">
+                                <h5>@Model[i].movieName</h5>
+                                <p>@Model[i].movieSummary</p>
+                            </div>
+                        </div>
+                    }
+                }
+                
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#slider-promo" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#slider-onShowing" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#slider-promo" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#slider-onShowing" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+</div>
+    </section>
+    
 
+    <br>
+    <hr style="border-top: 5px solid red;">
+    <br>
+    <!-- NOT SHOWING FILMS -->
+
+    <section class="notShowing">
+        <div class="container">
+            <div class="row">
+                <h2>Not Showing</h2>
+            </div>
+        </div>
+
+        <div class="container">
+
+         <div id="slider-notShowing" class="carousel slide carousel-fade my-3" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    @if (@Model[i].isShowing == false && i == 0)
+                    {
+                        <button type="button" data-bs-target="#slider-notShowing" data-bs-slide-to="@i" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                    }
+                    else if (@Model[i].isShowing == false && i!=0)
+                    {
+                        <button type="button" data-bs-target="#slider-notShowing" data-bs-slide-to="@i"
+                    aria-label="Slide 2"></button>
+                    }
+
+                }
+
+                
+            </div> 
+            <div class="carousel-inner">
+
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    @if (@Model[i].isShowing == false && i == 0)
+                    {
+                        <div class="carousel-item">
+                            <a href="promo2.png"><img class="d-block  w-100 img-fluid" src="@Model[i].moviePosterUrl" alt=""></a>
+                            <div class="carousel-caption carousel-caption2 d-none d-md-block">
+                                <h5>@Model[i].movieName</h5>
+                                <p>@Model[i].movieSummary</p>
+                            </div>
+                        </div>
+                    }
+                    else if (@Model[i].isShowing == false && i!=0)
+                    {
+                        <div class="carousel-item active">
+                            <a href="promo2.png"><img class="d-block w-100 img-fluid" src="@Model[i].moviePosterUrl" alt=""></a>
+                            <div class="carousel-caption carousel-caption2 d-none d-md-block">
+                                <h5>@Model[i].movieName</h5>
+                                <p>@Model[i].movieSummary</p>
+                            </div>
+                        </div>
+                    }
+                }
+                
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#slider-notShowing" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#slider-notShowing" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        </div>
     </section>
     <!-- ON SHOWING FILMS -->
+
+    <br>
+    <hr style="border-top: 5px solid red;">
+    <br>
 
     @await Html.PartialAsync("_footer")
 

@@ -10,7 +10,7 @@ namespace Cinema.Management.System.Data
     public static class movieRepository
     {
 
-        private static List<Movie> _movies = new List<Movie>();
+        private static List<Movie> _movies = null;
         private static string connString;
         private static SqlConnection conn;
         private static SqlCommand comm;
@@ -25,6 +25,8 @@ namespace Cinema.Management.System.Data
         public static List<Movie> getAllMovies()
         {
             connectToDatabase();
+
+            _movies= new List<Movie>();
 
             comm = new SqlCommand("SELECT * FROM MOVIE", conn);
             Movie movie = null;
@@ -50,7 +52,8 @@ namespace Cinema.Management.System.Data
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
                     movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
-                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]), Convert.ToInt32(reader[6]), (bool)reader[7]);
+                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
+                         Convert.ToInt32(reader[6]), (bool)reader[7],Convert.ToString(reader[8]),Convert.ToString(reader[9]));
 
                     _movies.Add(movie);
                 }

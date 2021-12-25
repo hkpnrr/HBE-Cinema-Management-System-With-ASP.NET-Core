@@ -13,8 +13,12 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult MainPage()
         {
+
             List<Movie> movies = movieRepository.getAllMovies();
+            
             Console.WriteLine(movies[0].movieName + movies[0].isShowing);
+            Console.WriteLine(movies[1].movieName + movies[1].isShowing);
+            Console.WriteLine(movies[2].movieName + movies[2].isShowing);
 
             return View(movies);
         }

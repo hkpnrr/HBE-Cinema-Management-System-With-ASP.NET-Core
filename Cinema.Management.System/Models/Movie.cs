@@ -14,9 +14,13 @@ namespace Cinema.Management.System.Models
         public String movieTrailerUrl { get; set; }
         public String movieSummary { get; set; }
         public int movieDirectorId { get; set; }
-        public Boolean isShowing { get; set; }
+        public bool isShowing { get; set; }
 
-        public Movie(int movieId, String movieName, String movieReleaseDate, int movieDuration, String movieTrailerUrl, String movieSummary, int movieDirectorId, Boolean isShowing)
+        public string moviePhotoUrl { get; set; }
+        public string moviePosterUrl { get; set; }
+
+        public Movie(int movieId, String movieName, String movieReleaseDate, int movieDuration, String movieTrailerUrl, 
+        String movieSummary, int movieDirectorId, bool isShowing, string moviePhotoUrl,string moviePosterUrl)
         {
             this.movieId = movieId;
             this.movieName = movieName;
@@ -26,6 +30,9 @@ namespace Cinema.Management.System.Models
             this.movieSummary = movieSummary;
             this.movieDirectorId = movieDirectorId;
             this.isShowing = isShowing;
+            this.moviePhotoUrl=moviePhotoUrl;
+            this.moviePosterUrl=moviePosterUrl;
+
         }
     }
 }
