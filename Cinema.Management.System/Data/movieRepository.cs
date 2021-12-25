@@ -1,30 +1,38 @@
-﻿using Cinema.Management.System.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinema.Management.System.Models;
 
-namespace Cinema.Management.System.Controllers
+namespace Cinema.Management.System.Data
 {
-    public class MovieService
+    public static class movieRepository
     {
-        public Movie getMovie()
+
+        private static List<Movie> _movies = new List<Movie>();
+        private static string connString;
+        private static SqlConnection conn;
+        private static SqlCommand comm;
+
+        public static void connectToDatabase()
         {
+            connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
+            conn = new SqlConnection(connString);
 
-            
-            string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connString);
-            SqlCommand comm = new SqlCommand("SELECT * FROM MOVIE", conn);
-            Console.Write("DENEME");
-            //SqlCommand comm = new SqlCommand("SELECT * FROM CUSTOMER WHERE NAME=@name, conn);
-            //comm.Parameters.Add("@name", name);
+        }
 
+        public static List<Movie> getAllMovies()
+        {
+            connectToDatabase();
+
+            comm = new SqlCommand("SELECT * FROM MOVIE", conn);
             Movie movie = null;
 
             SqlDataReader reader;
             try
             {
+                Console.WriteLine("TRY DENEME31");
 
                 //Bağlantımı açıyorum.
                 conn.Open();
@@ -43,9 +51,10 @@ namespace Cinema.Management.System.Controllers
                     //Console.WriteLine(String.Format("{0}", reader[0]));
                     movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
                         Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]), Convert.ToInt32(reader[6]), (bool)reader[7]);
-                    break;
 
+                    _movies.Add(movie);
                 }
+
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
@@ -59,8 +68,12 @@ namespace Cinema.Management.System.Controllers
                 conn.Close();
             }
 
-            return movie;
+            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
+
+            return _movies;
+
         }
+
 
     }
 }

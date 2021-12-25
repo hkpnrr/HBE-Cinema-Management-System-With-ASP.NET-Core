@@ -14,7 +14,6 @@ namespace Cinema.Management.System.Models
         public String movieTrailerUrl { get; set; }
         public String movieSummary { get; set; }
         public int movieDirectorId { get; set; }
-
         public Boolean isShowing { get; set; }
 
         public Movie(int movieId, String movieName, String movieReleaseDate, int movieDuration, String movieTrailerUrl, String movieSummary, int movieDirectorId, Boolean isShowing)

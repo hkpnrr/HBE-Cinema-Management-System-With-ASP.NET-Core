@@ -4,26 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinema.Management.System.Data;
 
 namespace Cinema.Management.System.Controllers
 {
     public class MainPageController : Controller
     {
-        //
-        private MovieService _movieService = new MovieService();
 
         public IActionResult MainPage()
         {
-            return View();
+            List<Movie> movies = movieRepository.getAllMovies();
+            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
+
+            return View(movies);
         }
 
         public IActionResult MoviePage()
         {
             //
-            Movie mov = _movieService.getMovie();
+            // Movie mov = _movieService.getMovie();
+
+            List<Movie> movies = movieRepository.getAllMovies();
+            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
 
 
-            return View(mov);
+            return View(movies);
         }
     }
 }

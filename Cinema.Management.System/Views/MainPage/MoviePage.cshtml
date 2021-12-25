@@ -1,9 +1,5 @@
-﻿@model Movie
+﻿@model List<Movie>
 
-@{
-    string movieName = Model.movieName;
-
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,36 +10,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <style>
+        #background {
+            background-image: url(https://www.arttablo.com/upload/U-sinema-salonu-fotograf-kanvas-tablo1461331435-800.jpg);
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 
 </head>
 
 <body>
 
     @await Html.PartialAsync("_navbar")
-    
+
     <!-- PARTIAL VIEW ILE YAPARSAK -->
     <!--<partial name="_navbar" /> -->
 
 
     <!-- AFİŞ VE FRAGMAN -->
     <!-- ROW 2 COLUMN'A BÖLÜNÜYOR -->
-    <h2 class="fw-bold text-capitalize text-center bg-white mt-5">@movieName</h2>
-    <div class="row mt-5" style="background-image: url(sinemaSalonuÖn.jpg);">
+    <h2 class="fw-bold text-capitalize text-center bg-white mt-5">@Model[0].movieName</h2>
+    <div class="row mt-5" id="background">
 
         <!-- FOTO BÖLÜMÜ -->
         <div class="col-md-5 col-lg-4 col-xl-3 mx-auto my-4 text-center ">
-            <img class="ms-5 border border-5 rounded" src="SpiderManNoWayHome_Poster_Main_y.jpg" alt="">
+            <img class="ms-5 border border-5 rounded" src="~/img/SpiderManNoWayHome_Poster_Main_y.jpg" alt="">
         </div>
 
         <!-- FRAGMAN BÖLÜMÜ -->
         <!-- RESPONSIVE YAPAMADIM FRAGMANI,çok az bi OVERFLOW OLUYO EKRANI KÜÇÜLTÜNCE -->
         <div class="col-md-7 col-lg-8 col-xl-9 mx-auto my-auto text-center ">
             <iframe class="border border-5 rounded" width="560" height="315"
-                    src="https://www.youtube.com/embed/JfVOs4VSpmA" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                src="https://www.youtube.com/embed/JfVOs4VSpmA" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
     </div>
     <!-- ROW 2 COLUMN'A BÖLÜNÜYOR -->
@@ -51,22 +56,22 @@
     <!-- FİLM INFO -->
     <section class="filmInfo mt-5">
         <div class="container">
-            <h2 class="text-center">@Model.movieName</h2>
+            <h2 class="text-center">@Model[0].movieName</h2>
             <p> <strong>Yönetmen: </strong> Jon Watts</p>
             <p>
                 <strong>Oyuncular: </strong> Willem Dafoe, Tom Holland, Zendaya, Benedict Cumberbatch, Marisa Tomei
             </p>
             <div class="row">
                 <div class="col-3">
-                    <div><strong>Vizyon Tarihi:</strong> @Model.movieReleaseDate</div>
-                    <div><strong>Süre:</strong> @Model.movieDuration Dakika</div>
+                    <div><strong>Vizyon Tarihi:</strong> @Model[0].movieReleaseDate</div>
+                    <div><strong>Süre:</strong> @Model[0].movieDuration Dakika</div>
                     <div><strong>Tür:</strong> Aksiyon</div>
 
 
                 </div>
                 <div class="col-9">
                     <div>
-                        <strong>Özet: </strong>@Model.movieSummary
+                        <strong>Özet: </strong>@Model[0].movieSummary
                     </div>
                 </div>
             </div>
@@ -85,7 +90,7 @@
                     </a>
     -->
     <!-- BUY TICKET -->
-    @if (Model.isShowing)
+    @if (Model[0].isShowing)
     {
         <div class="container">
             <h2 class="text-center">Watch Now!</h2>
@@ -117,7 +122,7 @@
         <div class="mb-3">
             <label for="makeComment" class="form-label">Your comment:</label>
             <textarea style="resize: none; height: 200px;" class="form-control" id="makeComment" rows="3"
-                      placeholder="Your comment..." maxlength="500"></textarea>
+                placeholder="Your comment..." maxlength="500"></textarea>
         </div>
         <div class="container">
             <div class="text-end">
@@ -191,11 +196,11 @@
         <div id="slider-benzerFilmler" class="carousel slide carousel-fade my-3" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
+                    aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
+                    aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -227,12 +232,12 @@
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#slider-benzerFilmler"
-                    data-bs-slide="prev">
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#slider-benzerFilmler"
-                    data-bs-slide="next">
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -248,8 +253,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
