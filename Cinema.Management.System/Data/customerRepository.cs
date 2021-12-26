@@ -7,10 +7,9 @@ using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
-    public static class movieRepository
+    public class customerRepository
     {
-
-        private static List<Movie> _movies = null;
+        public static List<string> _emails = null;
         private static string connString;
         private static SqlConnection conn;
         private static SqlCommand comm;
@@ -22,18 +21,19 @@ namespace Cinema.Management.System.Data
 
         }
 
-        public static List<Movie> getAllMovies()
+        public static List<string> getAllEmails()
         {
             connectToDatabase();
 
-            _movies= new List<Movie>();
+            _emails = new List<string>();
 
-            comm = new SqlCommand("SELECT * FROM MOVIE", conn);
-            Movie movie = null;
+            comm = new SqlCommand("SELECT email FROM CUSTOMER", conn);
+
 
             SqlDataReader reader;
             try
             {
+
 
                 //Bağlantımı açıyorum.
                 conn.Open();
@@ -50,11 +50,7 @@ namespace Cinema.Management.System.Data
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                    movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
-                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
-                         Convert.ToInt32(reader[6]), (bool)reader[7],Convert.ToString(reader[8]),Convert.ToString(reader[9]));
-
-                    _movies.Add(movie);
+                    _emails.Add(Convert.ToString(reader[0]));
                 }
 
                 reader.Close(); // işin bitine kapat
@@ -70,12 +66,45 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
 
-            return _movies;
+
+            return _emails;
 
         }
 
+        public static void createCustomer(Customer c)
+        {
+            
+            try
+            {
+                connectToDatabase();
+                conn.Open();
 
+
+                comm = new SqlCommand("INSERT INTO CUSTOMER (firstname,lastname,email,password,birthDate,phone) VALUES(@name, @surname, @email, @password, @birthDate, @phone)", conn);
+                comm.Parameters.AddWithValue("@name", c.firstName);
+                comm.Parameters.AddWithValue("@surname", c.lastName);
+                comm.Parameters.AddWithValue("@email", c.email);
+                comm.Parameters.AddWithValue("@password", c.password);
+                comm.Parameters.AddWithValue("@birthDate", c.birthDate);
+                comm.Parameters.AddWithValue("@phone", c.phone);
+
+                int result = comm.ExecuteNonQuery();
+
+                Console.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+
+
+        }
     }
 }

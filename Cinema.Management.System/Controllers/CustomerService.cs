@@ -11,9 +11,9 @@ namespace Cinema.Management.System.Controllers
 {
     public class CustomerService
     {
-        public Customer getCustomer()
+        public int getCustomer()
         {
-            string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
+            /* string connString = @"Data Source=.\SQLEXPRESS;Database=movie_database;Trusted_Connection=True;MultipleActiveResultSets=true"; //ConfigurationManager.ConnectionStrings["DatabaseUrl"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand comm = new SqlCommand("SELECT * FROM CUSTOMER", conn);
 
@@ -54,7 +54,9 @@ namespace Cinema.Management.System.Controllers
             }
 
             Customer c = new Customer();
-            return c;
+            return c; */
+
+            return 1;
         }
     }
 }
