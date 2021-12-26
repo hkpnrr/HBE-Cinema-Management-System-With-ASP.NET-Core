@@ -15,7 +15,7 @@ namespace Cinema.Management.System.Controllers
         {
 
             List<Movie> movies = movieRepository.getAllMovies();
-            
+
             Console.WriteLine(movies[0].movieName + movies[0].isShowing);
             Console.WriteLine(movies[1].movieName + movies[1].isShowing);
             Console.WriteLine(movies[2].movieName + movies[2].isShowing);
@@ -23,7 +23,7 @@ namespace Cinema.Management.System.Controllers
             return View(movies);
         }
 
-        public IActionResult MoviePage()
+        public IActionResult MoviePage() // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
             //
             // Movie mov = _movieService.getMovie();
@@ -34,5 +34,28 @@ namespace Cinema.Management.System.Controllers
 
             return View(movies);
         }
+
+
+        public IActionResult Movies() // BÜTÜN FİLMLERİN GÖSTERİLDİĞİ SAYFA
+        {
+
+            // Movie mov = _movieService.getMovie();
+
+            List<Movie> movies = movieRepository.getAllMovies();
+            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
+
+
+            return View(movies);
+        }
+
+        public IActionResult CinemaHalls() // SİNEMA SALONLARININ GÖSTERİLDİĞİ SAYFA
+        {
+            // VERİ ÇEKCEZ BURDA DAHA (REPOS LAZIM)
+
+            return View();
+        }
+
+
+
     }
 }
