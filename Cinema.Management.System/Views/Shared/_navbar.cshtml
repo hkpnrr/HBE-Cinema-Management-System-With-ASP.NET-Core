@@ -1,39 +1,54 @@
 ﻿<!-- NAVBAR -->
 <nav class="navbar bg-light navbar-light navbar-expand-sm ">
+    <div class="container-fluid">
 
-    <a href="#" class="navbar-brand ps-5"><img src="~/img/HBE.png" style="max-width: 165px;" alt=""></a>
+        <!-- RETURN TO MAIN PAGE WHEN BRAND IMAGE IS CLICKED-->
+        <a class="navbar-brand ps-5" style="text-decoration: none;" asp-controller="MainPage" asp-action="MainPage">
+            <img src="~/img/HBE.png" style="max-width: 165px;" alt="">
+        </a>
 
-    <!-- pencere küçülünce collapsible (TOGGLE'DA SIKINTI VAR AW)-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- pencere küçülünce collapsible (TOGGLE'DA SIKINTI VAR AW)-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- collapsible -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <!-- collapsible navbar-->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-        <ul class="navbar-nav me-auto">
-            <!-- filmleri listelicek ayrı bir sayfada -->
-            <li class="nav-item ps-5">
-                <a href="#" class="nav-link">All Films</a>
-            </li>
-            <!-- sinema salonlarını listelicek ayrı bir sayfada -->
-            <li class="nav-item ps-5">
-                <a href="#" class="nav-link">Cinema Halls</a>
-            </li>
+            <ul class="navbar-nav me-auto">
+                <!-- ALL FILMS ARE LISTED IN ANOTHER PAGE (VIEW) -->
+                <li class="nav-item ps-5 me-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="MainPage" asp-action="Movies">
+                        <p class="nav-link" id="allFilms">All Films</p>
+                    </a>
+                </li>
+                <!-- ALL CINEMA HALLS ARE LISTED IN ANOTHER PAGE (VIEW) -->
+                <li class="nav-item ps-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="MainPage" asp-action="CinemaHalls">
+                        <p class="nav-link" id="allFilms">Cinema Halls</p>
+                    </a>
+                </li>
 
-        </ul>
-        <form class="me-5">
-            <input class="form-control" type="text" placeholder="Search Movie" title="Search Now!">
-        </form>
+            </ul>
+            <form class="me-5">
+                <input class="form-control" type="text" placeholder="Search Movie" title="Search Now!">
+            </form>
 
-        <nav class="navbar-nav me-5">
-            <!-- profile'e gitcek -->
-            <a  href="#" class="nav-link me-5">Profile</a>
-            <a style="text-decoration: none;" asp-controller="Home" asp-action="Login">
-                <p class="nav-link me-5" id="logout" >Logout</p>
-            </a>
+            <ul class="navbar-nav me-5">
+                <li class="nav-item ps-5 pt-3">
+                    <!-- profile'e gitcek -->
+                    <a href="#" class="nav-link me-5">Profile</a>
+                </li>
+                <li class="nav-item ps-5 pt-3">
 
-        </nav>
+                    <a style="text-decoration: none;" asp-controller="Home" asp-action="Login">
+                        <p class="nav-link me-5" id="logout">Logout</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
     </div>
+
 </nav>
 <!-- NAVBAR -->

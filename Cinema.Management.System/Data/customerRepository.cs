@@ -10,7 +10,6 @@ namespace Cinema.Management.System.Data
     public class customerRepository
     {
         public static List<string> _emails = null;
-
         public static Customer authUser;
         private static string connString;
         private static SqlConnection conn;

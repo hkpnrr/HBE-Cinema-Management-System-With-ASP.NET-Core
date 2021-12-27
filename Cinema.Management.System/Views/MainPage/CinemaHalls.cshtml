@@ -1,3 +1,5 @@
+@model List<CinemaHall>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +30,11 @@
             <br>
             <hr style="border: 2px solid black;">
             <br>
-            <div class="container">
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+                <div class="container">
                 <!-- CINEMA HALL INFO -->
-                <h2><strong>Cinemaximum - Optimum İzmir</strong></h2>
+                <h2><strong>@Model[i].cinemaHallName</strong></h2>
                 <p><strong>Address: </strong>Binbaşı Reşatbey, Akçay Cd. No:101, 35410 Gaziemir/İzmir</p>
                 <br>
                 <!-- SHOWING MOVIES -->
@@ -40,7 +44,7 @@
                             src="https://media.cinemaximum.com.tr/255//Files/POSTER/SpiderManNoWayHome_Poster_Main_y.jpg"
                             alt=""></a>
                     <div class="card-body">
-                        <h5 class="card-title">Spider-Man: No Way Home</h5>
+                        <h5 class="card-title"><a style="text-decoration: none;" href="">Spider-Man: No Way Home</a></h5>
                     </div>
                 </div>
 
@@ -50,6 +54,7 @@
                 <hr style="border: 2px solid black;">
                 <br>
             </div>
+            }
         </div>
     </section>
 

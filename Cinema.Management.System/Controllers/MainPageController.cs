@@ -23,6 +23,7 @@ namespace Cinema.Management.System.Controllers
             return View(movies);
         }
 
+        // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
         public IActionResult MoviePage() // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
             //
@@ -50,9 +51,9 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult CinemaHalls() // SİNEMA SALONLARININ GÖSTERİLDİĞİ SAYFA
         {
-            // VERİ ÇEKCEZ BURDA DAHA (REPOS LAZIM)
+            List<CinemaHall> cinemaHalls = cinemaHallRepository.getAllCinemaHalls();
 
-            return View();
+            return View(cinemaHalls);
         }
 
 
