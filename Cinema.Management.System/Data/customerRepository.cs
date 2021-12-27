@@ -10,6 +10,8 @@ namespace Cinema.Management.System.Data
     public class customerRepository
     {
         public static List<string> _emails = null;
+
+        public static Customer authUser;
         private static string connString;
         private static SqlConnection conn;
         private static SqlCommand comm;
@@ -74,7 +76,7 @@ namespace Cinema.Management.System.Data
 
         public static void createCustomer(Customer c)
         {
-            
+
             try
             {
                 connectToDatabase();
@@ -106,5 +108,58 @@ namespace Cinema.Management.System.Data
 
 
         }
+
+        public static Customer LoginAuthorization(Customer cs)
+        {
+
+            connectToDatabase();
+            string sqlQuery = "SELECT * FROM CUSTOMER where email=@email AND password=@password";
+
+            SqlCommand comm = new SqlCommand(sqlQuery, conn);
+
+            comm.Parameters.AddWithValue("@email", cs.email);
+            comm.Parameters.AddWithValue("@password", cs.password);
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    authUser = new Customer(Convert.ToInt32(reader[0]), Convert.ToString(reader[1])
+                    , Convert.ToString(reader[2]), Convert.ToString(reader[3]),
+                   Convert.ToString(reader[4]), Convert.ToString(reader[5]), Convert.ToString(reader[6]));
+
+
+                }
+                else
+                {
+                    authUser = null;
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch
+            {
+                Console.WriteLine("loginauthor bir hata oluştu");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            return authUser;
+        }
+
+
+
+
     }
 }

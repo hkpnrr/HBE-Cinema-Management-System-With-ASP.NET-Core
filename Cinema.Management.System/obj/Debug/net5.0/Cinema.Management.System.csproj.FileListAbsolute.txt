@@ -312,3 +312,5 @@ C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.genruntimeconfig.cache
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\Movies.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\CinemaHalls.cshtml.g.cs
+C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\CinemaHalls.cshtml.g.cs
+C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\Movies.cshtml.g.cs

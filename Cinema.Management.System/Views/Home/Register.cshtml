@@ -17,6 +17,7 @@
                 <input name="Name" action="/Home/Register" type="text" placeholder="Name" required />
                 <input name="Surname" action="/Home/Register" type="text" placeholder="Surname" required />
                 <input name="Email" action="/Home/Register" type="email" placeholder="Email" required />
+                
                 <input name="Password" action="/Home/Register" type="password" placeholder="Password" required />
                 <input name="Date" action="/Home/Register" type="date" placeholder="Birthdate" required />
                 <input name="Tel" action="/Home/Register" type="text" name="Phone" placeholder="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
@@ -38,6 +39,13 @@
         <p id="haveacc" style="text-decoration: underline; ">Already have an account?</p>
     </a>
 
+    @if (@TempData["EmailError"]!=null)
+    {
+        <h6 style="color: red; border: 2px solid red; padding:5px ; border-radius :3px;"><strong>@TempData["EmailError"]</strong></h6>
+
+    }
+
+    
 
 
 </body>

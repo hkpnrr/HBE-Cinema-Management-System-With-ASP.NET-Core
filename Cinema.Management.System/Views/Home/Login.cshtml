@@ -12,15 +12,21 @@
 </head>
 
 <body>
-	<h2>HBE CINEMA HALL @ViewBag.Saat</h2>
+	<h2>HBE CINEMA HALL</h2>
 	<div class="container" id="container">
-		
+
 		<div class="form-container sign-in-container">
-			<form action="#">
+			<form method="POST" action="/Home/Login">
 				<h1>Sign in</h1>
-				<input type="email" placeholder="Email" required/>
-				<input type="password" placeholder="Password" required />
-				<button>Sign In</button>
+				<input name="Email" action="/Home/Login" type="email" placeholder="Email" required />
+				<input name="Password" action="/Home/Login" type="password" placeholder="Password" required />
+				@if (@TempData["LoginError"] != null)
+				{
+					<h6 style="color: red; border: 2px solid red; padding:5px ; border-radius :3px;">
+						<strong>@TempData["LoginError"]</strong></h6>
+
+				}
+				<button type="submit">Sign In</button>
 			</form>
 		</div>
 		<div class="overlay-container">
@@ -28,7 +34,7 @@
 				<div class="overlay-panel overlay-right">
 					<h1>HBE CINEMA HALL</h1>
 					<p>Enter your personal details and start journey with us</p>
-					<a asp-controller="Home"  asp-action="Register">
+					<a asp-controller="Home" asp-action="Register">
 						<button style="background-color: orange;">Sign Up</button>
 					</a>
 				</div>
