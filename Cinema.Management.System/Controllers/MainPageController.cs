@@ -24,16 +24,14 @@ namespace Cinema.Management.System.Controllers
         }
 
         // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
-        public IActionResult MoviePage() // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
+        public IActionResult MoviePage(int id) // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
             //
             // Movie mov = _movieService.getMovie();
 
-            List<Movie> movies = movieRepository.getAllMovies();
-            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
+            Movie movieDetail = movieRepository.getMovieById(id);
 
-
-            return View(movies);
+            return View(movieDetail);
         }
 
 

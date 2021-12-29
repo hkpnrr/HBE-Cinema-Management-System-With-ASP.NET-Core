@@ -45,6 +45,8 @@ namespace Cinema.Management.System.Models
 
         }
 
+    
+
 
     }
 }

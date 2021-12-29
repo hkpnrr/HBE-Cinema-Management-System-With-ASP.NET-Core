@@ -1,4 +1,4 @@
-﻿@model List<Movie>
+﻿@model Movie
 
 
 <!DOCTYPE html>
@@ -31,22 +31,21 @@
     <!-- PARTIAL VIEW ILE YAPARSAK -->
     <!--<partial name="_navbar" /> -->
 
-
+    <h2 class="fw-bold text-capitalize text-center bg-white mt-5"><strong>@Model.movieName</strong></h2>
     <!-- AFİŞ VE FRAGMAN -->
     <!-- ROW 2 COLUMN'A BÖLÜNÜYOR -->
-    <h2 class="fw-bold text-capitalize text-center bg-white mt-5">@Model[0].movieName</h2>
     <div class="row mt-5" id="background">
 
         <!-- FOTO BÖLÜMÜ -->
         <div class="col-md-5 col-lg-4 col-xl-3 mx-auto my-4 text-center ">
-            <img class="ms-5 border border-5 rounded" src="~/img/SpiderManNoWayHome_Poster_Main_y.jpg" alt="">
+            <img class="ms-5 border border-5 rounded img-fluid" src=@Model.moviePhotoUrl alt="" width="255px">
         </div>
 
         <!-- FRAGMAN BÖLÜMÜ -->
         <!-- RESPONSIVE YAPAMADIM FRAGMANI,çok az bi OVERFLOW OLUYO EKRANI KÜÇÜLTÜNCE -->
         <div class="col-md-7 col-lg-8 col-xl-9 mx-auto my-auto text-center ">
             <iframe class="border border-5 rounded" width="560" height="315"
-                src="https://www.youtube.com/embed/JfVOs4VSpmA" title="YouTube video player" frameborder="0"
+                src=@Model.movieTrailerUrl title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
@@ -56,22 +55,22 @@
     <!-- FİLM INFO -->
     <section class="filmInfo mt-5">
         <div class="container">
-            <h2 class="text-center">@Model[0].movieName</h2>
-            <p> <strong>Yönetmen: </strong> Jon Watts</p>
+            <h2 class="text-center">@Model.movieName</h2>
+            <p> <strong>Director: </strong> @Model.movieDirector.directorFirstName @Model.movieDirector.directorLastName</p>
             <p>
-                <strong>Oyuncular: </strong> Willem Dafoe, Tom Holland, Zendaya, Benedict Cumberbatch, Marisa Tomei
+                <strong>Cast: </strong> Willem Dafoe, Tom Holland, Zendaya, Benedict Cumberbatch, Marisa Tomei
             </p>
             <div class="row">
                 <div class="col-3">
-                    <div><strong>Vizyon Tarihi:</strong> @Model[0].movieReleaseDate</div>
-                    <div><strong>Süre:</strong> @Model[0].movieDuration Dakika</div>
-                    <div><strong>Tür:</strong> Aksiyon</div>
+                    <div><strong>Release Date:</strong> @Model.movieReleaseDate</div>
+                    <div><strong>Duration:</strong> @Model.movieDuration Minutes</div>
+                    <div><strong>Category:</strong> @Model.movieCategory</div>
 
 
                 </div>
                 <div class="col-9">
                     <div>
-                        <strong>Özet: </strong>@Model[0].movieSummary
+                        <strong>Summary: </strong>@Model.movieSummary
                     </div>
                 </div>
             </div>
@@ -90,7 +89,7 @@
                     </a>
     -->
     <!-- BUY TICKET -->
-    @if (Model[0].isShowing)
+    @if (Model.isShowing)
     {
         <div class="container">
             <h2 class="text-center">Watch Now!</h2>

@@ -35,7 +35,7 @@
                         <!-- PHOTO -->
                         <div class="col-3 ">
                             <div class="container">
-                                <a href=""><img class="img-fluid" src="@movie.moviePhotoUrl" alt=""> </a>
+                                <a asp asp-controller="MainPage" asp-action="MoviePage" asp-route-id="@movie.movieId"><img class="img-fluid" src="@movie.moviePhotoUrl" alt=""> </a>
                             </div>
                         </div>
 
