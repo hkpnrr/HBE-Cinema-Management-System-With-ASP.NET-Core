@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\Desktop\\CINEMA\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {}
+    "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\Desktop\\CINEMA\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {
+    "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\Desktop\\CINEMA\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+        "projectUniqueName": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
         "projectName": "Cinema.Management.System",
-        "projectPath": "C:\\Users\\pc\\Desktop\\CINEMA\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\Desktop\\CINEMA\\Cinema\\Cinema.Management.System\\obj\\",
+        "projectPath": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+        "packagesPath": "C:\\Users\\90555\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema\\Cinema.Management.System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\90555\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -61,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

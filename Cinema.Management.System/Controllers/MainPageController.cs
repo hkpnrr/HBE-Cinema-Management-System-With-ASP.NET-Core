@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cinema.Management.System.Data;
+using Cinema.Management.System.ViewModels;
 
 namespace Cinema.Management.System.Controllers
 {
@@ -26,12 +27,14 @@ namespace Cinema.Management.System.Controllers
         // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
         public IActionResult MoviePage(int id) // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
-            //
-            // Movie mov = _movieService.getMovie();
+            
 
             Movie movieDetail = movieRepository.getMovieById(id);
+            List<Actor> actors = movieRepository.getActorsById(id);
 
-            return View(movieDetail);
+            actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+
+            return View(viewModel);
         }
 
 
