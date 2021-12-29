@@ -35,7 +35,7 @@
                         <!-- PHOTO -->
                         <div class="col-3 ">
                             <div class="container">
-                                <a href=""><img class="img-fluid" src="@movie.moviePosterUrl" alt=""> </a>
+                                <a href=""><img class="img-fluid" src="@movie.moviePhotoUrl" alt=""> </a>
                             </div>
                         </div>
 
@@ -54,7 +54,9 @@
                                 }
 
 
-                                <p><strong>Type: </strong>Action</p>
+                                <p><strong>Category: </strong>@movie.movieCategory</p>
+
+                                <p>@movie.movieSummary</p>
                             </div>
 
                         </div>
@@ -62,6 +64,8 @@
                         <div class="col-3">
                             <div class="container">
                                 <p><strong>Duration: </strong>@movie.movieDuration minutes</p>
+                                <p><strong>Director: </strong>@movie.movieDirector.directorFirstName @movie.movieDirector.directorLastName</p>
+
                             </div>
                         </div>
                     </div>

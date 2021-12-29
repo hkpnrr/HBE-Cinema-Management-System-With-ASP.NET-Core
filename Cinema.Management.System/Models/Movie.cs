@@ -8,19 +8,25 @@ namespace Cinema.Management.System.Models
     public class Movie
     {
         public int movieId { get; set; }
-        public String movieName { get; set; }
-        public String movieReleaseDate { get; set; }
+        public string movieName { get; set; }
+        public string movieReleaseDate { get; set; }
         public int movieDuration { get; set; }
-        public String movieTrailerUrl { get; set; }
-        public String movieSummary { get; set; }
-        public int movieDirectorId { get; set; }
+        public string movieTrailerUrl { get; set; }
+        public string movieSummary { get; set; }
+
         public bool isShowing { get; set; }
 
         public string moviePhotoUrl { get; set; }
         public string moviePosterUrl { get; set; }
 
-        public Movie(int movieId, String movieName, String movieReleaseDate, int movieDuration, String movieTrailerUrl, 
-        String movieSummary, int movieDirectorId, bool isShowing, string moviePhotoUrl,string moviePosterUrl)
+        public string movieCategory { get; set; }
+
+        public Director movieDirector { get; set; }
+
+        public Movie(int movieId, string movieName, string movieReleaseDate, int movieDuration, string movieTrailerUrl,
+        string movieSummary, int movieDirectorId,
+         bool isShowing, string moviePhotoUrl, string moviePosterUrl,
+         string movieCategory, string movieDirectorFirstName, string movieDirectorLastName)
         {
             this.movieId = movieId;
             this.movieName = movieName;
@@ -28,11 +34,17 @@ namespace Cinema.Management.System.Models
             this.movieDuration = movieDuration;
             this.movieTrailerUrl = movieTrailerUrl;
             this.movieSummary = movieSummary;
-            this.movieDirectorId = movieDirectorId;
+
+            movieDirector = new Director(movieDirectorId, movieDirectorFirstName, movieDirectorLastName);
+            this.movieDirector = movieDirector;
+
             this.isShowing = isShowing;
-            this.moviePhotoUrl=moviePhotoUrl;
-            this.moviePosterUrl=moviePosterUrl;
+            this.moviePhotoUrl = moviePhotoUrl;
+            this.moviePosterUrl = moviePosterUrl;
+            this.movieCategory = movieCategory;
 
         }
+
+
     }
 }
