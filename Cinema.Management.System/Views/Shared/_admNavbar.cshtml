@@ -1,0 +1,55 @@
+<!-- NAVBAR -->
+<nav class="navbar bg-light navbar-light navbar-expand-sm ">
+    <div class="container-fluid">
+
+        <!-- RETURN TO MAIN PAGE WHEN BRAND IMAGE IS CLICKED-->
+        <a class="navbar-brand ps-5" style="text-decoration: none;" asp-controller="AdminMainPage" asp-action="AdminMainPage">
+            <img src="~/img/HBE.png" style="max-width: 165px;" alt="">
+        </a>
+
+        <!-- pencere küçülünce collapsible (TOGGLE'DA SIKINTI VAR AW)-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- collapsible navbar-->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+            <ul class="navbar-nav me-auto">
+                <!-- ALL FILMS ARE LISTED IN ANOTHER PAGE (VIEW) -->
+                <li class="nav-item ps-5 me-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="AdminMainPage" asp-action="AdminMainPage">
+                        <p class="nav-link" id="allFilms">All Films</p>
+                    </a>
+                </li>
+                <!-- ALL CINEMA HALLS ARE LISTED IN ANOTHER PAGE (VIEW) -->
+                <li class="nav-item ps-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="AdminMainPage" asp-action="AdminMainPage">
+                        <p class="nav-link" id="allFilms">Cinema Halls</p>
+                    </a>
+                </li>
+                <li class="nav-item ps-5 me-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="AdminMainPage" asp-action="AdminMainPage">
+                        <p class="nav-link" id="allFilms">Comments</p>
+                    </a>
+                </li>
+                <li class="nav-item ps-5 me-5 pt-3">
+                    <a style="text-decoration: none;" asp-controller="AdminMainPage" asp-action="AdminMainPage">
+                        <p class="nav-link" id="allFilms">Tickets</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item ps-5 pt-3">
+
+                    <a style="text-decoration: none;" asp-controller="Home" asp-action="Login">
+                        <p class="nav-link me-5" id="logout">Logout</p>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+</nav>
+<!-- NAVBAR -->

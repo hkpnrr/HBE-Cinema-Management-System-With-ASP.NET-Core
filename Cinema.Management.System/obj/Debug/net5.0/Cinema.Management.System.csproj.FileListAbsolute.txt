@@ -422,3 +422,9 @@ C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cine
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\ref\Cinema.Management.System.dll
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.pdb
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.genruntimeconfig.cache
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\createTicket.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\payTicket.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Shared\_admNavbar.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMainPage.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminCinemaHalls.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMovies.cshtml.g.cs

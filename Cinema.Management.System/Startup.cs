@@ -56,6 +56,10 @@ namespace Cinema.Management.System
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=MainPage}/{action=MainPage}/{id?}");
+
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=AdminMainPage}/{action=AdminMainPage}/{id?}");
             });
         }
     }

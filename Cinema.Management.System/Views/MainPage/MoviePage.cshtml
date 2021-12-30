@@ -44,8 +44,8 @@
         <!-- FRAGMAN BÖLÜMÜ -->
         <!-- RESPONSIVE YAPAMADIM FRAGMANI,çok az bi OVERFLOW OLUYO EKRANI KÜÇÜLTÜNCE -->
         <div class="col-md-7 col-lg-8 col-xl-9 mx-auto my-auto text-center ">
-            <iframe class="border border-5 rounded" width="560" height="315"
-                src=@Model.movie.movieTrailerUrl title="YouTube video player" frameborder="0"
+            <iframe class="border border-5 rounded" width="560" height="315" src=@Model.movie.movieTrailerUrl
+                title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
@@ -56,10 +56,11 @@
     <section class="filmInfo mt-5">
         <div class="container">
             <h2 class="text-center">@Model.movie.movieName</h2>
-            <p> <strong>Director: </strong> @Model.movie.movieDirector.directorFirstName @Model.movie.movieDirector.directorLastName</p>
+            <p> <strong>Director: </strong> @Model.movie.movieDirector.directorFirstName
+                @Model.movie.movieDirector.directorLastName</p>
             <p>
-                <strong>Cast: </strong> 
-                
+                <strong>Cast: </strong>
+
             </p>
             <div class="row">
                 <div class="col-3">
@@ -95,7 +96,9 @@
         <div class="container">
             <h2 class="text-center">Watch Now!</h2>
             <div class="btn-lg col-md-12 text-center">
-                <button class="btn-lg btn-dark mb-4">Buy Ticket</button>
+                <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="TicketPage"
+                asp-action="CreateTicket" asp-route-id="@Model.movie.movieId">Buy Ticket</a>
+
             </div>
         </div>
 
