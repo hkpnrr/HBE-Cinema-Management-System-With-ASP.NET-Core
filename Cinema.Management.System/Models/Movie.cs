@@ -45,6 +45,27 @@ namespace Cinema.Management.System.Models
 
         }
 
+        public Movie( string movieName, string movieReleaseDate, int movieDuration, string movieTrailerUrl,
+        string movieSummary, int movieDirectorId,
+         bool isShowing, string moviePhotoUrl, string moviePosterUrl,
+         string movieCategory, string movieDirectorFirstName, string movieDirectorLastName)
+        {
+            
+            this.movieName = movieName;
+            this.movieReleaseDate = movieReleaseDate;
+            this.movieDuration = movieDuration;
+            this.movieTrailerUrl = movieTrailerUrl;
+            this.movieSummary = movieSummary;
+
+            movieDirector = new Director(movieDirectorId, movieDirectorFirstName, movieDirectorLastName);
+            this.movieDirector = movieDirector;
+
+            this.isShowing = isShowing;
+            this.moviePhotoUrl = moviePhotoUrl;
+            this.moviePosterUrl = moviePosterUrl;
+            this.movieCategory = movieCategory;
+
+        }
     
 
 

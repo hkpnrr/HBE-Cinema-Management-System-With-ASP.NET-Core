@@ -17,5 +17,12 @@ namespace Cinema.Management.System.Models
             this.directorFirstName=firstName;
             this.directorLastName=lastName;
         }
+
+        public Director(string firstName,string lastName)
+        {
+            
+            this.directorFirstName=firstName;
+            this.directorLastName=lastName;
+        }
     }
 }

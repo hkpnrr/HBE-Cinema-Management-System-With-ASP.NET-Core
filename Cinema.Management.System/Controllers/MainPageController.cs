@@ -31,11 +31,11 @@ namespace Cinema.Management.System.Controllers
 
             Movie movieDetail = movieRepository.getMovieById(id);
 
-            //List<Actor> actors = movieRepository.getActorsById(id);
+            List<Actor> actors = movieRepository.getActorsById();
 
-            //actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+            actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
 
-            return View(movieDetail);
+            return View(viewModel);
         }
 
 

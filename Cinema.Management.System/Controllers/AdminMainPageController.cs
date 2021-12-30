@@ -42,10 +42,91 @@ namespace Cinema.Management.System.Controllers
 
 
 
-        public IActionResult AdminAddMovie()
+        public IActionResult AdminAddMovie(string MovieName, string MovieReleaseDate, int MovieDuration,
+        string MovieTrailerUrl, string MovieSummary, string DirectorFirstName
+        , string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, string MovieCategory)
         {
+             List<string> allCategoryNames=categoryRepository.getAllCategoryNames();
+             
 
-            return View();
+            if (MovieName != null && MovieReleaseDate != null && 
+        MovieTrailerUrl != null && MovieSummary != null && DirectorFirstName != null &&
+        DirectorLastName != null  && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
+            {
+                movieRepository.getAllMovieNames();
+
+                if (movieRepository._moviesName != null && !movieRepository._moviesName.Contains(MovieName))
+                {
+
+                    directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName);
+                    if (directorRepository._director == null)
+                    {
+                        directorRepository.CreateDirector(DirectorFirstName, DirectorLastName);
+                        directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName); //for find directorId
+                    }
+
+                    int directorIdTemp = directorRepository._director.directorId;
+                    bool isShowing = false;
+
+                    if (MovieIsShowing == 1)
+                    {
+                        isShowing = true;
+                    }
+
+                    Movie m = new Movie(MovieName, MovieReleaseDate, MovieDuration, MovieTrailerUrl, MovieSummary, directorIdTemp,
+                    isShowing, MoviePhotoUrl, MoviePosterUrl, MovieCategory, DirectorFirstName, DirectorLastName);
+
+                    movieRepository.SendMovieToDatabase(m);
+                    
+
+                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory),movieRepository.getMovieIdByName(m.movieName));
+
+                    return RedirectToAction("AdminMovies");
+
+                }
+                else if (movieRepository._moviesName == null)
+                {
+                    directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName);
+                    if (directorRepository._director == null)
+                    {
+                        directorRepository.CreateDirector(DirectorFirstName, DirectorLastName);
+                        directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName); //for find directorId
+                    }
+
+                    int directorIdTemp = directorRepository._director.directorId;
+                    bool isShowing = false;
+
+                    if (MovieIsShowing == 1)
+                    {
+                        isShowing = true;
+                    }
+
+                    Movie m = new Movie(MovieName, MovieReleaseDate, MovieDuration, MovieTrailerUrl, MovieSummary, directorIdTemp,
+                    isShowing, MoviePhotoUrl, MoviePosterUrl, MovieCategory, DirectorFirstName, DirectorLastName);
+
+                    movieRepository.SendMovieToDatabase(m);
+
+                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory),movieRepository.getMovieIdByName(m.movieName));
+                    return RedirectToAction("AdminMovies");
+                }
+                else
+                {
+
+                    if (MovieName != null && MovieReleaseDate != null && 
+                        MovieTrailerUrl != null && MovieSummary != null && DirectorFirstName != null &&
+                        DirectorLastName != null  && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
+                    {
+                        TempData["MovieCreateError"] = "Movie has already exists in database";
+                    }
+
+                    return RedirectToAction("AdminAddMovie");
+                }
+
+
+
+            }
+
+            return View(allCategoryNames);
         }
     }
 }

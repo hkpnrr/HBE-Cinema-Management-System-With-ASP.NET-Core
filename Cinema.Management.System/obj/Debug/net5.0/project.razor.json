@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+  "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15619,118 +15619,118 @@
   "RootNamespace": "Cinema.Management.System",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\TicketPage\\PayTicket.cshtml",
-      "TargetPath": "Views\\TicketPage\\PayTicket.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\MainPage\\CinemaHalls.cshtml",
-      "TargetPath": "Views\\MainPage\\CinemaHalls.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\MainPage\\Movies.cshtml",
-      "TargetPath": "Views\\MainPage\\Movies.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMainPage.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminMainPage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Home\\Register.cshtml",
-      "TargetPath": "Views\\Home\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMoviePage.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminMoviePage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\TicketPage\\CreateTicket.cshtml",
-      "TargetPath": "Views\\TicketPage\\CreateTicket.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_footer.cshtml",
-      "TargetPath": "Views\\Shared\\_footer.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminAddMovie.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminAddMovie.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Home\\Login.cshtml",
-      "TargetPath": "Views\\Home\\Login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMovies.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminMovies.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_admNavbar.cshtml",
-      "TargetPath": "Views\\Shared\\_admNavbar.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\MainPage\\MainPage.cshtml",
-      "TargetPath": "Views\\MainPage\\MainPage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_navbar.cshtml",
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\_navbar.cshtml",
       "TargetPath": "Views\\Shared\\_navbar.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\MainPage\\MoviePage.cshtml",
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\TicketPage\\CreateTicket.cshtml",
+      "TargetPath": "Views\\TicketPage\\CreateTicket.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMainPage.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminMainPage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\_admNavbar.cshtml",
+      "TargetPath": "Views\\Shared\\_admNavbar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\Movies.cshtml",
+      "TargetPath": "Views\\MainPage\\Movies.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMovies.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminMovies.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Home\\Login.cshtml",
+      "TargetPath": "Views\\Home\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\MainPage.cshtml",
+      "TargetPath": "Views\\MainPage\\MainPage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\MoviePage.cshtml",
       "TargetPath": "Views\\MainPage\\MoviePage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\TicketPage\\PayTicket.cshtml",
+      "TargetPath": "Views\\TicketPage\\PayTicket.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminAddMovie.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminAddMovie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\CinemaHalls.cshtml",
+      "TargetPath": "Views\\MainPage\\CinemaHalls.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Home\\Register.cshtml",
+      "TargetPath": "Views\\Home\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMoviePage.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminMoviePage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\Shared\\_footer.cshtml",
+      "TargetPath": "Views\\Shared\\_footer.cshtml",
       "FileKind": "mvc"
     }
   ],

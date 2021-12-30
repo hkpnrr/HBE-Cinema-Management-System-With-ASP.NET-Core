@@ -50,8 +50,8 @@ namespace Cinema.Management.System.Data
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                    cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]),
-                     Convert.ToString(reader[2]), Convert.ToInt32(reader[3]));
+                    cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]),
+                     Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
 
                     _cinemaHalls.Add(cinemaHall);
                 }

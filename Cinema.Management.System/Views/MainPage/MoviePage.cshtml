@@ -1,4 +1,4 @@
-﻿@model Movie
+﻿@model Cinema.Management.System.ViewModels.actorMovieViewModel
 
 
 <!DOCTYPE html>
@@ -31,20 +31,20 @@
     <!-- PARTIAL VIEW ILE YAPARSAK -->
     <!--<partial name="_navbar" /> -->
 
-    <h2 class="fw-bold text-capitalize text-center bg-white mt-5"><strong>@Model.movieName</strong></h2>
+    <h2 class="fw-bold text-capitalize text-center bg-white mt-5"><strong>@Model.movie.movieName</strong></h2>
     <!-- AFİŞ VE FRAGMAN -->
     <!-- ROW 2 COLUMN'A BÖLÜNÜYOR -->
     <div class="row mt-5" id="background">
 
         <!-- FOTO BÖLÜMÜ -->
         <div class="col-md-5 col-lg-4 col-xl-3 mx-auto my-4 text-center ">
-            <img class="ms-5 border border-5 rounded img-fluid" src=@Model.moviePhotoUrl alt="" width="255px">
+            <img class="ms-5 border border-5 rounded img-fluid" src=@Model.movie.moviePhotoUrl alt="" width="255px">
         </div>
 
         <!-- FRAGMAN BÖLÜMÜ -->
         <!-- RESPONSIVE YAPAMADIM FRAGMANI,çok az bi OVERFLOW OLUYO EKRANI KÜÇÜLTÜNCE -->
         <div class="col-md-7 col-lg-8 col-xl-9 mx-auto my-auto text-center ">
-            <iframe class="border border-5 rounded" width="560" height="315" src=@Model.movieTrailerUrl
+            <iframe class="border border-5 rounded" width="560" height="315" src=@Model.movie.movieTrailerUrl
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
@@ -55,24 +55,42 @@
     <!-- FİLM INFO -->
     <section class="filmInfo mt-5">
         <div class="container">
-            <h2 class="text-center">@Model.movieName</h2>
-            <p> <strong>Director: </strong> @Model.movieDirector.directorFirstName
-                @Model.movieDirector.directorLastName</p>
+            <h2 class="text-center">@Model.movie.movieName</h2>
+            <p> <strong>Director: </strong> @Model.movie.movieDirector.directorFirstName
+                @Model.movie.movieDirector.directorLastName</p>
             <p>
-                <strong>Cast: </strong>
+                <strong>Cast:@foreach (var actor in Model.actors)
+                {
+                    @* <ul class="list-group list-group-horizontal">
+                         @if(actor.movieId == Model.movie.movieId){
+                             <li class="list-group-item">@actor.actorFirstName @actor.actorLastName</li>
+                        
+                    }
+                    </ul> *@
 
+                    
+                         @if(actor.movieId == Model.movie.movieId){
+                            @:&nbsp; @actor.actorFirstName &nbsp; @actor.actorLastName
+                        
+                    }
+                    
+
+                
+                    
+                }  </strong>
+                
             </p>
             <div class="row">
                 <div class="col-3">
-                    <div><strong>Release Date:</strong> @Model.movieReleaseDate</div>
-                    <div><strong>Duration:</strong> @Model.movieDuration Minutes</div>
-                    <div><strong>Category:</strong> @Model.movieCategory</div>
+                    <div><strong>Release Date:</strong> @Model.movie.movieReleaseDate</div>
+                    <div><strong>Duration:</strong> @Model.movie.movieDuration Minutes</div>
+                    <div><strong>Category:</strong> @Model.movie.movieCategory</div>
 
 
                 </div>
                 <div class="col-9">
                     <div>
-                        <strong>Summary: </strong>@Model.movieSummary
+                        <strong>Summary: </strong>@Model.movie.movieSummary
                     </div>
                 </div>
             </div>
@@ -91,13 +109,13 @@
                     </a>
     -->
     <!-- BUY TICKET -->
-    @if (Model.isShowing)
+    @if (Model.movie.isShowing)
     {
         <div class="container">
             <h2 class="text-center">Watch Now!</h2>
             <div class="btn-lg col-md-12 text-center">
                 <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="TicketPage"
-                asp-action="CreateTicket" asp-route-id="@Model.movieId">Buy Ticket</a>
+                asp-action="CreateTicket" asp-route-id="@Model.movie.movieId">Buy Ticket</a>
 
             </div>
         </div>

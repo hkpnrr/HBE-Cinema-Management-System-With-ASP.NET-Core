@@ -1,4 +1,4 @@
-@model Cinema.Management.System.ViewModels.MovieCreateViewModel
+@model List<string>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,88 +16,120 @@
 <body>
     @await Html.PartialAsync("_admNavbar")
 
-    <form method="GET">
+    @* <form method="GET">
         <div class="form-group">
-            <label for="@Model.movie.movieName">Movie Name</label>
-            <input type="text" asp-for="@Model.movie.movieName" class="form-control">
+        <label for="@Model.movie.movieName">Movie Name</label>
+        <input type="text" asp-for="@Model.movie.movieName" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.movieReleaseDate">Movie Release Date</label>
-            <input asp-for="@Model.movie.movieReleaseDate" class="form-control">
+        <label for="@Model.movie.movieReleaseDate">Movie Release Date</label>
+        <input asp-for="@Model.movie.movieReleaseDate" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.movieDuration">Movie Duration</label>
-            <input asp-for="@Model.movie.movieDuration" class="form-control">
+        <label for="@Model.movie.movieDuration">Movie Duration</label>
+        <input asp-for="@Model.movie.movieDuration" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.movieTrailerUrl">Movie Trailer Url</label>
-            <textarea asp-for="@Model.movie.movieTrailerUrl" class="form-control"></textarea>
+        <label for="@Model.movie.movieTrailerUrl">Movie Trailer Url</label>
+        <textarea asp-for="@Model.movie.movieTrailerUrl" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.movieSummary">Movie Summary</label>
-            <textarea asp-for="@Model.movie.movieSummary" class="form-control"></textarea>
+        <label for="@Model.movie.movieSummary">Movie Summary</label>
+        <textarea asp-for="@Model.movie.movieSummary" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="@Model.director.directorFirstName">Movie Director Name</label>
-            <input asp-for="@Model.director.directorFirstName" class="form-control">
+        <label for="@Model.director.directorFirstName">Movie Director Name</label>
+        <input asp-for="@Model.director.directorFirstName" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.director.directorLastName">Movie Director Surname</label>
-            <input asp-for="@Model.director.directorLastName" class="form-control">
+        <label for="@Model.director.directorLastName">Movie Director Surname</label>
+        <input asp-for="@Model.director.directorLastName" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.isShowing">Is Movie Showing (1 or 0)</label>
-            <input asp-for="@Model.movie.isShowing" class="form-control">
+        <label for="@Model.movie.isShowing">Is Movie Showing (1 or 0)</label>
+        <input asp-for="@Model.movie.isShowing" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.moviePhotoUrl">Movie Photo Url</label>
-            <textarea asp-for="@Model.movie.moviePhotoUrl" class="form-control"></textarea>
+        <label for="@Model.movie.moviePhotoUrl">Movie Photo Url</label>
+        <textarea asp-for="@Model.movie.moviePhotoUrl" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.moviePosterUrl">Movie Poster Url</label>
-            <textarea asp-for="@Model.movie.moviePosterUrl" class="form-control"></textarea>
+        <label for="@Model.movie.moviePosterUrl">Movie Poster Url</label>
+        <textarea asp-for="@Model.movie.moviePosterUrl" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="@Model.movie.movieCategory">Category Name</label>
-            <select asp-for="@Model.movie.movieCategory" class="form-control">
-                <option selected disabled>Seçiniz</option>
-            </select>
+        <label for="@Model.movie.movieCategory">Category Name</label>
+        <select asp-for="@Model.movie.movieCategory" class="form-control">
+        <option selected disabled>Seçiniz</option>
+        </select>
         </div>
 
         <!-- ACTOR EKLEMECE -->
 
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        </form> *@
 
     <div class="container" id="container">
         <div class="form-container sign-in-container">
             <form action="/AdminMainPage/AdminAddMovie">
                 <h1>Sign up</h1>
-                <input name="Name" action="/AdminMainPage/AdminAddMovie" type="text" placeholder="Name" required />
-                <input name="Surname" action="/AdminMainPage/AdminAddMovie" type="text" placeholder="Surname" required />
-                <input name="Email" action="/AdminMainPage/AdminAddMovie" type="email" placeholder="Email" required />
+                <input name="MovieName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="MovieName" required />
+                <input name="MovieReleaseDate" action="/AdminMainPage/AdminAddMovie" class="form-control" type="date"
+                    placeholder="MovieReleaseDate" required />
+                <input name="MovieDuration" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="MovieDuration" required />
+
+                <input name="MovieTrailerUrl" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="MovieTrailerUrl" required />
+                <input name="MovieSummary" action="/AdminMainPage/AdminAddMovie" class="form-control" type="textarea"
+                    style="resize: none; height: 200px;" placeholder="MovieSummary" class="form-control"
+                    maxlength="2000" required />
+                <input name="DirectorFirstName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="DirectorFirstName" />
+
+                <input name="DirectorLastName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="DirectorLastName" required />
+
+                <div class="container">
+                    <input type="radio" id="showing" name="MovieIsShowing" value="1">
+                    <label for="showing">Is Showing</label><br>
+                    <input type="radio" id="not showing" name="MovieIsShowing" value="0">
+                    <label for="not showing">Not Showing</label><br>
+                </div>
+                <input name="MoviePhotoUrl" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="MoviePhotoUrl" required />
+                <input name="MoviePosterUrl" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="MoviePosterUrl" required />
                 
-                <input name="Password" action="/AdminMainPage/AdminAddMovie" type="password" placeholder="Password" required />
-                <input name="Date" action="/AdminMainPage/AdminAddMovie" type="date" placeholder="Birthdate" required />
-                <input name="Tel" action="/AdminMainPage/AdminAddMovie" type="text" name="Phone" placeholder="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
-                       title="Ten digits code" required /> 
+                <div class="form-group mt-4">
+
+
+                    <select name="MovieCategory" required class="form-select" id="sessionSelect">
+                        <option selected>Category</option>
+                        @foreach (string item in Model)
+                        {
+                            <option value=@item>@item</option>
+                        }
+                        
+                    </select>
+
+
+                </div>
+
                 <button type="submit">Sign Up</button>
             </form>
 
-
-        </div>
-
-        <div>
 
         </div>
 
