@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Sh5Y7UIEPdYM3ALe6q58C40vjkazfcHgHlC4BdjIx02XVFjMYk9J9acnFRH0P/3M6YOZAOrl3ShrI+8W8BErnw==",
+  "dgSpecHash": "r5LsOxVBeABU5IFUufQrGhT9zhHnpRObPHLsHwwNVruIRriCEnpmoWRXVA0KM20dD8GWZWdBhPp5wG1qJKRVsA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
+  "projectFilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Cinema.Management.System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ekin\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Ekin\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

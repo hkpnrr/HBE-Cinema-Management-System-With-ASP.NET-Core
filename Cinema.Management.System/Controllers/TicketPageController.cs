@@ -12,10 +12,10 @@ namespace Cinema.Management.System.Controllers
     {
         public IActionResult CreateTicket(int id) // Create ticket according to movieId
         {
-            
+            Movie movieDetail = movieRepository.getMovieById(id);
 
 
-            return View();
+            return View(movieDetail);
         }
 
 

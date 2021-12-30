@@ -1,3 +1,5 @@
+@model Movie
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,28 +18,27 @@
 
     <div id="booking-page" class="container mt-5">
         <!-- BURDA İLGİLİ FİLMİN ADINI GÖSTER -->
-        <h2>Buy a ticket for <strong>Spider-Man: No Way Home</strong></h2>
+        <h2>Buy a ticket for <strong>@Model.movieName</strong></h2>
 
         <!-- Sinema Salonu Seç-->
         <div class="form-group mt-5">
-            <label for="cinemaHallSelect" class="fw-bold">Select a cinema hall</label>
-            <select required class="form-control" id="cinemaHallSelect" onfocus='this.size=5;' onblur='this.size=1;'
-                onchange='this.size=1; this.blur();'>
+            <form action="#">
+                <label for="cinemaHallSelect" class="fw-bold">Choose a cinema hall</label>
+                <select required class="form-select" id="cinemaHallSelect">
                 <option selected>Choose a cinema hall</option>
                 <option>Optimum İzmir - Gaziemir/İzmir</option>
                 <option>Forum Bornova - Bornova/İzmir</option>
                 <option>Karşıyaka Hilltown - Karşıyaka/İzmir</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
+                </select>
+            </form>
         </div>
 
         <br>
 
         <div class="form-group mt-4">
-            <label for="sessionSelect" class="fw-bold">Select a session</label>
-            <select required class="form-control" id="sessionSelect" onfocus='this.size=5;' onblur='this.size=1;'
-                onchange='this.size=1; this.blur();'>
+            <form action="#">
+                <label for="sessionSelect" class="fw-bold">Choose a session</label>
+                <select required class="form-select" id="sessionSelect">
                 <option selected>Choose a session</option>
                 <option value="11:30">11:30</option>
                 <option>12:15</option>
@@ -48,14 +49,15 @@
                 <option>20:30</option>
                 <option>21:15</option>
                 <option>22:00</option>
-            </select>
+                </select>
+                
+            </form>
         </div>
 
         <br>
 
         <div class="form-group mt-4">
             <!-- IMAGEMAP VEYA TABLE GİBİ BİŞEY GELCEK BURAYA KOLTUKLAR İÇİN -->
-
             <form action="#">
                 <label for="seatSelect" class="fw-bold">Choose a seat</label>
                 <select required class="form-select" id="seatSelect">
@@ -82,12 +84,13 @@
                     <option value="opel">Opel</option>
                     <option value="audi">Audi</option>
                 </select>
-                <br><br>
+                
             </form>
 
 
         </div>
 
+        <br>
 
         <div class="container">
             <h2 class="text-center">Lets Go!</h2>

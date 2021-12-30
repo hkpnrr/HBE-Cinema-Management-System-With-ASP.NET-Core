@@ -15654,6 +15654,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMoviePage.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminMoviePage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\TicketPage\\CreateTicket.cshtml",
       "TargetPath": "Views\\TicketPage\\CreateTicket.cshtml",
       "FileKind": "mvc"
@@ -15681,6 +15686,11 @@
     {
       "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Ekin\\Desktop\\New.Project\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminAddMovie.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminAddMovie.cshtml",
       "FileKind": "mvc"
     },
     {

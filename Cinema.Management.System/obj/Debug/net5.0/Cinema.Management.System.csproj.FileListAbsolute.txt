@@ -428,3 +428,5 @@ C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMainPage.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminCinemaHalls.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMovies.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminAddMovie.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMoviePage.cshtml.g.cs

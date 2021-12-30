@@ -26,8 +26,15 @@ using Cinema.Management.System.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\Views\_ViewImports.cshtml"
+using Cinema.Management.System.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"82dbaa37a4d56e182651f919192e1870576f51a6", @"/Views/Shared/_admNavbar.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"26b2ab5b483ddc53d150517cfefb6c5dcf999151", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42fd429d129da1b7030d35220f8e50d42701dc4f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__admNavbar : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/img/HBE.png"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -65,9 +72,9 @@ using Cinema.Management.System.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<!-- NAVBAR -->\r\n<nav class=\"navbar bg-light navbar-light navbar-expand-sm \">\r\n    <div class=\"container-fluid\">\r\n\r\n        <!-- RETURN TO MAIN PAGE WHEN BRAND IMAGE IS CLICKED-->\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a66505", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a66721", async() => {
                 WriteLiteral("\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "82dbaa37a4d56e182651f919192e1870576f51a66772", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "82dbaa37a4d56e182651f919192e1870576f51a66988", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -114,7 +121,7 @@ using Cinema.Management.System.Models;
                 <!-- ALL FILMS ARE LISTED IN ANOTHER PAGE (VIEW) -->
                 <li class=""nav-item ps-5 me-5 pt-3"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a69889", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a610105", async() => {
                 WriteLiteral("\r\n                        <p class=\"nav-link\" id=\"allFilms\">All Films</p>\r\n                    ");
             }
             );
@@ -133,7 +140,7 @@ using Cinema.Management.System.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <!-- ALL CINEMA HALLS ARE LISTED IN ANOTHER PAGE (VIEW) -->\r\n                <li class=\"nav-item ps-5 pt-3\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a611607", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a611824", async() => {
                 WriteLiteral("\r\n                        <p class=\"nav-link\" id=\"allFilms\">Cinema Halls</p>\r\n                    ");
             }
             );
@@ -152,7 +159,7 @@ using Cinema.Management.System.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item ps-5 me-5 pt-3\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a613255", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a613472", async() => {
                 WriteLiteral("\r\n                        <p class=\"nav-link\" id=\"allFilms\">Comments</p>\r\n                    ");
             }
             );
@@ -171,7 +178,7 @@ using Cinema.Management.System.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                <li class=\"nav-item ps-5 me-5 pt-3\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a614899", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a615116", async() => {
                 WriteLiteral("\r\n                        <p class=\"nav-link\" id=\"allFilms\">Tickets</p>\r\n                    ");
             }
             );
@@ -190,7 +197,7 @@ using Cinema.Management.System.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </li>\r\n                \r\n                <li class=\"nav-item ps-5 pt-3\">\r\n\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a616561", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82dbaa37a4d56e182651f919192e1870576f51a616778", async() => {
                 WriteLiteral("\r\n                        <p class=\"nav-link me-5\" id=\"logout\">Logout</p>\r\n                    ");
             }
             );

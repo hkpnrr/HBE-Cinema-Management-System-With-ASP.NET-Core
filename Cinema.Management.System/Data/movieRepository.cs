@@ -182,14 +182,14 @@ namespace Cinema.Management.System.Data
             return movie;
         }
 
-        public static List<Actor> getActorsById(int movieId)
+        public static List<Actor> getActorsById()
         {
             connectToDatabase();
 
             _actorsById = new List<Actor>();
 
-            comm = new SqlCommand("SELECT T4.actorId,T4.actorName,T4.actorSurname FROM (SELECT ACTOR.*,MOVIE_HAS_ACTORS.movieId FROM ACTOR INNER JOIN MOVIE_HAS_ACTORS ON ACTOR.actorId=MOVIE_HAS_ACTORS.actorId)  AS T4 WHERE T4.movieId=@movieId", conn);
-            comm.Parameters.AddWithValue("@movieId", movieId);
+            comm = new SqlCommand("SELECT ACTOR.*,MOVIE_HAS_ACTORS.movieId FROM ACTOR INNER JOIN MOVIE_HAS_ACTORS ON ACTOR.actorId=MOVIE_HAS_ACTORS.actorId", conn);
+            //comm.Parameters.AddWithValue("@movieId", movieId);
             _actorsById = null;
             Actor actor= null;
 
@@ -203,8 +203,6 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
                 
-
-
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
@@ -227,7 +225,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            foreach (var item in _actorsById)
+            foreach (Actor item in _actorsById)
             {
                 Console.WriteLine(item.actorFirstName+" "+item.actorLastName);
                 

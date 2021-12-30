@@ -26,8 +26,15 @@ using Cinema.Management.System.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\Views\_ViewImports.cshtml"
+using Cinema.Management.System.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f458c9e94403b2acfa107f4211f5fd27eaa9d32", @"/Views/Home/Login.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"26b2ab5b483ddc53d150517cfefb6c5dcf999151", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42fd429d129da1b7030d35220f8e50d42701dc4f", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Cinema.Management.System.Models.Customer>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -66,9 +73,9 @@ using Cinema.Management.System.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d325878", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d326094", async() => {
                 WriteLiteral("\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t<title>Sign in! - HBE CINEMA HALL </title>\r\n\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8f458c9e94403b2acfa107f4211f5fd27eaa9d326359", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8f458c9e94403b2acfa107f4211f5fd27eaa9d326575", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -95,9 +102,9 @@ using Cinema.Management.System.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d328246", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d328462", async() => {
                 WriteLiteral("\r\n\t<h2>HBE CINEMA HALL</h2>\r\n\t<div class=\"container\" id=\"container\">\r\n\r\n\t\t<div class=\"form-container sign-in-container\">\r\n\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d328648", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d328864", async() => {
                     WriteLiteral("\r\n\t\t\t\t<h1>Sign in</h1>\r\n\t\t\t\t<input name=\"Email\" action=\"/Home/Login\" type=\"email\" placeholder=\"Email\" required />\r\n\t\t\t\t<input name=\"Password\" action=\"/Home/Login\" type=\"password\" placeholder=\"Password\" required />\r\n");
 #nullable restore
 #line 23 "C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\Views\Home\Login.cshtml"
@@ -142,7 +149,7 @@ using Cinema.Management.System.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\t\t</div>\r\n\t\t<div class=\"overlay-container\">\r\n\t\t\t<div class=\"overlay\">\r\n\t\t\t\t<div class=\"overlay-panel overlay-right\">\r\n\t\t\t\t\t<h1>HBE CINEMA HALL</h1>\r\n\t\t\t\t\t<p>Enter your personal details and start journey with us</p>\r\n\t\t\t\t\t");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d3211703", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f458c9e94403b2acfa107f4211f5fd27eaa9d3211919", async() => {
                     WriteLiteral("\r\n\t\t\t\t\t\t<button style=\"background-color: orange;\">Sign Up</button>\r\n\t\t\t\t\t");
                 }
                 );
