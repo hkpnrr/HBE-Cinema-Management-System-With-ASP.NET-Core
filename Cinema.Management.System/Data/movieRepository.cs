@@ -15,8 +15,10 @@ namespace Cinema.Management.System.Data
 
         private static List<Actor> _actorsById = null;
         private static Actor actor = null;
-        public static List<string> _moviesName=null;
+        public static List<string> _moviesName = null;
 
+        private static List<Comment> _comments = null;
+        private static Comment comment = null;
 
         private static string connString;
         private static SqlConnection conn;
@@ -192,7 +194,7 @@ namespace Cinema.Management.System.Data
 
             comm = new SqlCommand("SELECT ACTOR.*,MOVIE_HAS_ACTORS.movieId FROM ACTOR INNER JOIN MOVIE_HAS_ACTORS ON ACTOR.actorId=MOVIE_HAS_ACTORS.actorId", conn);
             //comm.Parameters.AddWithValue("@movieId", movieId);
-             actor= null;
+            actor = null;
 
             SqlDataReader reader;
             try
@@ -203,12 +205,12 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                
+
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                    actor = new Actor(Convert.ToInt32(reader[0]),Convert.ToString(reader[1]),Convert.ToString(reader[2]),Convert.ToInt32(reader[3]));
+                    actor = new Actor(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]), Convert.ToInt32(reader[3]));
 
                     _actorsById.Add(actor);
                 }
@@ -216,7 +218,7 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message + "AKTÖR HATASI XD");
             }
@@ -228,12 +230,12 @@ namespace Cinema.Management.System.Data
 
             foreach (Actor item in _actorsById)
             {
-                Console.WriteLine(item.actorFirstName+" "+item.actorLastName);
-                
+                Console.WriteLine(item.actorFirstName + " " + item.actorLastName);
+
             }
 
             return _actorsById;
-        } 
+        }
 
 
         public static List<Movie> getAllMovieNames()
@@ -243,7 +245,7 @@ namespace Cinema.Management.System.Data
             _moviesName = new List<string>();
 
             comm = new SqlCommand("SELECT movieName FROM MOVIE", conn);
-            
+
 
             SqlDataReader reader;
             try
@@ -280,14 +282,77 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return _movies;
         }
 
+        public static List<Comment> getAllCommentsByMovieId(int movieId)
+        {
+            connectToDatabase();
 
-        
+            _comments = new List<Comment>();
 
+            comm = new SqlCommand("SELECT T15.movieId ,T15.userId,T15.firstName, T15.lastName, T15.commentContent FROM (SELECT CUSTOMER.*, COMMENTS.commentContent,COMMENTS.movieId FROM COMMENTS INNER JOIN CUSTOMER ON CUSTOMER.userId = COMMENTS.userId WHERE COMMENTS.movieId=@movieId) AS T15", conn);
+            comm.Parameters.AddWithValue("@movieId", movieId);
+
+            Comment comment = null;
+
+            SqlDataReader reader;
+            try
+            {
+                conn.Open();
+                reader = comm.ExecuteReader();
+
+                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToString(reader[2]), Convert.ToString(reader[3]), Convert.ToString(reader[4]));
+
+                    _comments.Add(comment);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch
+            {
+                Console.WriteLine("bir hata oluştu comment okurken");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            return _comments;
+        }
+
+        public static void SendCommentToDatabase(Comment comment)
+        {
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                comm = new SqlCommand("INSERT INTO COMMENTS (movieId, userId, commentContent) VALUES(@movieId, @userId, @commentContent)", conn);
+                comm.Parameters.AddWithValue("@movieId", comment.movieId);
+                comm.Parameters.AddWithValue("@userId", comment.userId);
+                comm.Parameters.AddWithValue("@commentContent", comment.commentContent);
+
+                int result = comm.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " SendCommentToDatabase");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         public static void SendMovieToDatabase(Movie m)
         {
@@ -297,9 +362,6 @@ namespace Cinema.Management.System.Data
             {
                 connectToDatabase();
                 conn.Open();
-
-
-
 
                 comm = new SqlCommand("INSERT INTO MOVIE (movieName,moviereleaseDate,movieDuration,movieTrailerUrl,movieSummary,movieDirectorId,ısShowing,moviePhotoUrl,moviePosterUrl) VALUES(@movieName,@moviereleaseDate,@movieDuration,@movieTrailerUrl,@movieSummary,@directorId,@isShowing,@moviePhotoUrl,@moviePosterUrl)", conn);
                 comm.Parameters.AddWithValue("@movieName", m.movieName);
@@ -311,15 +373,15 @@ namespace Cinema.Management.System.Data
                 comm.Parameters.AddWithValue("@isShowing", m.isShowing);
                 comm.Parameters.AddWithValue("@moviePhotoUrl", m.moviePhotoUrl);
                 comm.Parameters.AddWithValue("@moviePosterUrl", m.moviePosterUrl);
-                
+
 
                 int result = comm.ExecuteNonQuery();
 
-                
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message+" SendMovieToDatabase");
+                Console.WriteLine(e.Message + " SendMovieToDatabase");
             }
             finally
             {
@@ -337,7 +399,7 @@ namespace Cinema.Management.System.Data
             comm.Parameters.AddWithValue("@movieName", movieName);
             SqlDataReader reader;
 
-            int movieIdTemp=-1;
+            int movieIdTemp = -1;
 
             try
             {
@@ -349,7 +411,7 @@ namespace Cinema.Management.System.Data
 
                 if (reader.Read())
                 {
-                    movieIdTemp=Convert.ToInt32(reader[0]);
+                    movieIdTemp = Convert.ToInt32(reader[0]);
                 }
                 else
                 {
@@ -373,7 +435,7 @@ namespace Cinema.Management.System.Data
             return movieIdTemp;
         }
 
-        
+
 
 
 

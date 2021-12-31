@@ -17,26 +17,39 @@ namespace Cinema.Management.System.Controllers
 
             List<Movie> movies = movieRepository.getAllMovies();
 
-            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
-            Console.WriteLine(movies[1].movieName + movies[1].isShowing);
-            Console.WriteLine(movies[2].movieName + movies[2].isShowing);
-
             return View(movies);
         }
 
         // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
         public IActionResult MoviePage(int id) // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
-            
+
 
             Movie movieDetail = movieRepository.getMovieById(id);
 
             List<Actor> actors = movieRepository.getActorsById();
 
-            actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+            List<Comment> comments = movieRepository.getAllCommentsByMovieId(id);
+
+            MovieViewModel viewModel = new MovieViewModel(movieDetail, actors, comments);
 
             return View(viewModel);
         }
+
+        // public IActionResult AddCommentMoviePage(int id, string commentContent) // YORUMU POST ETMEK İÇİN
+        // {
+        //     Console.WriteLine(id + " " + commentContent + " ADD-COMMENT-MOVIEPAGE"); // comment content'i çekemedim
+
+        //     Movie movieDetail = movieRepository.getMovieById(id);
+
+        //     Comment tempComment = new Comment(movieDetail.movieId, customerRepository.authUser.userId, 
+        //     customerRepository.authUser.firstName, customerRepository.authUser.lastName, commentContent);
+
+        //     movieRepository.SendCommentToDatabase(tempComment);
+
+
+        //     return RedirectToAction("MoviePage");
+        // }
 
 
         public IActionResult Movies() // BÜTÜN FİLMLERİN GÖSTERİLDİĞİ SAYFA
@@ -45,8 +58,6 @@ namespace Cinema.Management.System.Controllers
             // Movie mov = _movieService.getMovie();
 
             List<Movie> movies = movieRepository.getAllMovies();
-            Console.WriteLine(movies[0].movieName + movies[0].isShowing);
-
 
             return View(movies);
         }

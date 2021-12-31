@@ -1,4 +1,4 @@
-﻿@model Cinema.Management.System.ViewModels.actorMovieViewModel
+﻿@model Cinema.Management.System.ViewModels.MovieViewModel
 
 
 <!DOCTYPE html>
@@ -59,26 +59,24 @@
             <p> <strong>Director: </strong> @Model.movie.movieDirector.directorFirstName
                 @Model.movie.movieDirector.directorLastName</p>
             <p>
-                <strong>Cast:@foreach (var actor in Model.actors)
+                <strong>Cast: </strong>
+                @foreach (var actor in Model.actors)
                 {
                     @* <ul class="list-group list-group-horizontal">
-                         @if(actor.movieId == Model.movie.movieId){
-                             <li class="list-group-item">@actor.actorFirstName @actor.actorLastName</li>
-                        
-                    }
-                    </ul> *@
+                        @if(actor.movieId == Model.movie.movieId){
+                        <li class="list-group-item">@actor.actorFirstName @actor.actorLastName</li>
 
-                    
-                         @if(actor.movieId == Model.movie.movieId){
-                            @:&nbsp; @actor.actorFirstName &nbsp; @actor.actorLastName
-                        
-                    }
-                    
+                        }
+                        </ul> *@
 
-                
-                    
-                }  </strong>
-                
+
+                    @if (actor.movieId == Model.movie.movieId)
+                    {
+                        @actor.actorFirstName@:&nbsp;@actor.actorLastName,
+
+                    }
+                }
+
             </p>
             <div class="row">
                 <div class="col-3">
@@ -120,7 +118,7 @@
             </div>
         </div>
 
-        <br>
+        <br><br>
         <hr style="border: 3px solid black;">
         <br>
     }
@@ -136,74 +134,50 @@
     }
 
 
-    <!-- YORUMLAR (yorum yapması için giriş yapması gereksin mi?) -->
-    <!--YORUM YAP -->
+    <!-- COMMENTS -->
+    <!--MAKE COMMENT -->
     <div id="makeComment" class="container">
         <h2>Add a comment</h2>
-        <div class="mb-3">
-            <label for="makeComment" class="form-label">Your comment:</label>
-            <textarea style="resize: none; height: 200px;" class="form-control" id="makeComment" rows="3"
-                placeholder="Your comment..." maxlength="500"></textarea>
-        </div>
-        <div class="container">
-            <div class="text-end">
-                <button class="btn-lg btn-danger mb-4">Spoiler</button>
-                <button class="btn-lg btn-dark mb-4">Post</button>
+        <form action="/MainPage/MoviePage/@Model.movie.movieId" id="makeComment">
+            <div class="mb-3">
+                <textarea style="resize: none;" class="form-control" name="makeComment" id="makeComment" rows="3"
+                    placeholder="Your comment..." maxlength="2000" required></textarea>
             </div>
-        </div>
+            <div class="container">
+                <div class="text-end">
+                    <button class="btn-lg btn-dark mb-4" type="submit">Post</button>
+                </div>
+            </div>
+        </form>
+
     </div>
+
 
     <br>
 
-    <!-- YORUM OKU -->
+    <!-- READ COMMENTS -->
     <div id="readComment" class="container">
         <h2 class="mb-4">Other comments</h2>
-        <div class="row">
-            <!-- Kullanıcı bilgisi -->
-            <div class="col-3 text-center">
-                <i class="fas fa-user-circle fa-5x"></i>
-                <p class="mt-3"><strong>Ekin Uzunbaz</strong></p>
-            </div>
-            <!-- Yorum içeriği -->
-            <div class="col-9">
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima perspiciatis aspernatur fugiat hic
-                    nesciunt quos, optio numquam! Quae reiciendis voluptatum labore itaque exercitationem atque ipsum,
-                    dolore nisi, fugiat nihil debitis doloribus amet, ab culpa voluptatibus animi minus? Pariatur
-                    accusantium placeat, enim aliquid dolore laboriosam ex numquam assumenda libero architecto unde
-                    expedita animi voluptates quos cum praesentium asperiores itaque cumque. Veniam nesciunt eveniet
-                    dolorum veritatis earum dolores eligendi et quis odio aut perspiciatis aliquid consequatur esse odit
-                    assumenda, velit quidem explicabo expedita! Reprehenderit assumenda ea, excepturi voluptas quibusdam
-                    itaque praesentium nostrum necessitatibus nisi architecto neque porro eos, voluptatibus suscipit
-                    explicabo autem.
-                </p>
-            </div>
-        </div>
-        <br>
-        <hr style="border: 1px solid black;">
-        <br>
 
-        <div class="row">
-            <!-- Kullanıcı bilgisi -->
+        @foreach (Comment comment in Model.comments)
+        {
+            <div class="row mb-3">
+                <!-- Kullanıcı bilgisi -->
             <div class="col-3 text-center">
-                <i class="fas fa-user-circle fa-5x"></i>
-                <p class="mt-3"><strong>Ekin Uzunbaz</strong></p>
-            </div>
-            <!-- Yorum içeriği -->
+                    <i class="fas fa-user-circle fa-5x"></i>
+                    <p class="mt-3"><strong>@comment.userFirstName&nbsp;@comment.userLastName</strong></p>
+                </div>
+                <!-- Yorum içeriği -->
             <div class="col-9">
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima perspiciatis aspernatur fugiat hic
-                    nesciunt quos, optio numquam! Quae reiciendis voluptatum labore itaque exercitationem atque ipsum,
-                    dolore nisi, fugiat nihil debitis doloribus amet, ab culpa voluptatibus animi minus? Pariatur
-                    accusantium placeat, enim aliquid dolore laboriosam ex numquam assumenda libero architecto unde
-                    expedita animi voluptates quos cum praesentium asperiores itaque cumque. Veniam nesciunt eveniet
-                    dolorum veritatis earum dolores eligendi et quis odio aut perspiciatis aliquid consequatur esse odit
-                    assumenda, velit quidem explicabo expedita! Reprehenderit assumenda ea, excepturi voluptas quibusdam
-                    itaque praesentium nostrum necessitatibus nisi architecto neque porro eos, voluptatibus suscipit
-                    explicabo autem.
-                </p>
+                    <p>@comment.commentContent</p>
+                </div>
+
+                <br>
+                <hr style="border: 1px solid black;">
+                <br>
             </div>
-        </div>
+        }
+
     </div>
 
     <br><br>

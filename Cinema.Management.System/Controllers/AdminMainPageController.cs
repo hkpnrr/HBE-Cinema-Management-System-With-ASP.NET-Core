@@ -22,8 +22,6 @@ namespace Cinema.Management.System.Controllers
         {
 
             List<Movie> movies = movieRepository.getAllMovies();
-            //Console.WriteLine(movies[0].movieName + movies[0].isShowing);
-
 
             return View(movies);
         }
