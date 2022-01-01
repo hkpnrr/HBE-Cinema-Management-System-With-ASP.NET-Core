@@ -139,6 +139,51 @@ namespace Cinema.Management.System.Data
             return _movies;
         }
 
+        public static List<Movie> getAllMoviesByisShowing(bool isShowing)
+        {
+            connectToDatabase();
+
+            _movies = new List<Movie>();
+
+            comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.movieId FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId WHERE ısShowing = @isShowing", conn);
+            comm.Parameters.AddWithValue("@isShowing", isShowing);
+            Movie movie = null;
+
+            SqlDataReader reader;
+            try
+            {
+                conn.Open();
+                reader = comm.ExecuteReader();
+
+
+                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
+                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
+                         Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
+                         Convert.ToString(reader[10]), Convert.ToString(reader[12]), Convert.ToString(reader[13]));
+
+                    _movies.Add(movie);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch
+            {
+                Console.WriteLine("bir hata oluştu ishowing çekerken");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
+
+            return _movies;
+        }
+
 
 
         public static Movie getMovieById(int movieId)
@@ -307,7 +352,51 @@ namespace Cinema.Management.System.Data
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
-                    comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToString(reader[2]), Convert.ToString(reader[3]), Convert.ToString(reader[4]));
+                    comment = new Comment(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]),
+                    Convert.ToString(reader[4]),Convert.ToString(reader[5]),Convert.ToString(reader[6]));
+
+                    _comments.Add(comment);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch
+            {
+                Console.WriteLine("bir hata oluştu comment okurken");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            return _comments;
+        }
+
+
+        public static List<Comment> getAllComments()
+        {
+            connectToDatabase();
+
+            _comments = new List<Comment>();
+
+            comm = new SqlCommand("SELECT T16.*, MOVIE.movieName FROM (SELECT T15.commentId, T15.movieId ,T15.userId,T15.firstName, T15.lastName, T15.commentContent FROM (SELECT CUSTOMER.*,COMMENTS.commentId, COMMENTS.commentContent,COMMENTS.movieId FROM COMMENTS INNER JOIN CUSTOMER ON CUSTOMER.userId = COMMENTS.userId) AS T15) AS T16 INNER JOIN MOVIE ON T16.movieId=MOVIE.movieId", conn);
+
+
+            Comment comment = null;
+
+            SqlDataReader reader;
+            try
+            {
+                conn.Open();
+                reader = comm.ExecuteReader();
+
+                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    comment = new Comment(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]),
+                    Convert.ToString(reader[4]),Convert.ToString(reader[5]),Convert.ToString(reader[6]));
 
                     _comments.Add(comment);
                 }

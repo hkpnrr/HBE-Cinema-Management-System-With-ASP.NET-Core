@@ -138,7 +138,7 @@
     <!--MAKE COMMENT -->
     <div id="makeComment" class="container">
         <h2>Add a comment</h2>
-        <form action="/MainPage/MoviePage/@Model.movie.movieId" id="makeComment">
+        <form method="POST" action="/MainPage/MoviePage/@Model.movie.movieId" id="makeComment">
             <div class="mb-3">
                 <textarea style="resize: none;" class="form-control" name="makeComment" id="makeComment" rows="3"
                     placeholder="Your comment..." maxlength="2000" required></textarea>

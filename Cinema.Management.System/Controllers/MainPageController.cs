@@ -15,15 +15,21 @@ namespace Cinema.Management.System.Controllers
         public IActionResult MainPage()
         {
 
-            List<Movie> movies = movieRepository.getAllMovies();
+            // List<Movie> movies = movieRepository.getAllMovies();
 
-            return View(movies);
+            List<Movie> isShowingMovies = movieRepository.getAllMoviesByisShowing(true);
+
+            List<Movie> notShowingMovies = movieRepository.getAllMoviesByisShowing(false);
+
+            MovieIsShowingViewModel movieIsShowingViewModel = new MovieIsShowingViewModel(isShowingMovies, notShowingMovies);
+
+
+            return View(movieIsShowingViewModel);
         }
-
+        [HttpGet]
         // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
         public IActionResult MoviePage(int id) // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
-
 
             Movie movieDetail = movieRepository.getMovieById(id);
 
@@ -36,20 +42,26 @@ namespace Cinema.Management.System.Controllers
             return View(viewModel);
         }
 
-        // public IActionResult AddCommentMoviePage(int id, string commentContent) // YORUMU POST ETMEK İÇİN
-        // {
-        //     Console.WriteLine(id + " " + commentContent + " ADD-COMMENT-MOVIEPAGE"); // comment content'i çekemedim
+        [HttpPost]
+        public IActionResult MoviePage(int id, string makeComment) // YORUMU POST ETMEK İÇİN
+        {
+            Console.WriteLine(id + " " + makeComment + " ADD-COMMENT-MOVIEPAGE"); // comment content'i çekemedim
 
-        //     Movie movieDetail = movieRepository.getMovieById(id);
+            Movie movieDetail = movieRepository.getMovieById(id);
 
-        //     Comment tempComment = new Comment(movieDetail.movieId, customerRepository.authUser.userId, 
-        //     customerRepository.authUser.firstName, customerRepository.authUser.lastName, commentContent);
+            Comment tempComment = new Comment(movieDetail.movieId, customerRepository.authUser.userId,
+            customerRepository.authUser.firstName, customerRepository.authUser.lastName, makeComment);
 
-        //     movieRepository.SendCommentToDatabase(tempComment);
+            movieRepository.SendCommentToDatabase(tempComment);
 
+            List<Actor> actors = movieRepository.getActorsById();
 
-        //     return RedirectToAction("MoviePage");
-        // }
+            List<Comment> comments = movieRepository.getAllCommentsByMovieId(id);
+
+            MovieViewModel viewModel = new MovieViewModel(movieDetail, actors, comments);
+
+            return View(viewModel);
+        }
 
 
         public IActionResult Movies() // BÜTÜN FİLMLERİN GÖSTERİLDİĞİ SAYFA

@@ -21,9 +21,6 @@ namespace Cinema.Management.System.Controllers
             _logger = logger;
         }
 
-
-
-
         public IActionResult Privacy()
         {
             return View();
@@ -34,11 +31,6 @@ namespace Cinema.Management.System.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
-
-
 
         public IActionResult Register(string Name, string Surname, string Email, string Password, string Date, string Tel)
         {
@@ -83,21 +75,27 @@ namespace Cinema.Management.System.Controllers
         }
 
         public IActionResult Login(string Email, string Password)
-        {   
-            
-            customerRepository.authUser=null;
-            
+        {
+
+            customerRepository.authUser = null;
+
             if (Email != null && Password != null)
             {
+                if (Email.Equals("DEUCENG@gmail.com") && Password.Equals("123"))
+                {
+                    return RedirectToAction("Login", "AdminMainPage", new { area = "AdminMainPage" });
+                }
+
+
                 Customer c = new Customer(Email, Password);
                 customerRepository.LoginAuthorization(c);
                 if (customerRepository.authUser == null)
                 {
-                    
+
                     TempData["LoginError"] = "Wrong Email or Password";
                 }
                 else
-                {   
+                {
                     return RedirectToAction("Login", "MainPage", new { area = "MainPage" });
                 }
             }

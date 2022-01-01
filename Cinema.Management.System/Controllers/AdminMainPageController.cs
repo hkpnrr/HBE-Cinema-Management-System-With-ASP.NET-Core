@@ -26,6 +26,26 @@ namespace Cinema.Management.System.Controllers
             return View(movies);
         }
 
+        public IActionResult AdminComments()
+        {
+
+            List<Comment> allComments = movieRepository.getAllComments();
+
+            return View(allComments);
+        }
+
+        public IActionResult AdminCinemaHalls()
+        {
+
+            return View();
+        }
+
+        public IActionResult AdminTickets()
+        {
+
+            return View();
+        }
+
         public IActionResult AdminMoviePage(int id)
         {
 

@@ -438,3 +438,5 @@ C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Shared\_admNavbar.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\CreateTicket.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\PayTicket.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminComments.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminTickets.cshtml.g.cs
