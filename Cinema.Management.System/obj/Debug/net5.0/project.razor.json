@@ -15659,6 +15659,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminAddSessions.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminAddSessions.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminMovies.cshtml",
       "TargetPath": "Views\\AdminMainPage\\AdminMovies.cshtml",
       "FileKind": "mvc"
@@ -15689,6 +15694,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminSessions.cshtml",
+      "TargetPath": "Views\\AdminMainPage\\AdminSessions.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\MoviePage.cshtml",
       "TargetPath": "Views\\MainPage\\MoviePage.cshtml",
       "FileKind": "mvc"
@@ -15711,11 +15721,6 @@
     {
       "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\MainPage\\CinemaHalls.cshtml",
       "TargetPath": "Views\\MainPage\\CinemaHalls.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\90555\\Desktop\\dbmsproje\\Cinema\\Cinema.Management.System\\Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
-      "TargetPath": "Views\\AdminMainPage\\AdminCinemaHalls.cshtml",
       "FileKind": "mvc"
     },
     {

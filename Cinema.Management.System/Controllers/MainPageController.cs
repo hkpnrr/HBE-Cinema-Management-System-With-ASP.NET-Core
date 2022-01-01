@@ -45,7 +45,7 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult MoviePage(int id, string makeComment) // YORUMU POST ETMEK İÇİN
         {
-            Console.WriteLine(id + " " + makeComment + " ADD-COMMENT-MOVIEPAGE"); // comment content'i çekemedim
+            
 
             Movie movieDetail = movieRepository.getMovieById(id);
 

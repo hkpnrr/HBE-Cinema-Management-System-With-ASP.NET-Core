@@ -1,0 +1,74 @@
+@model List<Session>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+
+<body>
+    @await Html.PartialAsync("_admNavbar")
+
+    <div class="row">
+    <div class="col-md-12">
+        <h1 class="h3">All Sessions</h1>
+        <hr>
+       <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="AdminMainPage" asp-action="AdminAddSessions">Add Session</a>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <td style="width: 30px;">Session Id</td>
+                    <td style="width: 100px;">Movie Id</td>
+                    
+                    <td style="width: 20px;">CinemaHall Id</td>
+                    <td style="width: 20px;">Session Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model.Count > 0)
+                {
+                       @foreach (Session session in Model)
+                        {
+                            <tr>
+                                <td>@session.sessionId</td>
+                                
+                                <td>@session.movieId</td>
+                                <td>@session.cinemaHallId</td>
+                                <td>@session.sessionTime</td>
+
+                                <td>
+                                    <form action="/AdminMainPage/AdminSessions" method="POST" style="display: inline;">
+                                        <input type="hidden" name="sessionId" value="@session.sessionId">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    
+                                </td>
+                        </tr>
+                        }
+                }else{
+                    <div class="alert alert-warning">
+                        <h3>No Sessions</h3>
+                    </div>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    @await Html.PartialAsync("_footer")
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

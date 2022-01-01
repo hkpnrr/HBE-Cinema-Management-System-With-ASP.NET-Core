@@ -38,15 +38,66 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult AdminComments(int commentId){
 
-            Console.WriteLine(commentId+" asdapsodjaşlskdjalskjdalskjd");
+            
             movieRepository.deleteCommentById(commentId);
             return RedirectToAction("AdminComments");
         }
 
-        public IActionResult AdminCinemaHalls()
-        {
 
-            return View();
+        [HttpGet]
+        public IActionResult AdminAddSessions(int cinemaHallId,int movieId,string sessionTime)
+        {   
+            sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(),movieRepository.getAllMovies());
+
+             if (Convert.ToString(cinemaHallId).Length!=0 && Convert.ToString(movieId).Length!=0 && sessionTime!=null)
+            {
+                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId,cinemaHallId);
+                
+                
+                if(session==null){
+                    
+
+                    
+                    //create new session
+                    movieRepository.CreateSession(movieId,cinemaHallId,sessionTime);
+                    
+
+                    return RedirectToAction("AdminSessions");
+
+                }
+
+                else{
+                    
+                    //do nothing or display zaten var 
+
+                    
+                    
+                    TempData["SessionCreateError"] = "Session has already exists in database";
+
+                    return RedirectToAction("AdminAddSessions");
+
+                }
+
+
+
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AdminSessions(int sessionId){
+
+            
+            movieRepository.deleteSessionById(sessionId);
+            return RedirectToAction("AdminSessions");
+        }
+
+        [HttpGet]
+        public IActionResult AdminSessions(){
+            
+
+            return View(movieRepository.GetAllSession());
         }
 
         public IActionResult AdminTickets()
@@ -161,7 +212,7 @@ namespace Cinema.Management.System.Controllers
 
              
              
-            Console.WriteLine(id);
+            
             
             if (actorName!=null && actorSurname!=null)
             {
@@ -174,7 +225,7 @@ namespace Cinema.Management.System.Controllers
                     //get created actors id
                     int actorId=movieRepository.getActorIdByName(actorName,actorSurname);
 
-                    Console.WriteLine(id+" ifin içinde");
+                    
 
                     //attach movie and actors at movie has actors table
                     movieRepository.SendActorAndMovieRelationToDatabase(actorId,id);
@@ -184,7 +235,7 @@ namespace Cinema.Management.System.Controllers
                 }
 
                 else{
-                    Console.WriteLine(id+" else in içinde");
+                    
                     //add exist actor to movies cast
                     movieRepository.SendActorAndMovieRelationToDatabase(actor.actorId,id);
                     return View(id);

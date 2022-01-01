@@ -18,7 +18,7 @@ namespace Cinema.Management.System.Data
         public static List<string> _moviesName = null;
 
         private static List<Comment> _comments = null;
-        private static Comment comment = null;
+        
 
         private static string connString;
         private static SqlConnection conn;
@@ -31,61 +31,7 @@ namespace Cinema.Management.System.Data
 
         }
 
-        /* public static List<Movie> getAllMovies()
-        {
-            connectToDatabase();
-
-            _movies= new List<Movie>();
-
-            comm = new SqlCommand("SELECT * FROM MOVIE", conn);
-            Movie movie = null;
-
-            SqlDataReader reader;
-            try
-            {
-
-                //Bağlantımı açıyorum.
-                conn.Open();
-                //Reader nesnem için sql komutumu çalıştırıyorum
-                reader = comm.ExecuteReader();
-
-                //if (reader.HasRows)
-                //{
-
-                //}
-
-
-                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
-                {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
-                    movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
-                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
-                         Convert.ToInt32(reader[6]), (bool)reader[7],Convert.ToString(reader[8]),Convert.ToString(reader[9]));
-
-                    _movies.Add(movie);
-                }
-
-                reader.Close(); // işin bitine kapat
-            }
-            //hata olursa vereceğim mesaj.
-            catch
-            {
-                Console.WriteLine("bir hata oluştu");
-            }
-            //Bağlantımı kapatıyorum
-            finally
-            {
-                conn.Close();
-            }
-
-            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
-
-            return _movies;
-
-        } */
-
-        public static List<Movie> getAllMovies()
+         public static List<Movie> getAllMovies()
         {
             connectToDatabase();
 
@@ -134,7 +80,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
+            
 
             return _movies;
         }
@@ -179,7 +125,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            Console.WriteLine(_movies[0].movieName + _movies[0].movieDuration);
+            
 
             return _movies;
         }
@@ -273,11 +219,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            foreach (Actor item in _actorsById)
-            {
-                Console.WriteLine(item.actorFirstName + " " + item.actorLastName);
-
-            }
+            
 
             return _actorsById;
         }
@@ -705,5 +647,200 @@ namespace Cinema.Management.System.Data
             }
         }
 
+
+        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId,int cinemaHallId){
+
+            connectToDatabase();
+            comm = new SqlCommand("SELECT * FROM SESSION WHERE movieId=@movieId AND cinemahallId=@cinemaHallId", conn);
+            comm.Parameters.AddWithValue("@movieId", movieId);
+            comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
+            Session session = null;
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+
+               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                   
+                    session = new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
+                    
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "session  çekme hatası");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+
+            return session;
+        }
+
+        public static void CreateSession(int movieId,int cinemaHallId,string sessionTime){
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                comm = new SqlCommand("INSERT INTO SESSION (movieId, cinemaHallId,time) VALUES(@movieId, @cinemaHallId,@sessionTime)", conn);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+                comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
+                comm.Parameters.AddWithValue("@sessionTime", sessionTime);
+                
+
+                int result = comm.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " create session error");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static List<Session> GetAllSession(){
+            connectToDatabase();
+            comm = new SqlCommand("SELECT * FROM SESSION", conn);
+            List<Session> _allSessions=new List<Session>();
+            Session session = null;
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+
+               while(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                   
+                    session = new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
+                    _allSessions.Add(session);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "all session  çekme hatası");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+
+            return _allSessions;
+        }
+
+
+        public static List<CinemaHall> getAllCinemaHalls(){
+
+            connectToDatabase();
+            comm = new SqlCommand("SELECT * FROM CINEMA_HALL", conn);
+            List<CinemaHall> _allCinemaHalls=new List<CinemaHall>();
+            CinemaHall cinemaHall = null;
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+
+               while(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                   
+                    cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]),Convert.ToString(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
+                    _allCinemaHalls.Add(cinemaHall);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "all cinemahall  çekme hatası");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+
+            return _allCinemaHalls;
+        }
+
+
+        public static int deleteSessionById(int sessionId)
+        {
+            int result = 0;
+
+            connectToDatabase();
+            try
+            {
+                conn.Open();
+
+                string sql = "delete from SESSION where sessionId=@sessionId";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@sessionId", sessionId);
+
+                result = command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return result;
+        }
+            
+        
     }
 }
