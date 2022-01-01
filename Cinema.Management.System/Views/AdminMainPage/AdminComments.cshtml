@@ -18,9 +18,9 @@
 
     <div class="row">
     <div class="col-md-12">
-        <h1 class="h3">All Films</h1>
+        <h1 class="h3">All Comments</h1>
         <hr>
-        <a class="btn btn-primary btn-sm" href="#">Add Movie</a>
+        
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -44,10 +44,8 @@
                                 <td>@com.commentContent</td>
 
                                 <td>
-                                    <a href="/AdminMainPage/AdminMoviePage/@com.movieId" class="btn btn-primary btn-sm mr-2">Edit</a>
-                                    
-                                    <form action="/AdminMainPage/DeleteMovie" method="POST" style="display: inline;">
-                                        <input type="hidden" name="productId" value="@com.movieId">
+                                    <form action="/AdminMainPage/AdminComments" method="POST" style="display: inline;">
+                                        <input type="hidden" name="commentId" value="@com.commentId">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>

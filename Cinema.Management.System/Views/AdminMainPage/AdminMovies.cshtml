@@ -20,7 +20,7 @@
     <div class="col-md-12">
         <h1 class="h3">All Films</h1>
         <hr>
-        <a class="btn btn-primary btn-sm" href="#">Add Movie</a>
+       <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="AdminMainPage" asp-action="AdminAddMovie">Add Movie</a>
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -50,6 +50,12 @@
                                         <input type="hidden" name="productId" value="@mov.movieId">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
+                                    @* <form action="/AdminMainPage/AddActor" method="POST" style="display: inline;">
+                                        <input type="hidden" name="id" value="@mov.movieId">
+                                        <button type="submit" class="btn btn-danger btn-sm">Add Actor</button>
+                                    </form> *@
+                                    <a asp asp-controller="AdminMainPage" asp-action="AddActor" asp-route-id="@mov.movieId">
+                                        Add Actor </a>
                                 </td>
                         </tr>
                         }

@@ -352,8 +352,8 @@ namespace Cinema.Management.System.Data
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
-                    comment = new Comment(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]),
-                    Convert.ToString(reader[4]),Convert.ToString(reader[5]),Convert.ToString(reader[6]));
+                    comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToString(reader[2]),
+                    Convert.ToString(reader[3]), Convert.ToString(reader[4]));
 
                     _comments.Add(comment);
                 }
@@ -381,7 +381,7 @@ namespace Cinema.Management.System.Data
 
             _comments = new List<Comment>();
 
-            comm = new SqlCommand("SELECT T16.*, MOVIE.movieName FROM (SELECT T15.commentId, T15.movieId ,T15.userId,T15.firstName, T15.lastName, T15.commentContent FROM (SELECT CUSTOMER.*,COMMENTS.commentId, COMMENTS.commentContent,COMMENTS.movieId FROM COMMENTS INNER JOIN CUSTOMER ON CUSTOMER.userId = COMMENTS.userId) AS T15) AS T16 INNER JOIN MOVIE ON T16.movieId=MOVIE.movieId", conn);
+            comm = new SqlCommand("SELECT T16.*, MOVIE.movieName FROM (SELECT T15.commentId, T15.movieId ,T15.userId,T15.firstName, T15.lastName, T15.commentContent FROM (SELECT CUSTOMER.*,COMMENTS.commentId, COMMENTS.commentContent,COMMENTS.movieId FROM COMMENTS INNER JOIN CUSTOMER ON CUSTOMER.userId = COMMENTS.userId) AS T15) AS T16 INNER JOIN MOVIE ON T16.movieId=MOVIE.movieId ORDER BY T16.movieId", conn);
 
 
             Comment comment = null;
@@ -395,8 +395,8 @@ namespace Cinema.Management.System.Data
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
-                    comment = new Comment(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]),
-                    Convert.ToString(reader[4]),Convert.ToString(reader[5]),Convert.ToString(reader[6]));
+                    comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),
+                    Convert.ToString(reader[4]), Convert.ToString(reader[5]), Convert.ToString(reader[6]));
 
                     _comments.Add(comment);
                 }
@@ -525,9 +525,185 @@ namespace Cinema.Management.System.Data
         }
 
 
+        public static int deleteCommentById(int commentId)
+        {
+            int result = 0;
+
+            connectToDatabase();
+            try
+            {
+                conn.Open();
+
+                string sql = "delete from COMMENTS where commentId=@commentId";
+                SqlCommand command = new SqlCommand(sql, conn);
+
+                command.Parameters.AddWithValue("@commentId", commentId);
+
+                result = command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
 
 
+            return result;
+        }
 
+        public static Actor getActorsByName(string actorName,string actorSurname)
+        {
+            connectToDatabase();
+
+            
+
+            comm = new SqlCommand("SELECT * FROM ACTOR WHERE actorName=@actorName AND actorSurname=@actorSurname", conn);
+            comm.Parameters.AddWithValue("@actorName", actorName);
+            comm.Parameters.AddWithValue("@actorSurname", actorSurname);
+            actor = null;
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+
+               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                    actor = new Actor(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]));
+
+                    
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "aktor çekme hatası");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+            return actor;
+        }
+
+
+        public static void createActor(string actorName,string actorSurname){
+
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                comm = new SqlCommand("INSERT INTO ACTOR (actorName, actorSurname) VALUES(@actorName, @actorSurname)", conn);
+                comm.Parameters.AddWithValue("@actorName", actorName);
+                comm.Parameters.AddWithValue("@actorSurname", actorSurname);
+                
+
+                int result = comm.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " create actor error");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static int getActorIdByName(string actorName,string actorSurname)
+        {
+            connectToDatabase();
+
+            
+
+            comm = new SqlCommand("SELECT actorId FROM ACTOR WHERE actorName=@actorName AND actorSurname=@actorSurname", conn);
+            comm.Parameters.AddWithValue("@actorName", actorName);
+            comm.Parameters.AddWithValue("@actorSurname", actorSurname);
+            int actorId=-1;
+
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+
+               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                    actorId=Convert.ToInt32(reader[0]);
+
+                    
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + "aktor id çekme hatası");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+            return actorId;
+        }
+
+
+        public static void SendActorAndMovieRelationToDatabase(int actorId,int movieId){
+
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                comm = new SqlCommand("INSERT INTO MOVIE_HAS_ACTORS (actorId, movieId) VALUES(@actorId,@movieId)", conn);
+                comm.Parameters.AddWithValue("@actorId", actorId);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+                
+
+                int result = comm.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " create actor movie relation error");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
     }
 }

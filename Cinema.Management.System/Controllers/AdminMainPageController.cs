@@ -26,12 +26,21 @@ namespace Cinema.Management.System.Controllers
             return View(movies);
         }
 
+        [HttpGet]
         public IActionResult AdminComments()
         {
 
             List<Comment> allComments = movieRepository.getAllComments();
 
             return View(allComments);
+        }
+
+        [HttpPost]
+        public IActionResult AdminComments(int commentId){
+
+            Console.WriteLine(commentId+" asdapsodjaşlskdjalskjdalskjd");
+            movieRepository.deleteCommentById(commentId);
+            return RedirectToAction("AdminComments");
         }
 
         public IActionResult AdminCinemaHalls()
@@ -145,6 +154,48 @@ namespace Cinema.Management.System.Controllers
             }
 
             return View(allCategoryNames);
+        }
+
+        [HttpGet]
+        public IActionResult AddActor(int id,string actorName,string actorSurname){
+
+             
+             
+            Console.WriteLine(id);
+            
+            if (actorName!=null && actorSurname!=null)
+            {
+                Actor actor=movieRepository.getActorsByName(actorName,actorSurname);
+                
+                if(actor==null){
+                    
+                    //create new actor
+                    movieRepository.createActor(actorName,actorSurname);
+                    //get created actors id
+                    int actorId=movieRepository.getActorIdByName(actorName,actorSurname);
+
+                    Console.WriteLine(id+" ifin içinde");
+
+                    //attach movie and actors at movie has actors table
+                    movieRepository.SendActorAndMovieRelationToDatabase(actorId,id);
+
+                    return View(id);
+
+                }
+
+                else{
+                    Console.WriteLine(id+" else in içinde");
+                    //add exist actor to movies cast
+                    movieRepository.SendActorAndMovieRelationToDatabase(actor.actorId,id);
+                    return View(id);
+
+                }
+
+
+
+            }
+
+            return View(id);
         }
     }
 }
