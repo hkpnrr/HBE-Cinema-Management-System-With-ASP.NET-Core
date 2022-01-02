@@ -1,4 +1,4 @@
-@model Movie
+@model Cinema.Management.System.ViewModels.MovieCreateViewModel
 
 
 <!DOCTYPE html>
@@ -29,48 +29,52 @@
     @await Html.PartialAsync("_admNavbar")
 
 
-    <h2><strong>Edit: </strong> @Model.movieName</h2>
+    <h2><strong>Edit: </strong> @Model.movie.movieName </h2>
 
     <div class="container" id="container">
         <div class="form-container sign-in-container">
             <form method="POST" action="/AdminMainPage/AdminMoviePage">
                 
                 <input name="MovieId" action="/AdminMainPage/AdminMoviePage" class="form-control" type="number"
-                    placeholder="MovieId" value="@Model.movieId" hidden/>
+                    placeholder="MovieId" value="@Model.movie.movieId" hidden/>
                 <br>
                 <label for="MovieName">Movie Name</label>
                 <input name="MovieName" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
-                    placeholder="MovieName" value="@Model.movieName" required />
+                    placeholder="MovieName" value="@Model.movie.movieName" maxlength="100" required />
                 <br>
                 <label for="MovieReleaseDate">Movie Release Date</label>
                 <input name="MovieReleaseDate" action="/AdminMainPage/AdminMoviePage" class="form-control" type="date"
-                    placeholder="MovieReleaseDate" value="@Model.movieReleaseDate" required />
+                    placeholder="MovieReleaseDate" value="@Model.movie.movieReleaseDate" required />
                 <br>
                 <label for="MovieDuration">Movie Duration</label>
-                <input name="MovieDuration" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
-                    placeholder="MovieDuration" value="@Model.movieDuration" required />
+                <input name="MovieDuration" action="/AdminMainPage/AdminMoviePage" class="form-control" type="number"
+                    placeholder="MovieDuration" value="@Model.movie.movieDuration" required />
                 <br>
                 <label for="MovieTrailerUrl">Movie Trailer Url</label>
                 <input name="MovieTrailerUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
-                    placeholder="MovieTrailerUrl" value="@Model.movieTrailerUrl" required />
+                    placeholder="MovieTrailerUrl" value="@Model.movie.movieTrailerUrl" maxlength="150" required />
                 <br>
                 <label for="MovieSummary">Movie Summary</label>
                 <input name="MovieSummary" action="/AdminMainPage/AdminMoviePage" class="form-control" type="textarea"
                     style="resize: none; height: 200px;" placeholder="MovieSummary" class="form-control"
-                    maxlength="2000" value="@Model.movieSummary" required />
+                    maxlength="2000" value="@Model.movie.movieSummary" required />
                 <br>
-                <!--
-                <input name="DirectorFirstName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
-                    placeholder="DirectorFirstName" />
-                -->
-
-                <!--
-                <input name="DirectorLastName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
-                    placeholder="DirectorLastName" required />
-                -->
+                
+                <input name="DirectorId" action="/AdminMainPage/AdminMoviePage" class="form-control" type="number"
+                    placeholder="DirectorId" value="@Model.movie.directorId"  hidden/>
+                    <br>
+                <label for="DirectorFirstName">Director FirstName</label>
+                <input name="DirectorFirstName" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="DirectorFirstName" value="@Model.movie.movieDirector.directorFirstName" maxlength="20" required />
+                
+<br>
+                <label for="DirectorLastName">Director Lastname</label>
+                <input name="DirectorLastName" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="DirectorLastName" value="@Model.movie.movieDirector.directorLastName" maxlength="20" required />
+                <br>
 
                 <div class="container">
-                    @if (Model.isShowing == true)
+                    @if (Model.movie.isShowing == true)
                     {
                         <input type="radio" id="showing" name="MovieIsShowing" value="1" checked>
                         <label for="showing">Is Showing</label><br>
@@ -88,27 +92,35 @@
                 <br>
                 <label for="MoviePhotoUrl">Movie Photo Url</label>
                 <input name="MoviePhotoUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
-                    placeholder="MoviePhotoUrl" value="@Model.moviePhotoUrl" required />
+                    placeholder="MoviePhotoUrl" value="@Model.movie.moviePhotoUrl" maxlength="300" required />
                 <br>
                 <label for="MoviePosterUrl">Movie Poster Url</label>
                 <input name="MoviePosterUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
-                    placeholder="MoviePosterUrl" value="@Model.moviePosterUrl" required />
+                    placeholder="MoviePosterUrl" value="@Model.movie.moviePosterUrl" maxlength="300" required />
 
-                <!-- KATEGORİ DEĞİŞTİRSİN Mİ? -->
-                <!--
+                <!-- KATEGORİ DEĞİŞTİRSİN Mİ DEĞİŞTİRSİN KNK? B==D -->
+                <br>
+                <label for="MovieCategory">Movie Category</label>
                 <div class="form-group mt-4">
 
 
-                    <select name="MovieCategory" required class="form-select" id="sessionSelect">
-                        <option selected>Category</option>
-                @* @foreach (string item in Model)
+                    <select name="MovieCategoryId" required class="form-select" id="sessionSelect">
+                        
+                @foreach (Category item in Model.allCategories)
                     {
-                    <option value=@item>@item</option>
-                    } *@
+
+                        @if (Model.movie.movieCategory.Equals(item.categoryName))
+                        {
+                            <option selected value=@item.categoryId>@item.categoryName</option>
+                        }
+                        else{
+                            <option value=@item.categoryId>@item.categoryName</option>
+                        }
+                    } 
                     </select>
                 </div>
 
-                -->
+                
                 <br>
                 <button class="btn btn-primary btn-sm mr-2" type="submit">Edit Movie</button>
             </form>

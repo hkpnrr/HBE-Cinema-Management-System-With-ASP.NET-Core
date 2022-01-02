@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Cinema.Management.System.Models;
+using Cinema.Management.System.ViewModels;
 
 namespace Cinema.Management.System.Data
 {
@@ -132,13 +133,108 @@ namespace Cinema.Management.System.Data
 
 
 
+        public static Movie getMovieWithCategoryAndDirectorByMovieId(int movieId)
+        {
+
+            connectToDatabase();
+            comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName,T1.categoryId FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.* FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId WHERE movieId=@movieId", conn);
+            comm.Parameters.AddWithValue("@movieId", movieId);
+            SqlDataReader reader;
+            
+            Movie movieTemp=null;
+            try
+            {
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    
+
+                     movieTemp=new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
+                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
+                     Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
+                     Convert.ToString(reader[10]),Convert.ToInt32(reader[11]),Convert.ToInt32(reader[12]), Convert.ToString(reader[13]), Convert.ToString(reader[14]));
+                }
+                else
+                {
+
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message +"getMovieWithCategoryAndDirectorByMovieId");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return movieTemp;
+        }
+
+        public static void editMovie(Movie mov)
+        {
+
+            
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                
+
+                int movieId = mov.movieId;
+                string movieName = mov.movieName;
+                string movieReleaseDate = mov.movieReleaseDate;
+                int movieDuration = mov.movieDuration;
+                string movieTrailerUrl = mov.movieTrailerUrl;
+                string movieSummary = mov.movieSummary;
+                bool isShowing = mov.isShowing;
+                int directorId=mov.directorId;
+                string moviePhotoUrl = mov.moviePhotoUrl;
+                string moviePosterUrl = mov.moviePosterUrl;
+
+
+                comm = new SqlCommand("UPDATE MOVIE SET movieName = @movieName, movieReleaseDate = @movieReleaseDate, movieDuration = @movieDuration, movieTrailerUrl=@movieTrailerUrl, movieSummary = @movieSummary,movieDirectorId=@MovieDirectorId, ısShowing = @isShowing, moviePhotoUrl = @moviePhotoUrl, moviePosterUrl = @moviePosterUrl  WHERE movieId = @movieId", conn);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+                comm.Parameters.AddWithValue("@movieName", movieName);
+                comm.Parameters.AddWithValue("@movieReleaseDate", movieReleaseDate);
+                comm.Parameters.AddWithValue("@movieDuration", movieDuration);
+                comm.Parameters.AddWithValue("@movieTrailerUrl", movieTrailerUrl);
+                comm.Parameters.AddWithValue("@movieSummary", movieSummary);
+                comm.Parameters.AddWithValue("@isShowing", isShowing);
+                comm.Parameters.AddWithValue("@moviePhotoUrl", moviePhotoUrl);
+                comm.Parameters.AddWithValue("@MovieDirectorId", directorId);
+                comm.Parameters.AddWithValue("@moviePosterUrl", moviePosterUrl);
+
+                int result = comm.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " edit movie in admin");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public static Movie getMovieById(int movieId)
         {
 
             connectToDatabase();
-            comm = new SqlCommand("SELECT * FROM (SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.movieId FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId)AS T4 WHERE T4.movieId = @movieId", conn);
+            comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName,T1.categoryId FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.* FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId", conn);
             comm.Parameters.AddWithValue("@movieId", movieId);
             SqlDataReader reader;
+
 
             try
             {
@@ -175,52 +271,6 @@ namespace Cinema.Management.System.Data
 
 
             return movie;
-        }
-
-        public static void editMovie(Movie mov)
-        {
-
-            Console.WriteLine("reposta editMovie'deyim " + mov.movieName);
-            try
-            {
-                connectToDatabase();
-                conn.Open();
-
-                Console.WriteLine("reposta editMovie'deyim try " + mov.movieName + " " + mov.movieId);
-
-                int movieId = mov.movieId;
-                string movieName = mov.movieName;
-                string movieReleaseDate = mov.movieReleaseDate;
-                int movieDuration = mov.movieDuration;
-                string movieTrailerUrl = mov.movieTrailerUrl;
-                string movieSummary = mov.movieSummary;
-                bool isShowing = mov.isShowing;
-                string moviePhotoUrl = mov.moviePhotoUrl;
-                string moviePosterUrl = mov.moviePosterUrl;
-
-
-                comm = new SqlCommand("UPDATE MOVIE SET movieName = @movieName, movieReleaseDate = @movieReleaseDate, movieDuration = @movieDuration, movieTrailerUrl=@movieTrailerUrl, movieSummary = @movieSummary, ısShowing = @isShowing, moviePhotoUrl = @moviePhotoUrl, moviePosterUrl = @moviePosterUrl  WHERE movieId = @movieId", conn);
-                comm.Parameters.AddWithValue("@movieId", movieId);
-                comm.Parameters.AddWithValue("@movieName", movieName);
-                comm.Parameters.AddWithValue("@movieReleaseDate", movieReleaseDate);
-                comm.Parameters.AddWithValue("@movieDuration", movieDuration);
-                comm.Parameters.AddWithValue("@movieTrailerUrl", movieTrailerUrl);
-                comm.Parameters.AddWithValue("@movieSummary", movieSummary);
-                comm.Parameters.AddWithValue("@isShowing", isShowing);
-                comm.Parameters.AddWithValue("@moviePhotoUrl", moviePhotoUrl);
-                comm.Parameters.AddWithValue("@moviePosterUrl", moviePosterUrl);
-
-                int result = comm.ExecuteNonQuery();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + " edit movie in admin");
-            }
-            finally
-            {
-                conn.Close();
-            }
         }
 
         public static List<Actor> getActorsById()

@@ -117,24 +117,25 @@ namespace Cinema.Management.System.Controllers
         public IActionResult AdminMoviePage(int id) // edit formunu getirir
         {
 
-            Movie movieDetail = movieRepository.getMovieById(id);
+            //Movie movieDetail = movieRepository.getMovieById(id);
 
             //List<Actor> actors = movieRepository.getActorsById(id);
 
             //actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
 
-            return View(movieDetail);
+            Movie tempMovie = movieRepository.getMovieWithCategoryAndDirectorByMovieId(id);
+            MovieCreateViewModel viewModel = new MovieCreateViewModel(tempMovie, categoryRepository.getAllCategory());
+
+            //Console.WriteLine(viewModel.movie.movieName);
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult AdminMoviePage(int movieId, string MovieName, string MovieReleaseDate, int MovieDuration,
-        string MovieTrailerUrl, string MovieSummary, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl) // edit formundaki bilgileri kullanarak UPDATE atar
+        public IActionResult AdminMoviePage(int MovieId, string MovieName, string MovieReleaseDate, int MovieDuration,
+        string MovieTrailerUrl, string MovieSummary, int DirectorId, string DirectorFirstName, string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, int MovieCategoryId) // edit formundaki bilgileri kullanarak UPDATE atar
         {
-            Console.WriteLine("POST FORM");
-
-            Console.WriteLine("POSTTAN GELEN İSİM => " + MovieName);
-
-            Console.WriteLine(movieId);
+            
 
             bool isShowing = false;
             if (MovieIsShowing == 1)
@@ -142,9 +143,35 @@ namespace Cinema.Management.System.Controllers
                 isShowing = true;
             }
 
-            Movie tempMovie = new Movie(movieId, MovieName, MovieReleaseDate, MovieDuration,
-         MovieTrailerUrl, MovieSummary, isShowing, MoviePhotoUrl, MoviePosterUrl);
+            //yeni director database de varsa sadece filme ekle
+            //yoksa oluştur ve director tablosuna ekle sonra filme ekle
 
+            
+            
+            
+
+            directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName);
+            if (directorRepository._director == null)
+            {
+                
+                directorRepository.CreateDirector(DirectorFirstName, DirectorLastName);
+                directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName); //for find directorId
+            }
+
+            int directorIdTemp = directorRepository._director.directorId;
+
+            
+
+            //category değişse değişmesede update category ile yolla
+            
+            categoryRepository.editMovieHasCategory(MovieId,MovieCategoryId);
+
+
+            //filmi database update
+            Movie tempMovie = new Movie(MovieId, MovieName, MovieReleaseDate, MovieDuration,
+         MovieTrailerUrl, MovieSummary, directorIdTemp,isShowing, MoviePhotoUrl, MoviePosterUrl);
+
+        
             //int movieIdTemp = movieRepository.getMovieIdByName(MovieName);
 
 
@@ -152,7 +179,7 @@ namespace Cinema.Management.System.Controllers
             if (MovieName != null && MovieReleaseDate != null && MovieDuration.ToString().Length != 0 &&
         MovieTrailerUrl != null && MovieSummary != null && MoviePhotoUrl != null && MoviePosterUrl != null)
             {
-                Console.WriteLine("EDIT MOVIE ONCESI");
+                
 
 
 

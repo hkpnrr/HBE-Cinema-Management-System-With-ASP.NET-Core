@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
@@ -143,6 +144,81 @@ namespace Cinema.Management.System.Data
             }
 
             return allCategoryNames;
+        }
+
+        public static List<Category> getAllCategory()
+        {
+
+            connectToDatabase();
+            List<Category> allCategory=new List<Category>();
+            comm = new SqlCommand("SELECT * FROM CATEGORY", conn);
+            Category tempCategory=null;
+            SqlDataReader reader;
+
+            
+
+            try
+            {
+
+
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    tempCategory=new Category(Convert.ToInt32(reader[0]),Convert.ToString(reader[1]));
+                    allCategory.Add(tempCategory);
+                    
+                }
+                
+
+                reader.Close(); // işin bitince kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message+" getAllCategory");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+            
+
+            return allCategory;
+        }
+
+        public static void editMovieHasCategory(int movieId,int categoryId)
+        {
+
+            
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+               
+
+
+                comm = new SqlCommand("UPDATE MOVIE_HAS_CATEGORIES SET categoryId = @categoryId WHERE movieId = @movieId", conn);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+                comm.Parameters.AddWithValue("@categoryId", categoryId);
+                
+
+                int result = comm.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " edit movie has categories in admin");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

@@ -12,11 +12,22 @@ namespace Cinema.Management.System.ViewModels
         public string category { get; set; }
         public Director director { get; set; }
 
+        public int categoryId { get; set; }
+
+        public List<Category> allCategories { get; set; }
+
         public MovieCreateViewModel(Movie movie, string category, Director director)
         {
             this.movie = movie;
             this.category = category;
             this.director = director;
+        }
+
+        public MovieCreateViewModel(Movie movie,List<Category> allCategories)
+        {
+            this.movie = movie;
+            
+            this.allCategories=allCategories;
         }
 
     }
