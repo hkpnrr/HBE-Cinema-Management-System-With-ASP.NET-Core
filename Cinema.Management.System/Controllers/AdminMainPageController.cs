@@ -46,7 +46,7 @@ namespace Cinema.Management.System.Controllers
 
             if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null)
             {
-                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId);
+                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId,sessionTime);
 
 
                 if (session == null)
@@ -56,6 +56,14 @@ namespace Cinema.Management.System.Controllers
 
                     //create new session
                     movieRepository.CreateSession(movieId, cinemaHallId, sessionTime);
+                    int seatNumber=cinemaHallRepository.getSeatNumberByCinemaHallId(cinemaHallId);
+                    int sessionId= sessionRepository.getSessionWithAllParameters(movieId, cinemaHallId, sessionTime);
+                    //create seat
+                    for (int i = 1; i <seatNumber+1 ; i++)
+                    {
+                        seatRepository.CreateSeat(i,sessionId);
+                        
+                    }
 
 
                     return RedirectToAction("AdminSessions");
@@ -86,8 +94,11 @@ namespace Cinema.Management.System.Controllers
         public IActionResult AdminSessions(int sessionId)
         {
 
+            seatRepository.deleteSeatsBySessionId(sessionId);
 
             movieRepository.deleteSessionById(sessionId);
+            
+
             return RedirectToAction("AdminSessions");
         }
 

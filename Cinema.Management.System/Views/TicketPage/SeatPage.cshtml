@@ -1,4 +1,4 @@
-@model List<Cinema.Management.System.ViewModels.sessionSelectViewModel>
+@model List<Seat>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,19 +22,22 @@
 
         <!-- Sinema Salonu Seç-->
         <div class="form-group mt-5">
-            <form action="/TicketPage/ChooseSession">
-                <label for="ChooseSession" class="fw-bold">Choose a cinema hall and session!</label>
-                <select name="sessionId" class="form-select" id="sessionId"  required>
+            <form action="/TicketPage/SeatPage">
+                <label for="seatNumber" class="fw-bold">Choose a seat!</label>
+                <select name="seatNumber" class="form-select" id="seatNumber"  required>
                 
-                <option selected>Choose a cinema hall and session!</option>
+                <option selected>Choose a seat!</option>
                 @foreach (var item in Model)
                 {
-                    <option value="@item.session.sessionId"> @item.cinemaHall.cinemaHallName @item.session.sessionTime </option>
+                    if(item.isAvailable==true){
+                        <option value="@item.seatNumber"> @item.seatNumber </option>
+                    }
+                    
                 }
                 
                 </select>
 
-                 <button class="btn btn-primary btn-sm mr-2" type="submit">Add Movie</button>
+                 <button class="btn btn-primary btn-sm mr-2" type="submit">Choose Seat</button>
                         
 
                  

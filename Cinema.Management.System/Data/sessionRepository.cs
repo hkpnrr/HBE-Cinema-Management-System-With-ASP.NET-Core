@@ -58,5 +58,45 @@ namespace Cinema.Management.System.Data
 
             return sessionList;
         }
+
+        public static int getSessionWithAllParameters(int movieId,int cinemaHallId,string sessionTime){
+
+             connectToDatabase();
+
+            comm = new SqlCommand("SELECT sessionId FROM SESSION WHERE movieId=@movieId AND cinemahallId=@cinemaHallId AND time=@sessionTime", conn);
+            comm.Parameters.AddWithValue("@movieId", movieId);
+            comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
+            comm.Parameters.AddWithValue("@sessionTime", sessionTime);
+            SqlDataReader reader;
+            
+            int sessionId=-1;
+            try
+            {
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                     sessionId=Convert.ToInt32(reader[0]);
+                }
+                
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message +"get session ıd");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return sessionId;
+        }
     }
 }

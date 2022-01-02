@@ -746,13 +746,14 @@ namespace Cinema.Management.System.Data
         }
 
 
-        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId, int cinemaHallId)
+        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId, int cinemaHallId,string sessionTime)
         {
 
             connectToDatabase();
-            comm = new SqlCommand("SELECT * FROM SESSION WHERE movieId=@movieId AND cinemahallId=@cinemaHallId", conn);
+            comm = new SqlCommand("SELECT * FROM SESSION WHERE movieId=@movieId AND cinemahallId=@cinemaHallId AND time=@sessionTime", conn);
             comm.Parameters.AddWithValue("@movieId", movieId);
             comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
+            comm.Parameters.AddWithValue("@sessionTime", sessionTime);
             Session session = null;
 
             SqlDataReader reader;

@@ -11,13 +11,30 @@ namespace Cinema.Management.System.Controllers
 {
     public class TicketPageController : Controller
     {
-        public IActionResult ChooseSession(int id) // Create ticket according to movieId
+        
+        public IActionResult ChooseSession(int id,int sessionId) // Create ticket according to movieId
         {
 
-            Movie movieDetail = movieRepository.getMovieById(id);
+            if(sessionId!=0){
+                
+                Console.WriteLine(sessionId);
+
+                return RedirectToAction("SeatPage",new {id=sessionId});
+            }
+            else{
+                Movie movieDetail = movieRepository.getMovieById(id);
             List<sessionSelectViewModel> viewModel = new List<sessionSelectViewModel>();
            
             return View(sessionRepository.getSessionsByMovieId(id));
+            }
+            
+        }
+
+        public IActionResult SeatPage(int id) // Pay ticket
+        {
+            List<Seat> seats = seatRepository.getSeatsBySessionId(id);
+
+            return View(seats);
         }
         
 
@@ -28,6 +45,8 @@ namespace Cinema.Management.System.Controllers
 
             return View();
         }
+
+        
 
     }
 }

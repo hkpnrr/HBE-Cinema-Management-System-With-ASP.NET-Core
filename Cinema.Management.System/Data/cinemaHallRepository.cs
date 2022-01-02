@@ -75,5 +75,55 @@ namespace Cinema.Management.System.Data
 
         }
 
+        public static int getSeatNumberByCinemaHallId(int cinemaHallId){
+
+
+            connectToDatabase();
+
+            
+
+            comm = new SqlCommand("SELECT amountOfSeats FROM CINEMA_HALL WHERE cinemaHallId=@cinemaHallId", conn);
+            comm.Parameters.AddWithValue("@cinemaHallId",cinemaHallId);
+            
+            int seatNumber=0;
+            SqlDataReader reader;
+            try
+            {
+
+                //Bağlantımı açıyorum.
+                conn.Open();
+                //Reader nesnem için sql komutumu çalıştırıyorum
+                reader = comm.ExecuteReader();
+
+                //if (reader.HasRows)
+                //{
+
+                //}
+
+
+                if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                {
+                    // reader[0] bir tane kolon'a denk geliyor
+                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                    seatNumber = Convert.ToInt32(reader[0]);
+                }
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message+" seat number çekme");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return seatNumber;
+        }
+
     }
 }
