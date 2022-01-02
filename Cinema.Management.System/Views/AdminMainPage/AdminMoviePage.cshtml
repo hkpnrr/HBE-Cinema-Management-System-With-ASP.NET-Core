@@ -26,12 +26,99 @@
 
 <body>
 
-    @await Html.PartialAsync("_navbar")
+    @await Html.PartialAsync("_admNavbar")
 
 
-    <h2><strong>Edit: </strong>  @Model.movieName</h2>
-    
-    
+    <h2><strong>Edit: </strong> @Model.movieName</h2>
+
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form method="POST" action="/AdminMainPage/AdminMoviePage">
+                
+                <input name="MovieId" action="/AdminMainPage/AdminMoviePage" class="form-control" type="number"
+                    placeholder="MovieId" value="@Model.movieId" hidden/>
+                <br>
+                <label for="MovieName">Movie Name</label>
+                <input name="MovieName" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="MovieName" value="@Model.movieName" required />
+                <br>
+                <label for="MovieReleaseDate">Movie Release Date</label>
+                <input name="MovieReleaseDate" action="/AdminMainPage/AdminMoviePage" class="form-control" type="date"
+                    placeholder="MovieReleaseDate" value="@Model.movieReleaseDate" required />
+                <br>
+                <label for="MovieDuration">Movie Duration</label>
+                <input name="MovieDuration" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="MovieDuration" value="@Model.movieDuration" required />
+                <br>
+                <label for="MovieTrailerUrl">Movie Trailer Url</label>
+                <input name="MovieTrailerUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="MovieTrailerUrl" value="@Model.movieTrailerUrl" required />
+                <br>
+                <label for="MovieSummary">Movie Summary</label>
+                <input name="MovieSummary" action="/AdminMainPage/AdminMoviePage" class="form-control" type="textarea"
+                    style="resize: none; height: 200px;" placeholder="MovieSummary" class="form-control"
+                    maxlength="2000" value="@Model.movieSummary" required />
+                <br>
+                <!--
+                <input name="DirectorFirstName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="DirectorFirstName" />
+                -->
+
+                <!--
+                <input name="DirectorLastName" action="/AdminMainPage/AdminAddMovie" class="form-control" type="text"
+                    placeholder="DirectorLastName" required />
+                -->
+
+                <div class="container">
+                    @if (Model.isShowing == true)
+                    {
+                        <input type="radio" id="showing" name="MovieIsShowing" value="1" checked>
+                        <label for="showing">Is Showing</label><br>
+                        <input type="radio" id="not showing" name="MovieIsShowing" value="0">
+                        <label for="not showing">Not Showing</label><br>
+                    }
+                    else
+                    {
+                        <input type="radio" id="showing" name="MovieIsShowing" value="1">
+                        <label for="showing">Is Showing</label><br>
+                        <input type="radio" id="not showing" name="MovieIsShowing" value="0" checked>
+                        <label for="not showing">Not Showing</label><br>
+                    }
+                </div>
+                <br>
+                <label for="MoviePhotoUrl">Movie Photo Url</label>
+                <input name="MoviePhotoUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="MoviePhotoUrl" value="@Model.moviePhotoUrl" required />
+                <br>
+                <label for="MoviePosterUrl">Movie Poster Url</label>
+                <input name="MoviePosterUrl" action="/AdminMainPage/AdminMoviePage" class="form-control" type="text"
+                    placeholder="MoviePosterUrl" value="@Model.moviePosterUrl" required />
+
+                <!-- KATEGORİ DEĞİŞTİRSİN Mİ? -->
+                <!--
+                <div class="form-group mt-4">
+
+
+                    <select name="MovieCategory" required class="form-select" id="sessionSelect">
+                        <option selected>Category</option>
+                @* @foreach (string item in Model)
+                    {
+                    <option value=@item>@item</option>
+                    } *@
+                    </select>
+                </div>
+
+                -->
+                <br>
+                <button class="btn btn-primary btn-sm mr-2" type="submit">Edit Movie</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
 
 
     @await Html.PartialAsync("_footer")

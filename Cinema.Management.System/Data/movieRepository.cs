@@ -18,7 +18,7 @@ namespace Cinema.Management.System.Data
         public static List<string> _moviesName = null;
 
         private static List<Comment> _comments = null;
-        
+
 
         private static string connString;
         private static SqlConnection conn;
@@ -31,7 +31,7 @@ namespace Cinema.Management.System.Data
 
         }
 
-         public static List<Movie> getAllMovies()
+        public static List<Movie> getAllMovies()
         {
             connectToDatabase();
 
@@ -80,7 +80,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return _movies;
         }
@@ -125,7 +125,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return _movies;
         }
@@ -177,6 +177,52 @@ namespace Cinema.Management.System.Data
             return movie;
         }
 
+        public static void editMovie(Movie mov)
+        {
+
+            Console.WriteLine("reposta editMovie'deyim " + mov.movieName);
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                Console.WriteLine("reposta editMovie'deyim try " + mov.movieName + " " + mov.movieId);
+
+                int movieId = mov.movieId;
+                string movieName = mov.movieName;
+                string movieReleaseDate = mov.movieReleaseDate;
+                int movieDuration = mov.movieDuration;
+                string movieTrailerUrl = mov.movieTrailerUrl;
+                string movieSummary = mov.movieSummary;
+                bool isShowing = mov.isShowing;
+                string moviePhotoUrl = mov.moviePhotoUrl;
+                string moviePosterUrl = mov.moviePosterUrl;
+
+
+                comm = new SqlCommand("UPDATE MOVIE SET movieName = @movieName, movieReleaseDate = @movieReleaseDate, movieDuration = @movieDuration, movieTrailerUrl=@movieTrailerUrl, movieSummary = @movieSummary, ısShowing = @isShowing, moviePhotoUrl = @moviePhotoUrl, moviePosterUrl = @moviePosterUrl  WHERE movieId = @movieId", conn);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+                comm.Parameters.AddWithValue("@movieName", movieName);
+                comm.Parameters.AddWithValue("@movieReleaseDate", movieReleaseDate);
+                comm.Parameters.AddWithValue("@movieDuration", movieDuration);
+                comm.Parameters.AddWithValue("@movieTrailerUrl", movieTrailerUrl);
+                comm.Parameters.AddWithValue("@movieSummary", movieSummary);
+                comm.Parameters.AddWithValue("@isShowing", isShowing);
+                comm.Parameters.AddWithValue("@moviePhotoUrl", moviePhotoUrl);
+                comm.Parameters.AddWithValue("@moviePosterUrl", moviePosterUrl);
+
+                int result = comm.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " edit movie in admin");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public static List<Actor> getActorsById()
         {
             connectToDatabase();
@@ -219,7 +265,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return _actorsById;
         }
@@ -497,11 +543,11 @@ namespace Cinema.Management.System.Data
             return result;
         }
 
-        public static Actor getActorsByName(string actorName,string actorSurname)
+        public static Actor getActorsByName(string actorName, string actorSurname)
         {
             connectToDatabase();
 
-            
+
 
             comm = new SqlCommand("SELECT * FROM ACTOR WHERE actorName=@actorName AND actorSurname=@actorSurname", conn);
             comm.Parameters.AddWithValue("@actorName", actorName);
@@ -518,13 +564,13 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
 
-               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
                     actor = new Actor(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]));
 
-                    
+
                 }
 
                 reader.Close(); // işin bitine kapat
@@ -540,13 +586,14 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return actor;
         }
 
 
-        public static void createActor(string actorName,string actorSurname){
+        public static void createActor(string actorName, string actorSurname)
+        {
 
             try
             {
@@ -556,7 +603,7 @@ namespace Cinema.Management.System.Data
                 comm = new SqlCommand("INSERT INTO ACTOR (actorName, actorSurname) VALUES(@actorName, @actorSurname)", conn);
                 comm.Parameters.AddWithValue("@actorName", actorName);
                 comm.Parameters.AddWithValue("@actorSurname", actorSurname);
-                
+
 
                 int result = comm.ExecuteNonQuery();
 
@@ -572,16 +619,16 @@ namespace Cinema.Management.System.Data
             }
         }
 
-        public static int getActorIdByName(string actorName,string actorSurname)
+        public static int getActorIdByName(string actorName, string actorSurname)
         {
             connectToDatabase();
 
-            
+
 
             comm = new SqlCommand("SELECT actorId FROM ACTOR WHERE actorName=@actorName AND actorSurname=@actorSurname", conn);
             comm.Parameters.AddWithValue("@actorName", actorName);
             comm.Parameters.AddWithValue("@actorSurname", actorSurname);
-            int actorId=-1;
+            int actorId = -1;
 
             SqlDataReader reader;
             try
@@ -593,13 +640,13 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
 
-               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                    actorId=Convert.ToInt32(reader[0]);
+                    actorId = Convert.ToInt32(reader[0]);
 
-                    
+
                 }
 
                 reader.Close(); // işin bitine kapat
@@ -615,13 +662,14 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
             return actorId;
         }
 
 
-        public static void SendActorAndMovieRelationToDatabase(int actorId,int movieId){
+        public static void SendActorAndMovieRelationToDatabase(int actorId, int movieId)
+        {
 
             try
             {
@@ -631,7 +679,7 @@ namespace Cinema.Management.System.Data
                 comm = new SqlCommand("INSERT INTO MOVIE_HAS_ACTORS (actorId, movieId) VALUES(@actorId,@movieId)", conn);
                 comm.Parameters.AddWithValue("@actorId", actorId);
                 comm.Parameters.AddWithValue("@movieId", movieId);
-                
+
 
                 int result = comm.ExecuteNonQuery();
 
@@ -648,7 +696,8 @@ namespace Cinema.Management.System.Data
         }
 
 
-        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId,int cinemaHallId){
+        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId, int cinemaHallId)
+        {
 
             connectToDatabase();
             comm = new SqlCommand("SELECT * FROM SESSION WHERE movieId=@movieId AND cinemahallId=@cinemaHallId", conn);
@@ -666,13 +715,13 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
 
-               if(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                   
-                    session = new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
-                    
+
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
+
                 }
 
                 reader.Close(); // işin bitine kapat
@@ -688,13 +737,14 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
 
             return session;
         }
 
-        public static void CreateSession(int movieId,int cinemaHallId,string sessionTime){
+        public static void CreateSession(int movieId, int cinemaHallId, string sessionTime)
+        {
             try
             {
                 connectToDatabase();
@@ -704,7 +754,7 @@ namespace Cinema.Management.System.Data
                 comm.Parameters.AddWithValue("@movieId", movieId);
                 comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
                 comm.Parameters.AddWithValue("@sessionTime", sessionTime);
-                
+
 
                 int result = comm.ExecuteNonQuery();
 
@@ -720,10 +770,11 @@ namespace Cinema.Management.System.Data
             }
         }
 
-        public static List<Session> GetAllSession(){
+        public static List<Session> GetAllSession()
+        {
             connectToDatabase();
             comm = new SqlCommand("SELECT * FROM SESSION", conn);
-            List<Session> _allSessions=new List<Session>();
+            List<Session> _allSessions = new List<Session>();
             Session session = null;
 
             SqlDataReader reader;
@@ -736,12 +787,12 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
 
-               while(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                   
-                    session = new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
+
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
                     _allSessions.Add(session);
                 }
 
@@ -758,18 +809,19 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
 
             return _allSessions;
         }
 
 
-        public static List<CinemaHall> getAllCinemaHalls(){
+        public static List<CinemaHall> getAllCinemaHalls()
+        {
 
             connectToDatabase();
             comm = new SqlCommand("SELECT * FROM CINEMA_HALL", conn);
-            List<CinemaHall> _allCinemaHalls=new List<CinemaHall>();
+            List<CinemaHall> _allCinemaHalls = new List<CinemaHall>();
             CinemaHall cinemaHall = null;
 
             SqlDataReader reader;
@@ -782,12 +834,12 @@ namespace Cinema.Management.System.Data
                 reader = comm.ExecuteReader();
 
 
-               while(reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
+                while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
-                   
-                    cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]),Convert.ToString(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]));
+
+                    cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
                     _allCinemaHalls.Add(cinemaHall);
                 }
 
@@ -804,7 +856,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            
+
 
 
             return _allCinemaHalls;
@@ -840,7 +892,7 @@ namespace Cinema.Management.System.Data
 
             return result;
         }
-            
-        
+
+
     }
 }

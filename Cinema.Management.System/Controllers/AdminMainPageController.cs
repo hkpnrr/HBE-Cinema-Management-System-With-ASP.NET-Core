@@ -18,13 +18,7 @@ namespace Cinema.Management.System.Controllers
         }
 
 
-        public IActionResult AdminMovies()
-        {
 
-            List<Movie> movies = movieRepository.getAllMovies();
-
-            return View(movies);
-        }
 
         [HttpGet]
         public IActionResult AdminComments()
@@ -36,42 +30,45 @@ namespace Cinema.Management.System.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminComments(int commentId){
+        public IActionResult AdminComments(int commentId)
+        {
 
-            
+
             movieRepository.deleteCommentById(commentId);
             return RedirectToAction("AdminComments");
         }
 
 
         [HttpGet]
-        public IActionResult AdminAddSessions(int cinemaHallId,int movieId,string sessionTime)
-        {   
-            sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(),movieRepository.getAllMovies());
+        public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime)
+        {
+            sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(), movieRepository.getAllMovies());
 
-             if (Convert.ToString(cinemaHallId).Length!=0 && Convert.ToString(movieId).Length!=0 && sessionTime!=null)
+            if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null)
             {
-                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId,cinemaHallId);
-                
-                
-                if(session==null){
-                    
+                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId);
 
-                    
+
+                if (session == null)
+                {
+
+
+
                     //create new session
-                    movieRepository.CreateSession(movieId,cinemaHallId,sessionTime);
-                    
+                    movieRepository.CreateSession(movieId, cinemaHallId, sessionTime);
+
 
                     return RedirectToAction("AdminSessions");
 
                 }
 
-                else{
-                    
+                else
+                {
+
                     //do nothing or display zaten var 
 
-                    
-                    
+
+
                     TempData["SessionCreateError"] = "Session has already exists in database";
 
                     return RedirectToAction("AdminAddSessions");
@@ -86,16 +83,18 @@ namespace Cinema.Management.System.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminSessions(int sessionId){
+        public IActionResult AdminSessions(int sessionId)
+        {
 
-            
+
             movieRepository.deleteSessionById(sessionId);
             return RedirectToAction("AdminSessions");
         }
 
         [HttpGet]
-        public IActionResult AdminSessions(){
-            
+        public IActionResult AdminSessions()
+        {
+
 
             return View(movieRepository.GetAllSession());
         }
@@ -106,7 +105,16 @@ namespace Cinema.Management.System.Controllers
             return View();
         }
 
-        public IActionResult AdminMoviePage(int id)
+        public IActionResult AdminMovies()
+        {
+
+            List<Movie> movies = movieRepository.getAllMovies();
+
+            return View(movies);
+        }
+
+        [HttpGet]
+        public IActionResult AdminMoviePage(int id) // edit formunu getirir
         {
 
             Movie movieDetail = movieRepository.getMovieById(id);
@@ -118,18 +126,57 @@ namespace Cinema.Management.System.Controllers
             return View(movieDetail);
         }
 
+        [HttpPost]
+        public IActionResult AdminMoviePage(int movieId, string MovieName, string MovieReleaseDate, int MovieDuration,
+        string MovieTrailerUrl, string MovieSummary, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl) // edit formundaki bilgileri kullanarak UPDATE atar
+        {
+            Console.WriteLine("POST FORM");
+
+            Console.WriteLine("POSTTAN GELEN İSİM => " + MovieName);
+
+            Console.WriteLine(movieId);
+
+            bool isShowing = false;
+            if (MovieIsShowing == 1)
+            {
+                isShowing = true;
+            }
+
+            Movie tempMovie = new Movie(movieId, MovieName, MovieReleaseDate, MovieDuration,
+         MovieTrailerUrl, MovieSummary, isShowing, MoviePhotoUrl, MoviePosterUrl);
+
+            //int movieIdTemp = movieRepository.getMovieIdByName(MovieName);
+
+
+
+            if (MovieName != null && MovieReleaseDate != null && MovieDuration.ToString().Length != 0 &&
+        MovieTrailerUrl != null && MovieSummary != null && MoviePhotoUrl != null && MoviePosterUrl != null)
+            {
+                Console.WriteLine("EDIT MOVIE ONCESI");
+
+
+
+                movieRepository.editMovie(tempMovie);
+            }
+            //List<Actor> actors = movieRepository.getActorsById(id);
+
+            //actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+
+            return RedirectToAction("AdminMovies"); // return back to movie list page
+        }
+
 
 
         public IActionResult AdminAddMovie(string MovieName, string MovieReleaseDate, int MovieDuration,
         string MovieTrailerUrl, string MovieSummary, string DirectorFirstName
         , string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, string MovieCategory)
         {
-             List<string> allCategoryNames=categoryRepository.getAllCategoryNames();
-             
+            List<string> allCategoryNames = categoryRepository.getAllCategoryNames();
 
-            if (MovieName != null && MovieReleaseDate != null && 
+
+            if (MovieName != null && MovieReleaseDate != null &&
         MovieTrailerUrl != null && MovieSummary != null && DirectorFirstName != null &&
-        DirectorLastName != null  && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
+        DirectorLastName != null && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
             {
                 movieRepository.getAllMovieNames();
 
@@ -155,9 +202,9 @@ namespace Cinema.Management.System.Controllers
                     isShowing, MoviePhotoUrl, MoviePosterUrl, MovieCategory, DirectorFirstName, DirectorLastName);
 
                     movieRepository.SendMovieToDatabase(m);
-                    
 
-                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory),movieRepository.getMovieIdByName(m.movieName));
+
+                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory), movieRepository.getMovieIdByName(m.movieName));
 
                     return RedirectToAction("AdminMovies");
 
@@ -184,68 +231,58 @@ namespace Cinema.Management.System.Controllers
 
                     movieRepository.SendMovieToDatabase(m);
 
-                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory),movieRepository.getMovieIdByName(m.movieName));
+                    categoryRepository.SendCategoryToDatabase(categoryRepository.getCategoryIdByName(m.movieCategory), movieRepository.getMovieIdByName(m.movieName));
                     return RedirectToAction("AdminMovies");
                 }
                 else
                 {
 
-                    if (MovieName != null && MovieReleaseDate != null && 
+                    if (MovieName != null && MovieReleaseDate != null &&
                         MovieTrailerUrl != null && MovieSummary != null && DirectorFirstName != null &&
-                        DirectorLastName != null  && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
+                        DirectorLastName != null && MoviePhotoUrl != null && MoviePosterUrl != null && MovieCategory != null)
                     {
                         TempData["MovieCreateError"] = "Movie has already exists in database";
                     }
 
                     return RedirectToAction("AdminAddMovie");
                 }
-
-
-
             }
-
             return View(allCategoryNames);
         }
 
         [HttpGet]
-        public IActionResult AddActor(int id,string actorName,string actorSurname){
-
-             
-             
-            
-            
-            if (actorName!=null && actorSurname!=null)
+        public IActionResult AddActor(int id, string actorName, string actorSurname)
+        {
+            if (actorName != null && actorSurname != null)
             {
-                Actor actor=movieRepository.getActorsByName(actorName,actorSurname);
-                
-                if(actor==null){
-                    
-                    //create new actor
-                    movieRepository.createActor(actorName,actorSurname);
-                    //get created actors id
-                    int actorId=movieRepository.getActorIdByName(actorName,actorSurname);
+                Actor actor = movieRepository.getActorsByName(actorName, actorSurname);
 
-                    
+                if (actor == null)
+                {
+
+                    //create new actor
+                    movieRepository.createActor(actorName, actorSurname);
+                    //get created actors id
+                    int actorId = movieRepository.getActorIdByName(actorName, actorSurname);
+
+
 
                     //attach movie and actors at movie has actors table
-                    movieRepository.SendActorAndMovieRelationToDatabase(actorId,id);
+                    movieRepository.SendActorAndMovieRelationToDatabase(actorId, id);
 
                     return View(id);
 
                 }
 
-                else{
-                    
+                else
+                {
+
                     //add exist actor to movies cast
-                    movieRepository.SendActorAndMovieRelationToDatabase(actor.actorId,id);
+                    movieRepository.SendActorAndMovieRelationToDatabase(actor.actorId, id);
                     return View(id);
 
                 }
-
-
-
             }
-
             return View(id);
         }
     }

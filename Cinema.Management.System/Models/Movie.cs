@@ -45,12 +45,12 @@ namespace Cinema.Management.System.Models
 
         }
 
-        public Movie( string movieName, string movieReleaseDate, int movieDuration, string movieTrailerUrl,
+        public Movie(string movieName, string movieReleaseDate, int movieDuration, string movieTrailerUrl,
         string movieSummary, int movieDirectorId,
          bool isShowing, string moviePhotoUrl, string moviePosterUrl,
          string movieCategory, string movieDirectorFirstName, string movieDirectorLastName)
         {
-            
+
             this.movieName = movieName;
             this.movieReleaseDate = movieReleaseDate;
             this.movieDuration = movieDuration;
@@ -66,8 +66,23 @@ namespace Cinema.Management.System.Models
             this.movieCategory = movieCategory;
 
         }
-    
 
+        // EDIT MOVIE İÇİN YAZDIM
+        public Movie(int movieId, string movieName, string movieReleaseDate, int movieDuration, string movieTrailerUrl,
+            string movieSummary, bool isShowing, string moviePhotoUrl, string moviePosterUrl)
+        {
+            this.movieId = movieId;
+            this.movieName = movieName;
+            this.movieReleaseDate = movieReleaseDate;
+            this.movieDuration = movieDuration;
+            this.movieTrailerUrl = movieTrailerUrl;
+            this.movieSummary = movieSummary;
+
+            this.isShowing = isShowing;
+            this.moviePhotoUrl = moviePhotoUrl;
+            this.moviePosterUrl = moviePosterUrl;
+
+        }
 
     }
 }

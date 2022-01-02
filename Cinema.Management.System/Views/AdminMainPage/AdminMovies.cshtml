@@ -44,7 +44,9 @@
                                 <td>@mov.movieCategory</td>
 
                                 <td>
-                                    <a href="/AdminMainPage/AdminMoviePage/@mov.movieId" class="btn btn-primary btn-sm mr-2">Edit</a>
+                                    <a class="btn btn-primary btn-sm mr-2" asp asp-controller="AdminMainPage" 
+                                    asp-action="AdminMoviePage" asp-route-id="@mov.movieId">Edit</a>
+
                                     
                                     <form action="/AdminMainPage/DeleteMovie" method="POST" style="display: inline;">
                                         <input type="hidden" name="productId" value="@mov.movieId">
@@ -54,7 +56,7 @@
                                         <input type="hidden" name="id" value="@mov.movieId">
                                         <button type="submit" class="btn btn-danger btn-sm">Add Actor</button>
                                     </form> *@
-                                    <a asp asp-controller="AdminMainPage" asp-action="AddActor" asp-route-id="@mov.movieId">
+                                    <a class="btn btn-primary btn-sm mr-2" asp asp-controller="AdminMainPage" asp-action="AddActor" asp-route-id="@mov.movieId">
                                         Add Actor </a>
                                 </td>
                         </tr>
