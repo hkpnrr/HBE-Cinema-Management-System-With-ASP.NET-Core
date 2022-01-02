@@ -22,6 +22,13 @@ namespace Cinema.Management.System.Models
             this.amountOfSeats = amountOfSeats;
         }
 
+        public CinemaHall(string cinemaHallName ,int amountOfSeats,string cinemaHallAddress)
+        {
+            this.cinemaHallName = cinemaHallName;
+            this.cinemaHallAddress = cinemaHallAddress;
+            this.amountOfSeats = amountOfSeats;
+        }
+
 
     }
 }

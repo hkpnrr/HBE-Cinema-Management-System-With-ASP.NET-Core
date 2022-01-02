@@ -1,4 +1,4 @@
-@model Movie
+@model List<Cinema.Management.System.ViewModels.sessionSelectViewModel>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,24 +18,27 @@
 
     <div id="booking-page" class="container mt-5">
         <!-- BURDA İLGİLİ FİLMİN ADINI GÖSTER -->
-        <h2>Buy a ticket for <strong>@Model.movieName</strong></h2>
+        <h2>Buy a ticket for <strong>@Model[0].movie.movieName</strong></h2>
 
         <!-- Sinema Salonu Seç-->
         <div class="form-group mt-5">
             <form action="#">
-                <label for="cinemaHallSelect" class="fw-bold">Choose a cinema hall</label>
+                <label for="cinemaHallSelect" class="fw-bold">Choose a cinema hall and session!</label>
                 <select required class="form-select" id="cinemaHallSelect">
-                <option selected>Choose a cinema hall</option>
-                <option>Optimum İzmir - Gaziemir/İzmir</option>
-                <option>Forum Bornova - Bornova/İzmir</option>
-                <option>Karşıyaka Hilltown - Karşıyaka/İzmir</option>
+                
+                <option selected>Choose a cinema hall and session!</option>
+                @foreach (var item in Model)
+                {
+                    <option> @item.cinemaHall.cinemaHallName @item.session.sessionTime </option>
+                }
+                
                 </select>
             </form>
         </div>
 
         <br>
 
-        <div class="form-group mt-4">
+       @*  <div class="form-group mt-4">
             <form action="#">
                 <label for="sessionSelect" class="fw-bold">Choose a session</label>
                 <select required class="form-select" id="sessionSelect">
@@ -88,16 +91,15 @@
             </form>
 
 
-        </div>
+        </div> *@
 
         <br>
 
         <div class="container">
-            <h2 class="text-center">Lets Go!</h2>
             <div class="btn-lg col-md-12 text-center">
                 <!-- asp-route-id  İLE BİRŞEY YOLLUCAZ MI?? -->
                  <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" 
-                 asp asp-controller="TicketPage" asp-action="PayTicket" >Buy Now</a>
+                 asp asp-controller="TicketPage" asp-action="ChooseSession" >Choose Seat</a>
 
                 <!-- <button class="btn-lg btn-dark mb-4">Buy Now</button> -->
             </div>

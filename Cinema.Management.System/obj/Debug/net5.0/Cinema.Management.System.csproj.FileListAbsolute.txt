@@ -446,3 +446,15 @@ C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AddActor.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminAddSessions.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminSessions.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AddActor.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminAddMovie.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminAddSessions.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminComments.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMainPage.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMoviePage.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMovies.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminSessions.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminTickets.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Shared\_admNavbar.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\PayTicket.cshtml.g.cs
+C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\ChooseSession.cshtml.g.cs
