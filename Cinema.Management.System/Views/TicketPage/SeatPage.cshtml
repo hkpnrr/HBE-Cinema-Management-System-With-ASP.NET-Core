@@ -17,10 +17,8 @@
     @await Html.PartialAsync("_navbar")
 
     <div id="booking-page" class="container mt-5">
-        <!-- BURDA İLGİLİ FİLMİN ADINI GÖSTER -->
-        @* <h2>Buy a ticket for <strong>@Model[0].movie.movieName</strong></h2> *@
 
-        <!-- Sinema Salonu Seç-->
+        <!-- Seat Seç-->
         <div class="form-group mt-5">
             <form action="/TicketPage/SeatPage">
                 <label for="seatId" class="fw-bold">Choose a seat!</label>
@@ -48,68 +46,12 @@
 
         <br>
 
-       @*  <div class="form-group mt-4">
-            <form action="#">
-                <label for="sessionSelect" class="fw-bold">Choose a session</label>
-                <select required class="form-select" id="sessionSelect">
-                <option selected>Choose a session</option>
-                <option value="11:30">11:30</option>
-                <option>12:15</option>
-                <option>14:45</option>
-                <option>15:30</option>
-                <option>18:00</option>
-                <option>18:45</option>
-                <option>20:30</option>
-                <option>21:15</option>
-                <option>22:00</option>
-                </select>
-                
-            </form>
-        </div>
 
-        <br>
-
-        <div class="form-group mt-4">
-            <!-- IMAGEMAP VEYA TABLE GİBİ BİŞEY GELCEK BURAYA KOLTUKLAR İÇİN -->
-            <form action="#">
-                <label for="seatSelect" class="fw-bold">Choose a seat</label>
-                <select required class="form-select" id="seatSelect">
-                    <option selected>Choose a seat</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                </select>
-                
-            </form>
-
-
-        </div> *@
-
-        <br>
+        
 
         
 
     </div>
-
-    <!-- ÖDEME EKRANINA YÖNLENDİR ?? -->
 
     @await Html.PartialAsync("_footer")
 

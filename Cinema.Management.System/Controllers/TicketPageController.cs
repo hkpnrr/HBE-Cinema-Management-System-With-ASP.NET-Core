@@ -14,10 +14,13 @@ namespace Cinema.Management.System.Controllers
         
         public IActionResult ChooseSession(int id,int sessionId) // Create ticket according to movieId
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authAdmin!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
             if(sessionId!=0){
                 
-                Console.WriteLine(sessionId);
 
                 return RedirectToAction("SeatPage",new {session=sessionId});
             }
@@ -32,9 +35,13 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult SeatPage(int session,int seatId) // Pay ticket
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authAdmin!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
+
             if(seatId!=0){
 
-                Console.WriteLine(seatId+"seat ıd");
                 return RedirectToAction("PayTicket",new {seatNewId=seatId});
             }
             else{
@@ -48,6 +55,10 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult PayTicket(int seatNewId) // Pay ticket
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authAdmin!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
             
             //moviename cinemahallname sessiontime seatno sessionprice yazdırırken
             

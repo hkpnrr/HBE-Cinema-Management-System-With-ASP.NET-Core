@@ -11,6 +11,8 @@ namespace Cinema.Management.System.Data
     {
         public static List<string> _emails = null;
         public static Customer authUser;
+
+        public static Customer authAdmin;
         private static string connString;
         private static SqlConnection conn;
         private static SqlCommand comm;
@@ -41,16 +43,11 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                //if (reader.HasRows)
-                //{
-
-                //}
+                
 
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     _emails.Add(Convert.ToString(reader[0]));
                 }
 
@@ -59,7 +56,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -92,11 +88,9 @@ namespace Cinema.Management.System.Data
 
                 int result = comm.ExecuteNonQuery();
 
-                Console.WriteLine(result);
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -146,7 +140,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("loginauthor bir hata oluştu");
             }
             //Bağlantımı kapatıyorum
             finally

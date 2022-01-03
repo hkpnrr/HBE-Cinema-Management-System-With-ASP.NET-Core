@@ -52,16 +52,9 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                //if (reader.HasRows)
-                //{
-
-                //}
-
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
                         Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
                          Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
@@ -75,7 +68,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -120,7 +112,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu ishowing çekerken");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -167,9 +158,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "getMovieWithCategoryAndDirectorByMovieId");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -219,9 +209,8 @@ namespace Cinema.Management.System.Data
                 int result = comm.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " edit movie in admin");
             }
             finally
             {
@@ -261,9 +250,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             //Bağlantımı kapatıyorum
             finally
@@ -286,9 +274,8 @@ namespace Cinema.Management.System.Data
 
                 int result = comm.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " AddMovieToWatcList");
             }
             finally
             {
@@ -322,9 +309,8 @@ namespace Cinema.Management.System.Data
                 reader.Close();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " CheckWatchedByUserIdMovieId");
             }
             finally
             {
@@ -362,9 +348,8 @@ namespace Cinema.Management.System.Data
 
                 reader.Close();
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " GetWatchedMovies");
             }
             finally
             {
@@ -381,7 +366,7 @@ namespace Cinema.Management.System.Data
             _actorsById = new List<Actor>();
 
             comm = new SqlCommand("SELECT ACTOR.*,MOVIE_HAS_ACTORS.movieId FROM ACTOR INNER JOIN MOVIE_HAS_ACTORS ON ACTOR.actorId=MOVIE_HAS_ACTORS.actorId", conn);
-            //comm.Parameters.AddWithValue("@movieId", movieId);
+            
             actor = null;
 
             SqlDataReader reader;
@@ -396,8 +381,6 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     actor = new Actor(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]), Convert.ToInt32(reader[3]));
 
                     _actorsById.Add(actor);
@@ -405,10 +388,9 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+           
+            catch 
             {
-                Console.WriteLine(e.Message + "AKTÖR HATASI XD");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -440,16 +422,9 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                //if (reader.HasRows)
-                //{
-
-                //}
-
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     _moviesName.Add(Convert.ToString(reader[0]));
                 }
 
@@ -458,7 +433,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -490,7 +464,6 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
                     comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToString(reader[2]),
                     Convert.ToString(reader[3]), Convert.ToString(reader[4]));
 
@@ -499,10 +472,8 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu comment okurken");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -533,7 +504,6 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
                     comment = new Comment(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),
                     Convert.ToString(reader[4]), Convert.ToString(reader[5]), Convert.ToString(reader[6]));
 
@@ -545,7 +515,6 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch
             {
-                Console.WriteLine("bir hata oluştu comment okurken");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -572,9 +541,8 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " SendCommentToDatabase");
             }
             finally
             {
@@ -607,9 +575,8 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " SendMovieToDatabase");
             }
             finally
             {
@@ -648,10 +615,9 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             //Bağlantımı kapatıyorum
             finally
@@ -681,9 +647,8 @@ namespace Cinema.Management.System.Data
                 result = command.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -717,8 +682,6 @@ namespace Cinema.Management.System.Data
 
                 if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     actor = new Actor(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]));
 
 
@@ -726,10 +689,8 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "aktor çekme hatası");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -760,9 +721,9 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " create actor error");
+               
             }
             finally
             {
@@ -793,8 +754,6 @@ namespace Cinema.Management.System.Data
 
                 if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     actorId = Convert.ToInt32(reader[0]);
 
 
@@ -802,10 +761,9 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "aktor id çekme hatası");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -836,9 +794,9 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " create actor movie relation error");
+                
             }
             finally
             {
@@ -869,8 +827,6 @@ namespace Cinema.Management.System.Data
 
                 if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
 
                     session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]), Convert.ToInt32(reader[4]));
 
@@ -878,10 +834,8 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "session  çekme hatası");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -913,9 +867,8 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " create session error");
             }
             finally
             {
@@ -942,8 +895,6 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
 
                     session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]), Convert.ToInt32(reader[4]));
                     _allSessions.Add(session);
@@ -951,10 +902,9 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "all session  çekme hatası");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -989,8 +939,6 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
 
                     cinemaHall = new CinemaHall(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
                     _allCinemaHalls.Add(cinemaHall);
@@ -998,10 +946,10 @@ namespace Cinema.Management.System.Data
 
                 reader.Close(); // işin bitine kapat
             }
-            //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            
+            catch 
             {
-                Console.WriteLine(e.Message + "all cinemahall  çekme hatası");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -1030,9 +978,8 @@ namespace Cinema.Management.System.Data
                 result = command.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             finally
             {

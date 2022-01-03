@@ -22,7 +22,7 @@ namespace Cinema.Management.System.Data
 
 
 
-        public static Director GetDirectorByName(string DirectorFirstName, string DirectorLastName)
+        public static void GetDirectorByName(string DirectorFirstName, string DirectorLastName)
         {
 
 
@@ -58,9 +58,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+ " GetDirectorByName");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -71,7 +70,7 @@ namespace Cinema.Management.System.Data
 
 
 
-            return null;
+            
 
 
         }
@@ -97,9 +96,8 @@ namespace Cinema.Management.System.Data
 
                 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" CreateDirector");
             }
             finally
             {

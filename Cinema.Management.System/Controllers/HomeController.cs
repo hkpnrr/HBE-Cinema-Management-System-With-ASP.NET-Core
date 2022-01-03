@@ -78,11 +78,13 @@ namespace Cinema.Management.System.Controllers
         {
 
             customerRepository.authUser = null;
+            customerRepository.authAdmin=null;
 
             if (Email != null && Password != null)
             {
                 if (Email.Equals("DEUCENG@gmail.com") && Password.Equals("123"))
                 {
+                    customerRepository.authAdmin=new Customer(Email,Password);
                     return RedirectToAction("Login", "AdminMainPage", new { area = "AdminMainPage" });
                 }
 

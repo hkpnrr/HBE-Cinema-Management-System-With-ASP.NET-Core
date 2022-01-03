@@ -42,7 +42,6 @@
         </div>
 
         <!-- FRAGMAN BÖLÜMÜ -->
-        <!-- RESPONSIVE YAPAMADIM FRAGMANI,çok az bi OVERFLOW OLUYO EKRANI KÜÇÜLTÜNCE -->
         <div class="col-md-7 col-lg-8 col-xl-9 mx-auto my-auto text-center ">
             <iframe class="border border-5 rounded" width="560" height="315" src=@Model.movie.movieTrailerUrl
                 title="YouTube video player" frameborder="0"
@@ -85,8 +84,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                @* <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="MainPage"
-                    asp-action="AddToWatchList" asp-route-id="@Model.movie.movieId">Add To WatchList</a> *@
+               
 
                 <form action="/MainPage/AddToWatchList">
                     <input name="MovieId" action="/MainPage/AddToWatchList" class="form-control" type="number"

@@ -52,9 +52,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" getCategoryIdByName");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -85,9 +84,9 @@ namespace Cinema.Management.System.Data
 
                 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" SendCategoryToDatabase");
+               
             }
             finally
             {
@@ -115,11 +114,10 @@ namespace Cinema.Management.System.Data
                 conn.Open();
 
                 reader = comm.ExecuteReader();
-                Console.WriteLine("ifden öncesi");
+                
                 while (reader.Read())
                 {
-                    Console.WriteLine("ifin içi");
-                    Console.WriteLine("ifden içinde "+Convert.ToString(reader[0]));
+                    
                     allCategoryNames.Add(Convert.ToString(reader[0]));
                     
                 }
@@ -128,9 +126,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitince kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" getAllCategoryNames");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -138,10 +136,7 @@ namespace Cinema.Management.System.Data
                 conn.Close();
             }
 
-            foreach (var item in allCategoryNames)
-            {
-                Console.WriteLine(item);
-            }
+            
 
             return allCategoryNames;
         }
@@ -176,9 +171,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitince kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" getAllCategory");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -211,9 +206,9 @@ namespace Cinema.Management.System.Data
                 int result = comm.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " edit movie has categories in admin");
+                
             }
             finally
             {

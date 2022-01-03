@@ -50,9 +50,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" getseatsbysessionıd");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -79,9 +78,8 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " create seat");
             }
             finally
             {
@@ -107,9 +105,8 @@ namespace Cinema.Management.System.Data
                 result = command.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -135,9 +132,9 @@ namespace Cinema.Management.System.Data
                 int result = comm.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " edit seat available in seatrepo");
+               
             }
             finally
             {
@@ -172,9 +169,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message+" sea number by seatId");
+                
             }
             //Bağlantımı kapatıyorum
             finally

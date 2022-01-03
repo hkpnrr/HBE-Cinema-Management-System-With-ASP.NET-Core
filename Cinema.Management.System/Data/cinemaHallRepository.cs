@@ -10,7 +10,6 @@ namespace Cinema.Management.System.Data
 {
     public static class cinemaHallRepository
     {
-        private static List<CinemaHall> _cinemaHalls = null;
         private static string connString;
         private static SqlConnection conn;
         private static SqlCommand comm;
@@ -41,16 +40,13 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                //if (reader.HasRows)
-                //{
-
-                //}
+                
 
 
                 while (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
                     // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
+                    
                     cinemaHallWithMovies = new CinemaHallsViewModel(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
                      Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]));
 
@@ -60,9 +56,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e.Message +"getCinemaHallsWithMovies");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -95,25 +91,18 @@ namespace Cinema.Management.System.Data
                 //Reader nesnem için sql komutumu çalıştırıyorum
                 reader = comm.ExecuteReader();
 
-                //if (reader.HasRows)
-                //{
-
-                //}
 
 
                 if (reader.Read()) // her seferinde tablodaki komple bir satırı okuyacak
                 {
-                    // reader[0] bir tane kolon'a denk geliyor
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     seatNumber = Convert.ToInt32(reader[0]);
                 }
 
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " seat number çekme");
             }
             //Bağlantımı kapatıyorum
             finally

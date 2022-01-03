@@ -13,13 +13,20 @@ namespace Cinema.Management.System.Controllers
     {
         public IActionResult AdminMainPage()
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
 
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
             return View();
         }
 
         [HttpGet]
         public IActionResult AdminComments()
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
             List<Comment> allComments = movieRepository.getAllComments();
 
@@ -29,6 +36,10 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult AdminComments(int commentId)
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
             movieRepository.deleteCommentById(commentId);
             return RedirectToAction("AdminComments");
@@ -38,6 +49,10 @@ namespace Cinema.Management.System.Controllers
         [HttpGet]
         public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime, int sessionPrice)
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
             sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(), movieRepository.getAllMovies());
 
             if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null && Convert.ToString(sessionPrice).Length != 0)
@@ -85,6 +100,10 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult AdminSessions(int sessionId)
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
             ticketRepository.deleteTicketBySessionId(sessionId);
             seatRepository.deleteSeatsBySessionId(sessionId);
@@ -98,6 +117,10 @@ namespace Cinema.Management.System.Controllers
         [HttpGet]
         public IActionResult AdminSessions()
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
 
             return View(movieRepository.GetAllSession());
@@ -105,6 +128,11 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult AdminTickets()
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
+
             List<Ticket> allTickets = ticketRepository.findAllTicketGeneralInfo();
 
             return View(allTickets);
@@ -112,6 +140,10 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult AdminMovies()
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
             List<Movie> movies = movieRepository.getAllMovies();
 
@@ -121,17 +153,17 @@ namespace Cinema.Management.System.Controllers
         [HttpGet]
         public IActionResult AdminMoviePage(int id) // edit formunu getirir
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
 
-            //Movie movieDetail = movieRepository.getMovieById(id);
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
-            //List<Actor> actors = movieRepository.getActorsById(id);
-
-            //actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+            
 
             Movie tempMovie = movieRepository.getMovieWithCategoryAndDirectorByMovieId(id);
             MovieCreateViewModel viewModel = new MovieCreateViewModel(tempMovie, categoryRepository.getAllCategory());
 
-            //Console.WriteLine(viewModel.movie.movieName);
+            
 
             return View(viewModel);
         }
@@ -140,6 +172,10 @@ namespace Cinema.Management.System.Controllers
         public IActionResult AdminMoviePage(int MovieId, string MovieName, string MovieReleaseDate, int MovieDuration,
         string MovieTrailerUrl, string MovieSummary, int DirectorId, string DirectorFirstName, string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, int MovieCategoryId) // edit formundaki bilgileri kullanarak UPDATE atar
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
 
 
             bool isShowing = false;
@@ -177,7 +213,7 @@ namespace Cinema.Management.System.Controllers
          MovieTrailerUrl, MovieSummary, directorIdTemp, isShowing, MoviePhotoUrl, MoviePosterUrl);
 
 
-            //int movieIdTemp = movieRepository.getMovieIdByName(MovieName);
+            
 
 
 
@@ -190,9 +226,7 @@ namespace Cinema.Management.System.Controllers
 
                 movieRepository.editMovie(tempMovie);
             }
-            //List<Actor> actors = movieRepository.getActorsById(id);
-
-            //actorMovieViewModel viewModel= new actorMovieViewModel(movieDetail,actors);
+            
 
             return RedirectToAction("AdminMovies"); // return back to movie list page
         }
@@ -203,6 +237,11 @@ namespace Cinema.Management.System.Controllers
         string MovieTrailerUrl, string MovieSummary, string DirectorFirstName
         , string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, string MovieCategory)
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
+
             List<string> allCategoryNames = categoryRepository.getAllCategoryNames();
 
 
@@ -285,6 +324,11 @@ namespace Cinema.Management.System.Controllers
         [HttpGet]
         public IActionResult AddActor(int id, string actorName, string actorSurname)
         {
+            if((customerRepository.authUser==null &&  customerRepository.authAdmin==null) || (customerRepository.authUser!=null)){
+
+                return StatusCode(403,"Unauthorized Connection. You Don't Have Permission To Access On This Page. ERROR 403 FORBIDDEN");
+            }
+
             if (actorName != null && actorSurname != null)
             {
                 Actor actor = movieRepository.getActorsByName(actorName, actorSurname);

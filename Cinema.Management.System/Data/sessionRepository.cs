@@ -45,9 +45,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message +"getSessionsByMovieId");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -85,9 +85,8 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message +"get session ıd");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -123,9 +122,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message +"get session ıd by seatId");
+                
             }
             //Bağlantımı kapatıyorum
             finally

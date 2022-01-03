@@ -133,7 +133,6 @@ C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.TagHelpers.input.cache
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.TagHelpers.output.cache
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.RazorCoreGenerate.cache
-C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
@@ -460,3 +459,4 @@ C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\ChooseSession.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\SeatPage.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\Profile.cshtml.g.cs
+C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\Profile.cshtml.g.cs

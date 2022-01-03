@@ -37,9 +37,9 @@ namespace Cinema.Management.System.Data
 
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " create ticket");
+                
             }
             finally
             {
@@ -76,9 +76,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " ticket get info");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -121,9 +121,9 @@ namespace Cinema.Management.System.Data
                 reader.Close(); // işin bitine kapat
             }
             //hata olursa vereceğim mesaj.
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + " all tickets get info");
+                
             }
             //Bağlantımı kapatıyorum
             finally
@@ -155,9 +155,8 @@ namespace Cinema.Management.System.Data
                 command.ExecuteNonQuery();
 
             }
-            catch (Exception e)
+            catch 
             {
-                Console.WriteLine(e.Message + "DELETE TİCKET");
             }
             finally
             {
