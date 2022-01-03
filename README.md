@@ -28,6 +28,8 @@ I and my friends Burak and Ekin developed Cinema Hall Management System with ASP
 *Delete Comment<br />
 *Display All Tickets<br /><br />
 
+Youtube:https://youtu.be/GKEj9GyRnUw <br />
+
 
 ## Used technologies:<br />
 *MSSQL Database<br />
