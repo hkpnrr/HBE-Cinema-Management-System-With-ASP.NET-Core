@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -220,11 +221,20 @@ namespace Cinema.Management.System.Data
 
         public static Movie getMovieById(int movieId)
         {
+            // WITHOUT STORED PROCEDURE
+            // connectToDatabase();
+            // comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName,T1.categoryId FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.* FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId WHERE movieId=@movieId", conn);
+            // comm.Parameters.AddWithValue("@movieId", movieId);
+            // SqlDataReader reader;
 
+            // WITH STORED PROCEDURE
             connectToDatabase();
-            comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName,T1.categoryId FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.* FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId WHERE movieId=@movieId", conn);
-            comm.Parameters.AddWithValue("@movieId", movieId);
             SqlDataReader reader;
+            comm = new SqlCommand("getMovieById", conn);
+            comm.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+            param = comm.Parameters.Add("@movieId", SqlDbType.Int);
+            param.Value = movieId;
 
 
             try
