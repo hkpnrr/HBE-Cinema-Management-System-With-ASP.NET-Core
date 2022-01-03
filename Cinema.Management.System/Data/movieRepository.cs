@@ -771,7 +771,7 @@ namespace Cinema.Management.System.Data
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
 
-                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),Convert.ToInt32(reader[4]));
 
                 }
 
@@ -794,17 +794,18 @@ namespace Cinema.Management.System.Data
             return session;
         }
 
-        public static void CreateSession(int movieId, int cinemaHallId, string sessionTime)
+        public static void CreateSession(int movieId, int cinemaHallId, string sessionTime,int sessionPrice)
         {
             try
             {
                 connectToDatabase();
                 conn.Open();
 
-                comm = new SqlCommand("INSERT INTO SESSION (movieId, cinemaHallId,time) VALUES(@movieId, @cinemaHallId,@sessionTime)", conn);
+                comm = new SqlCommand("INSERT INTO SESSION (movieId, cinemaHallId,time,price) VALUES(@movieId, @cinemaHallId,@sessionTime,@sessionPrice)", conn);
                 comm.Parameters.AddWithValue("@movieId", movieId);
                 comm.Parameters.AddWithValue("@cinemaHallId", cinemaHallId);
                 comm.Parameters.AddWithValue("@sessionTime", sessionTime);
+                comm.Parameters.AddWithValue("@sessionPrice", sessionPrice);
 
 
                 int result = comm.ExecuteNonQuery();
@@ -843,7 +844,7 @@ namespace Cinema.Management.System.Data
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
 
-                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]));
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),Convert.ToInt32(reader[4]));
                     _allSessions.Add(session);
                 }
 

@@ -7,7 +7,7 @@ using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
-    public class customerRepository
+    public static class customerRepository
     {
         public static List<string> _emails = null;
         public static Customer authUser;

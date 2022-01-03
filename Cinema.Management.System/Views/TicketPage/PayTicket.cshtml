@@ -1,3 +1,5 @@
+@model Ticket
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,11 +19,21 @@
     <!-- ÖDEME EKRANI -->
 
     <div class="container">
-            <h2 class="text-center">Lets Go!</h2>
+            <h2 class="text-center">Your Ticket</h2>
             <div class="btn-lg col-md-12 text-center">
+
+                <p>Movie Name: @Model.movieName</p>
+                <p>Seat Number: @Model.seatNo</p>
+                <p>Cinema Hall Name: @Model.cinemaHallName</p>
+                <p>Session Time: @Model.sessionTime</p>
+                <p>Ticket Price: @Model.sessionPrice $</p>
+                
+
+
+
                 <!-- asp-route-id  İLE BİRŞEY YOLLUCAZ MI?? => ÖDEME YAPINCA FİLMİN SAYFASINA DÖNSÜN TEKRAR -->
                  <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" 
-                 asp asp-controller="MainPage" asp-action="MoviePage" asp-route-id="1">Pay Now</a>
+                 asp asp-controller="MainPage" asp-action="Movies">Return Movies Page</a>
             </div>
     </div>
 

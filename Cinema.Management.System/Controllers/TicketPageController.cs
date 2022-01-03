@@ -19,7 +19,7 @@ namespace Cinema.Management.System.Controllers
                 
                 Console.WriteLine(sessionId);
 
-                return RedirectToAction("SeatPage",new {id=sessionId});
+                return RedirectToAction("SeatPage",new {session=sessionId});
             }
             else{
                 Movie movieDetail = movieRepository.getMovieById(id);
@@ -30,20 +30,47 @@ namespace Cinema.Management.System.Controllers
             
         }
 
-        public IActionResult SeatPage(int id) // Pay ticket
+        public IActionResult SeatPage(int session,int seatId) // Pay ticket
         {
-            List<Seat> seats = seatRepository.getSeatsBySessionId(id);
+            if(seatId!=0){
+
+                Console.WriteLine(seatId+"seat ıd");
+                return RedirectToAction("PayTicket",new {seatNewId=seatId});
+            }
+            else{
+                List<Seat> seats = seatRepository.getSeatsBySessionId(session);
 
             return View(seats);
+            }
+            
         }
         
 
-        public IActionResult PayTicket() // Pay ticket
+        public IActionResult PayTicket(int seatNewId) // Pay ticket
         {
             
+            //moviename cinemahallname sessiontime seatno sessionprice yazdırırken
+            
+            // seatNewId ile sessionıd bul
 
+            int sessionId=sessionRepository.getSessionIdBySeatId(seatNewId);
+            //for create ticket  userid  sessionıd 
+            ticketRepository.CreateTicket(customerRepository.authUser.userId,sessionId,seatNewId);
+            //seat i unavailable yap
+            seatRepository.editSeatAvailableStatus(seatNewId);
 
-            return View();
+            Ticket tempTicket = ticketRepository.findTicketGeneralInfoBySessionId(sessionId);
+            string ticketTime=tempTicket.sessionTime;
+            int ticketPrice=tempTicket.sessionPrice;
+            string ticketCinemaHallName=tempTicket.cinemaHallName;
+            string ticketMovieName=tempTicket.movieName;
+
+            //find seat no
+            int seatNo=seatRepository.getSeatNumberById(seatNewId);
+            //find created ticket
+            Ticket ticket = new Ticket(customerRepository.authUser.userId,sessionId,ticketMovieName,ticketCinemaHallName,ticketTime,seatNo,ticketPrice);
+
+            return View(ticket);
         }
 
         

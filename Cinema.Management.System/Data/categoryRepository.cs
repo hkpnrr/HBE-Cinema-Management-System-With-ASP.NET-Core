@@ -7,7 +7,7 @@ using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
-    public class categoryRepository
+    public static class categoryRepository
     {
         private static string connString;
         private static SqlConnection conn;

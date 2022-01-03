@@ -7,7 +7,7 @@ using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
-    public class seatRepository
+    public static class seatRepository
     {
         private static string connString;
         private static SqlConnection conn;
@@ -118,6 +118,72 @@ namespace Cinema.Management.System.Data
 
 
             return result;
+        }
+
+        public static void editSeatAvailableStatus(int seatId)
+        {
+
+            
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+                comm = new SqlCommand("UPDATE SEAT SET isAvailable = 0  WHERE seatId = @seatId", conn);
+                comm.Parameters.AddWithValue("@seatId", seatId);
+                
+
+                int result = comm.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " edit seat available in seatrepo");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static int getSeatNumberById(int seatId){
+            connectToDatabase();
+            comm = new SqlCommand("SELECT seatNumber FROM SEAT WHERE seatId=@seatId", conn);
+            comm.Parameters.AddWithValue("@seatId", seatId);
+            SqlDataReader reader;
+
+            
+            int seatNumber=-1;
+
+            try
+            {
+
+
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    seatNumber=Convert.ToInt32(reader[0]);
+                    
+                }
+                
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message+" sea number by seatId");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return seatNumber;
         }
         
     }

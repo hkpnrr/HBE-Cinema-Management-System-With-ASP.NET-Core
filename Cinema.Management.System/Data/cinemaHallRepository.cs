@@ -7,7 +7,7 @@ using Cinema.Management.System.Models;
 
 namespace Cinema.Management.System.Data
 {
-    public class cinemaHallRepository
+    public static class cinemaHallRepository
     {
         private static List<CinemaHall> _cinemaHalls = null;
         private static string connString;

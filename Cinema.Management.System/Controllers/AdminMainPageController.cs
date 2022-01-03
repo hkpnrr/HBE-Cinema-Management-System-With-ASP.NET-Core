@@ -40,11 +40,11 @@ namespace Cinema.Management.System.Controllers
 
 
         [HttpGet]
-        public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime)
+        public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime,int sessionPrice)
         {
             sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(), movieRepository.getAllMovies());
 
-            if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null)
+            if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null && Convert.ToString(sessionPrice).Length != 0)
             {
                 Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId,sessionTime);
 
@@ -55,7 +55,10 @@ namespace Cinema.Management.System.Controllers
 
 
                     //create new session
-                    movieRepository.CreateSession(movieId, cinemaHallId, sessionTime);
+                    movieRepository.CreateSession(movieId, cinemaHallId, sessionTime,sessionPrice);
+
+                    //session ı oluşturulan movie nin isShowingini true yap
+
                     int seatNumber=cinemaHallRepository.getSeatNumberByCinemaHallId(cinemaHallId);
                     int sessionId= sessionRepository.getSessionWithAllParameters(movieId, cinemaHallId, sessionTime);
                     //create seat
@@ -93,7 +96,8 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult AdminSessions(int sessionId)
         {
-
+            
+            ticketRepository.deleteTicketBySessionId(sessionId);
             seatRepository.deleteSeatsBySessionId(sessionId);
 
             movieRepository.deleteSessionById(sessionId);
@@ -112,6 +116,7 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult AdminTickets()
         {
+
 
             return View();
         }

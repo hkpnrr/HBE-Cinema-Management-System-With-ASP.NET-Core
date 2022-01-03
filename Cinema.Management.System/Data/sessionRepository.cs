@@ -8,7 +8,7 @@ using Cinema.Management.System.ViewModels;
 
 namespace Cinema.Management.System.Data
 {
-    public class sessionRepository
+    public static class sessionRepository
     {
         private static string connString;
         private static SqlConnection conn;
@@ -37,7 +37,7 @@ namespace Cinema.Management.System.Data
 
                 while (reader.Read())
                 {
-                     temp = new sessionSelectViewModel(new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3])),new CinemaHall(Convert.ToString(reader[4]),Convert.ToInt32(reader[5]),Convert.ToString(reader[6])),new Movie(Convert.ToInt32(reader[7]),Convert.ToString(reader[8]),Convert.ToString(reader[9]),Convert.ToInt32(reader[10]),Convert.ToString(reader[11]),Convert.ToString(reader[12]),Convert.ToInt32(reader[13]),(bool)reader[14],Convert.ToString(reader[15]),Convert.ToString(reader[16])));
+                     temp = new sessionSelectViewModel(new Session(Convert.ToInt32(reader[0]),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToString(reader[3]),Convert.ToInt32(reader[4])),new CinemaHall(Convert.ToString(reader[5]),Convert.ToInt32(reader[6]),Convert.ToString(reader[7])),new Movie(Convert.ToInt32(reader[8]),Convert.ToString(reader[9]),Convert.ToString(reader[10]),Convert.ToInt32(reader[11]),Convert.ToString(reader[12]),Convert.ToString(reader[13]),Convert.ToInt32(reader[14]),(bool)reader[15],Convert.ToString(reader[16]),Convert.ToString(reader[17])));
                      sessionList.Add(temp);
                 }
                 
@@ -88,6 +88,44 @@ namespace Cinema.Management.System.Data
             catch (Exception e)
             {
                 Console.WriteLine(e.Message +"get session ıd");
+            }
+            //Bağlantımı kapatıyorum
+            finally
+            {
+                conn.Close();
+            }
+
+
+            return sessionId;
+        }
+
+        public static int getSessionIdBySeatId(int seatId){
+
+             connectToDatabase();
+
+            comm = new SqlCommand("SELECT sessionId FROM SEAT WHERE seatId=@seatId", conn);
+            comm.Parameters.AddWithValue("@seatId", seatId);
+            SqlDataReader reader;
+            
+            int sessionId=-1;
+            try
+            {
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                     sessionId=Convert.ToInt32(reader[0]);
+                }
+                
+
+                reader.Close(); // işin bitine kapat
+            }
+            //hata olursa vereceğim mesaj.
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message +"get session ıd by seatId");
             }
             //Bağlantımı kapatıyorum
             finally
