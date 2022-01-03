@@ -62,14 +62,6 @@
                 <strong>Cast: </strong>
                 @foreach (var actor in Model.actors)
                 {
-                    @* <ul class="list-group list-group-horizontal">
-                        @if(actor.movieId == Model.movie.movieId){
-                        <li class="list-group-item">@actor.actorFirstName @actor.actorLastName</li>
-
-                        }
-                        </ul> *@
-
-
                     @if (actor.movieId == Model.movie.movieId)
                     {
                         @actor.actorFirstName@:&nbsp;@actor.actorLastName,
@@ -92,6 +84,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-3">
+                @* <a class="btn-lg btn-dark mb-4" style="text-decoration: none;" asp asp-controller="MainPage"
+                    asp-action="AddToWatchList" asp-route-id="@Model.movie.movieId">Add To WatchList</a> *@
+
+                <form action="/MainPage/AddToWatchList">
+                    <input name="MovieId" action="/MainPage/AddToWatchList" class="form-control" type="number"
+                        placeholder="MovieId" value="@Model.movie.movieId" hidden />
+
+                    <button class="btn btn-primary btn-sm mr-2 mt-5" type="submit">Add To WatchList</button>
+                </form>
+
+            </div>
+            @if (@TempData["MovieWatcedError"] != null)
+            {
+                <span style="color: red; border: 2px solid red; padding:5px ; border-radius :3px;">
+                    <strong>@TempData["MovieWatcedError"]</strong>
+                </span>
+
+            }
+
+
         </div>
     </section>
 
@@ -100,12 +113,6 @@
     <br><br>
 
     <!-- FİLM VİZYONDAYSA BİLET AL -->
-    <!--
-        <a asp-controller="Home"  asp-action="Register">
-                        <button style="background-color: orange;">Sign Up</button>
-
-                    </a>
-    -->
     <!-- BUY TICKET -->
     @if (Model.movie.isShowing)
     {
@@ -183,66 +190,6 @@
     <br><br>
     <hr style="border: 3px solid black;">
     <br><br>
-
-    <!-- BENZER FİLMLER (sorguda LIKE dicez falan) -->
-
-    <section class="benzerFilmler container">
-        <h2>May you interested in...</h2>
-        <div id="slider-benzerFilmler" class="carousel slide carousel-fade my-3" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#slider-benzerFilmler" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <!-- Afişine tıklayınca film'in sayfasına gitsin burda-->
-                    <!-- YAZSINI ALTA ALAMADIM -->
-                    <a href="promo1.png"><img class="d-block w-100 img-fluid" src="promo1.png" alt=""></a>
-                    <div class="carousel-caption carousel-caption2 d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-fluid" src="promo2.png" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-fluid" src="promo3.png" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slider Header 1</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, eaque!</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#slider-benzerFilmler"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#slider-benzerFilmler"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-    </section>
-
-    <br><br>
-    <hr style="border: 3px solid black;">
-    <br>
 
     @await Html.PartialAsync("_footer")
 

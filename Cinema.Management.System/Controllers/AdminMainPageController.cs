@@ -17,9 +17,6 @@ namespace Cinema.Management.System.Controllers
             return View();
         }
 
-
-
-
         [HttpGet]
         public IActionResult AdminComments()
         {
@@ -33,44 +30,40 @@ namespace Cinema.Management.System.Controllers
         public IActionResult AdminComments(int commentId)
         {
 
-
             movieRepository.deleteCommentById(commentId);
             return RedirectToAction("AdminComments");
         }
 
 
         [HttpGet]
-        public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime,int sessionPrice)
+        public IActionResult AdminAddSessions(int cinemaHallId, int movieId, string sessionTime, int sessionPrice)
         {
             sessionViewModel viewModel = new sessionViewModel(movieRepository.getAllCinemaHalls(), movieRepository.getAllMovies());
 
             if (Convert.ToString(cinemaHallId).Length != 0 && Convert.ToString(movieId).Length != 0 && sessionTime != null && Convert.ToString(sessionPrice).Length != 0)
             {
-                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId,sessionTime);
+                Session session = movieRepository.GetSessionByMovieIdAndCinemaHallId(movieId, cinemaHallId, sessionTime);
 
 
                 if (session == null)
                 {
 
-
-
                     //create new session
-                    movieRepository.CreateSession(movieId, cinemaHallId, sessionTime,sessionPrice);
+                    movieRepository.CreateSession(movieId, cinemaHallId, sessionTime, sessionPrice);
 
                     //session ı oluşturulan movie nin isShowingini true yap
 
-                    int seatNumber=cinemaHallRepository.getSeatNumberByCinemaHallId(cinemaHallId);
-                    int sessionId= sessionRepository.getSessionWithAllParameters(movieId, cinemaHallId, sessionTime);
+                    int seatNumber = cinemaHallRepository.getSeatNumberByCinemaHallId(cinemaHallId);
+                    int sessionId = sessionRepository.getSessionWithAllParameters(movieId, cinemaHallId, sessionTime);
                     //create seat
-                    for (int i = 1; i <seatNumber+1 ; i++)
+                    for (int i = 1; i < seatNumber + 1; i++)
                     {
-                        seatRepository.CreateSeat(i,sessionId);
-                        
+                        seatRepository.CreateSeat(i, sessionId);
+
                     }
 
 
                     return RedirectToAction("AdminSessions");
-
                 }
 
                 else
@@ -78,15 +71,11 @@ namespace Cinema.Management.System.Controllers
 
                     //do nothing or display zaten var 
 
-
-
                     TempData["SessionCreateError"] = "Session has already exists in database";
 
                     return RedirectToAction("AdminAddSessions");
 
                 }
-
-
 
             }
 
@@ -96,12 +85,12 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult AdminSessions(int sessionId)
         {
-            
+
             ticketRepository.deleteTicketBySessionId(sessionId);
             seatRepository.deleteSeatsBySessionId(sessionId);
 
             movieRepository.deleteSessionById(sessionId);
-            
+
 
             return RedirectToAction("AdminSessions");
         }
@@ -116,9 +105,9 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult AdminTickets()
         {
+            List<Ticket> allTickets = ticketRepository.findAllTicketGeneralInfo();
 
-
-            return View();
+            return View(allTickets);
         }
 
         public IActionResult AdminMovies()
@@ -151,7 +140,7 @@ namespace Cinema.Management.System.Controllers
         public IActionResult AdminMoviePage(int MovieId, string MovieName, string MovieReleaseDate, int MovieDuration,
         string MovieTrailerUrl, string MovieSummary, int DirectorId, string DirectorFirstName, string DirectorLastName, int MovieIsShowing, string MoviePhotoUrl, string MoviePosterUrl, int MovieCategoryId) // edit formundaki bilgileri kullanarak UPDATE atar
         {
-            
+
 
             bool isShowing = false;
             if (MovieIsShowing == 1)
@@ -162,32 +151,32 @@ namespace Cinema.Management.System.Controllers
             //yeni director database de varsa sadece filme ekle
             //yoksa oluştur ve director tablosuna ekle sonra filme ekle
 
-            
-            
-            
+
+
+
 
             directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName);
             if (directorRepository._director == null)
             {
-                
+
                 directorRepository.CreateDirector(DirectorFirstName, DirectorLastName);
                 directorRepository.GetDirectorByName(DirectorFirstName, DirectorLastName); //for find directorId
             }
 
             int directorIdTemp = directorRepository._director.directorId;
 
-            
+
 
             //category değişse değişmesede update category ile yolla
-            
-            categoryRepository.editMovieHasCategory(MovieId,MovieCategoryId);
+
+            categoryRepository.editMovieHasCategory(MovieId, MovieCategoryId);
 
 
             //filmi database update
             Movie tempMovie = new Movie(MovieId, MovieName, MovieReleaseDate, MovieDuration,
-         MovieTrailerUrl, MovieSummary, directorIdTemp,isShowing, MoviePhotoUrl, MoviePosterUrl);
+         MovieTrailerUrl, MovieSummary, directorIdTemp, isShowing, MoviePhotoUrl, MoviePosterUrl);
 
-        
+
             //int movieIdTemp = movieRepository.getMovieIdByName(MovieName);
 
 
@@ -195,7 +184,7 @@ namespace Cinema.Management.System.Controllers
             if (MovieName != null && MovieReleaseDate != null && MovieDuration.ToString().Length != 0 &&
         MovieTrailerUrl != null && MovieSummary != null && MoviePhotoUrl != null && MoviePosterUrl != null)
             {
-                
+
 
 
 

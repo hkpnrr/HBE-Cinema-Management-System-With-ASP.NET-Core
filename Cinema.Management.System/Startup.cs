@@ -51,8 +51,8 @@ namespace Cinema.Management.System
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
+
                 // MainPage için default routing ekledim (tarayıcıda path'e action yani view girmese bile mainpage'i gösterir)
-                // filmin adını pathe ekle
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=MainPage}/{action=MainPage}/{id?}");

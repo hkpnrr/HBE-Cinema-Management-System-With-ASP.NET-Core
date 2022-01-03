@@ -26,8 +26,32 @@ namespace Cinema.Management.System.Controllers
 
             return View(movieIsShowingViewModel);
         }
+
+
+        public IActionResult AddToWatchList(int MovieId)
+        {
+            Console.WriteLine(MovieId);
+            int userIdTemp = customerRepository.authUser.userId;
+            if (movieRepository.CheckWatchedByUserIdMovieId(MovieId, userIdTemp) == null)
+            {
+                movieRepository.AddMovieToWatcList(MovieId, userIdTemp);
+            }
+            else
+            {
+                TempData["MovieWatcedError"] = "You have added this film already";
+                return RedirectToAction("MoviePage", new { id = MovieId });
+            }
+
+            return RedirectToAction("MoviePage", new { id = MovieId });
+        }
+
+        public IActionResult Profile()
+        {
+            return View(new ProfileViewModel(customerRepository.authUser, movieRepository.GetWatchedMovies(customerRepository.authUser.userId)));
+        }
+
+
         [HttpGet]
-        // BUNA PARAMETRE GÖNDERMEMİZ LAZIM, HANGİ FİLM OLDUĞUNU YOLLA
         public IActionResult MoviePage(int id) // BİR TANE FİLM'İN GÖSTERİLDİĞİ ŞAHSİ, TEKİL SAYFA
         {
 
@@ -45,7 +69,7 @@ namespace Cinema.Management.System.Controllers
         [HttpPost]
         public IActionResult MoviePage(int id, string makeComment) // YORUMU POST ETMEK İÇİN
         {
-            
+
 
             Movie movieDetail = movieRepository.getMovieById(id);
 
@@ -76,9 +100,40 @@ namespace Cinema.Management.System.Controllers
 
         public IActionResult CinemaHalls() // SİNEMA SALONLARININ GÖSTERİLDİĞİ SAYFA
         {
-            List<CinemaHall> cinemaHalls = cinemaHallRepository.getAllCinemaHalls();
 
-            return View(cinemaHalls);
+            List<CinemaHallsViewModel> CinemaHallsWithMovies = cinemaHallRepository.getCinemaHallsWithMovies();
+            List<List<CinemaHallsViewModel>> listOfList = new List<List<CinemaHallsViewModel>>();
+            int j = 0;
+            int tempId = 0;
+
+            for (int i = 0; i < CinemaHallsWithMovies.Count(); i++)
+            {
+
+                if (i == 0)
+                {
+                    listOfList.Add(new List<CinemaHallsViewModel>());
+                    tempId = CinemaHallsWithMovies[i].cinemaHallId;
+                    listOfList[j].Add(CinemaHallsWithMovies[i]);
+                }
+                else
+                {
+                    tempId = CinemaHallsWithMovies[i - 1].cinemaHallId;
+                    if (tempId == CinemaHallsWithMovies[i].cinemaHallId)
+                    {
+                        listOfList[j].Add(CinemaHallsWithMovies[i]);
+                    }
+                    else
+                    {
+                        j++;
+                        listOfList.Add(new List<CinemaHallsViewModel>());
+                        listOfList[j].Add(CinemaHallsWithMovies[i]);
+                    }
+
+                }
+            }
+
+
+            return View(listOfList);
         }
 
 

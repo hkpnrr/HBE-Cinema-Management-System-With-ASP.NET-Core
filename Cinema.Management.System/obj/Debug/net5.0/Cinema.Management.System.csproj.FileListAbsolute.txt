@@ -289,7 +289,6 @@ C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.TagHelpers.input.cache
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.TagHelpers.output.cache
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.RazorCoreGenerate.cache
-C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
@@ -422,7 +421,6 @@ C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cine
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\ref\Cinema.Management.System.dll
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.pdb
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Cinema.Management.System.genruntimeconfig.cache
-C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\createTicket.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\payTicket.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\Shared\_admNavbar.cshtml.g.cs
 C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\AdminMainPage\AdminMainPage.cshtml.g.cs
@@ -459,3 +457,6 @@ C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razo
 C:\Users\pc\Desktop\CINEMA\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\ChooseSession.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\ChooseSession.cshtml.g.cs
 C:\Users\90555\Desktop\dbmsproje\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\SeatPage.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\ChooseSession.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\TicketPage\SeatPage.cshtml.g.cs
+C:\Users\Ekin\Desktop\New.Project\Cinema\Cinema.Management.System\obj\Debug\net5.0\Razor\Views\MainPage\Profile.cshtml.g.cs

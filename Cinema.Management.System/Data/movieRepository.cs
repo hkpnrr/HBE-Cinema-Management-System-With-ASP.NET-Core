@@ -14,6 +14,8 @@ namespace Cinema.Management.System.Data
         public static List<Movie> _movies = null;
         private static Movie movie = null;
 
+        private static MovieWatched movieWatched = null;
+
         private static List<Actor> _actorsById = null;
         private static Actor actor = null;
         public static List<string> _moviesName = null;
@@ -140,8 +142,8 @@ namespace Cinema.Management.System.Data
             comm = new SqlCommand("SELECT  * FROM (SELECT MOVIE.movieId,MOVIE.movieName,MOVIE.moviereleaseDate,MOVIE.movieDuration,MOVIE.movieTrailerUrl,MOVIE.movieSummary,MOVIE.movieDirectorId,MOVIE.ısShowing,MOVIE.moviePhotoUrl,MOVIE.moviePosterUrl,T1.categoryName,T1.categoryId FROM MOVIE INNER JOIN (SELECT CATEGORY.categoryName,MOVIE_HAS_CATEGORIES.* FROM MOVIE_HAS_CATEGORIES INNER JOIN CATEGORY ON CATEGORY.categoryId=MOVIE_HAS_CATEGORIES.categoryId) AS T1 ON MOVIE.movieId=T1.movieId) AS T3 INNER JOIN DIRECTOR ON T3.movieDirectorId=DIRECTOR.directorId WHERE movieId=@movieId", conn);
             comm.Parameters.AddWithValue("@movieId", movieId);
             SqlDataReader reader;
-            
-            Movie movieTemp=null;
+
+            Movie movieTemp = null;
             try
             {
                 conn.Open();
@@ -150,12 +152,12 @@ namespace Cinema.Management.System.Data
 
                 if (reader.Read())
                 {
-                    
 
-                     movieTemp=new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
-                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
-                     Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
-                     Convert.ToString(reader[10]),Convert.ToInt32(reader[11]),Convert.ToInt32(reader[12]), Convert.ToString(reader[13]), Convert.ToString(reader[14]));
+
+                    movieTemp = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
+                       Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
+                    Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
+                    Convert.ToString(reader[10]), Convert.ToInt32(reader[11]), Convert.ToInt32(reader[12]), Convert.ToString(reader[13]), Convert.ToString(reader[14]));
                 }
                 else
                 {
@@ -167,7 +169,7 @@ namespace Cinema.Management.System.Data
             //hata olursa vereceğim mesaj.
             catch (Exception e)
             {
-                Console.WriteLine(e.Message +"getMovieWithCategoryAndDirectorByMovieId");
+                Console.WriteLine(e.Message + "getMovieWithCategoryAndDirectorByMovieId");
             }
             //Bağlantımı kapatıyorum
             finally
@@ -182,13 +184,13 @@ namespace Cinema.Management.System.Data
         public static void editMovie(Movie mov)
         {
 
-            
+
             try
             {
                 connectToDatabase();
                 conn.Open();
 
-                
+
 
                 int movieId = mov.movieId;
                 string movieName = mov.movieName;
@@ -197,7 +199,7 @@ namespace Cinema.Management.System.Data
                 string movieTrailerUrl = mov.movieTrailerUrl;
                 string movieSummary = mov.movieSummary;
                 bool isShowing = mov.isShowing;
-                int directorId=mov.directorId;
+                int directorId = mov.directorId;
                 string moviePhotoUrl = mov.moviePhotoUrl;
                 string moviePosterUrl = mov.moviePosterUrl;
 
@@ -249,7 +251,7 @@ namespace Cinema.Management.System.Data
                     movie = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
                         Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
                      Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]),
-                     Convert.ToString(reader[10]), Convert.ToString(reader[12]), Convert.ToString(reader[13]));
+                     Convert.ToString(reader[10]), Convert.ToString(reader[13]), Convert.ToString(reader[14]));
                 }
                 else
                 {
@@ -268,10 +270,109 @@ namespace Cinema.Management.System.Data
             {
                 conn.Close();
             }
-
-
             return movie;
         }
+
+        public static void AddMovieToWatcList(int movieId, int userId)
+        {
+            try
+            {
+                connectToDatabase();
+                conn.Open();
+
+                comm = new SqlCommand("INSERT INTO MOVIES_WATCHED (userId,movieId) VALUES(@userId,@movieId)", conn);
+                comm.Parameters.AddWithValue("@userId", userId);
+                comm.Parameters.AddWithValue("@movieId", movieId);
+
+                int result = comm.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " AddMovieToWatcList");
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        public static MovieWatched CheckWatchedByUserIdMovieId(int movieId, int userId)
+        {
+            connectToDatabase();
+
+            comm = new SqlCommand("SELECT * FROM MOVIES_WATCHED WHERE userId = @userId AND movieId=@movieId", conn);
+            comm.Parameters.AddWithValue("@userId", userId);
+            comm.Parameters.AddWithValue("@movieId", movieId);
+
+            SqlDataReader reader;
+
+            try
+            {
+
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    movieWatched = new MovieWatched(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]));
+                }
+
+                reader.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " CheckWatchedByUserIdMovieId");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return movieWatched;
+        }
+
+        public static List<Movie> GetWatchedMovies(int userId)
+        {
+            connectToDatabase();
+            List<Movie> _moviesWatched = new List<Movie>();
+
+            comm = new SqlCommand("SELECT MOVIE.* FROM MOVIES_WATCHED INNER JOIN MOVIE ON MOVIES_WATCHED.movieId = MOVIE.movieId WHERE MOVIES_WATCHED.userId=@userId", conn);
+            comm.Parameters.AddWithValue("@userId", userId);
+
+            SqlDataReader reader;
+
+
+            Movie movieWatched = null;
+            try
+            {
+                conn.Open();
+
+                reader = comm.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    movieWatched = new Movie(Convert.ToInt32(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]),
+                        Convert.ToInt32(reader[3]), Convert.ToString(reader[4]), Convert.ToString(reader[5]),
+                         Convert.ToInt32(reader[6]), (bool)reader[7], Convert.ToString(reader[8]), Convert.ToString(reader[9]));
+
+                    _moviesWatched.Add(movieWatched);
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " GetWatchedMovies");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return _moviesWatched;
+        }
+
 
         public static List<Actor> getActorsById()
         {
@@ -746,7 +847,7 @@ namespace Cinema.Management.System.Data
         }
 
 
-        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId, int cinemaHallId,string sessionTime)
+        public static Session GetSessionByMovieIdAndCinemaHallId(int movieId, int cinemaHallId, string sessionTime)
         {
 
             connectToDatabase();
@@ -771,7 +872,7 @@ namespace Cinema.Management.System.Data
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
 
-                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),Convert.ToInt32(reader[4]));
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]), Convert.ToInt32(reader[4]));
 
                 }
 
@@ -794,7 +895,7 @@ namespace Cinema.Management.System.Data
             return session;
         }
 
-        public static void CreateSession(int movieId, int cinemaHallId, string sessionTime,int sessionPrice)
+        public static void CreateSession(int movieId, int cinemaHallId, string sessionTime, int sessionPrice)
         {
             try
             {
@@ -844,7 +945,7 @@ namespace Cinema.Management.System.Data
                     // reader[0] bir tane kolon'a denk geliyor
                     //Console.WriteLine(String.Format("{0}", reader[0]));
 
-                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]),Convert.ToInt32(reader[4]));
+                    session = new Session(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]), Convert.ToInt32(reader[2]), Convert.ToString(reader[3]), Convert.ToInt32(reader[4]));
                     _allSessions.Add(session);
                 }
 
@@ -907,9 +1008,6 @@ namespace Cinema.Management.System.Data
             {
                 conn.Close();
             }
-
-
-
 
             return _allCinemaHalls;
         }

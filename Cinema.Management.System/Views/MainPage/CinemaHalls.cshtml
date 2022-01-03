@@ -1,4 +1,4 @@
-@model List<CinemaHall>
+@model List<List<Cinema.Management.System.ViewModels.CinemaHallsViewModel>>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,30 +30,34 @@
             <br>
             <hr style="border: 2px solid black;">
             <br>
-            @for (int i = 0; i < @Model.Count; i++)
+            @foreach (List<CinemaHallsViewModel> outerList in Model)
             {
                 <div class="container">
-                <!-- CINEMA HALL INFO -->
-                <h2><strong>@Model[i].cinemaHallName</strong></h2>
-                <p><strong>Address: </strong>Binbaşı Reşatbey, Akçay Cd. No:101, 35410 Gaziemir/İzmir</p>
-                <br>
-                <!-- SHOWING MOVIES -->
-                <h6 class="fw-bold">Films that are showing: </h6>
-                <div class="card" style="width: 18rem;">
-                    <a href=""><img id="bottomImg" class="card-img-top"
-                            src="https://media.cinemaximum.com.tr/255//Files/POSTER/SpiderManNoWayHome_Poster_Main_y.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title"><a style="text-decoration: none;" href="">Spider-Man: No Way Home</a></h5>
-                    </div>
+                    <!-- CINEMA HALL INFO -->
+                <h2><strong>@outerList[0].cinemaHallName</strong></h2>
+                    <p><strong>Address: </strong>@outerList[0].cinemaHallAddress</p>
+                    <br>
+                    <h6 class="fw-bold">Films that are showing: </h6>
+                    @foreach (CinemaHallsViewModel item in outerList)
+                    {
+                        <!-- SHOWING MOVIES -->
+                        <div class="card" style="width: 18rem;">
+                            <a href="/MainPage/MoviePage/@item.movieId"><img id="bottomImg" class="card-img-top"
+                            src=@item.moviePhotoUrl alt=""></a>
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="text-decoration: none;" href="">@item.movieName</a></h5>
+                            </div>
+                        </div>
+
+                        <!-- BU KARTLARDAN YAN YANA GELCEK DATABASE'DEN GELEN VERİLER DOĞRULTUSUNDA-->
+                    }
+
+
+
+                    <br>
+                    <hr style="border: 2px solid black;">
+                    <br>
                 </div>
-
-                <!-- BU KARTLARDAN YAN YANA GELCEK DATABASE'DEN GELEN VERİLER DOĞRULTUSUNDA-->
-
-                <br>
-                <hr style="border: 2px solid black;">
-                <br>
-            </div>
             }
         </div>
     </section>

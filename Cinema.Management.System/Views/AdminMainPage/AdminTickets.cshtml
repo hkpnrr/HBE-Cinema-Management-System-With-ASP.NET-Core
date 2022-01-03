@@ -1,3 +1,5 @@
+@model List<Ticket>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +16,60 @@
 <body>
     @await Html.PartialAsync("_admNavbar")
 
-    <div class="container mt-5">
-        <h2 class="text-center fw-bold">Welcome To Admin Panel</h2>
-        <p class="text-center">Please Choose An Operation From Navbar Which is Above</p>
+        <div class="row">
+    <div class="col-md-12">
+        <h1 class="h3">All Tickets</h1>
+        <hr>
+       <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <td style="width: 20px;">Ticket Id</td>
+                    <td style="width: 20px;">User Id</td>
+                    <td style="width: 20px;">Session Id</td>
+                    <td style="width: 20px;">Session Time</td>
+                    <td style="width: 20px;">Seat Id</td>
+                    <td style="width: 20px;">Cinema Hall Name</td>
+                    <td style="width: 20px;">Movie Name</td>
+                    <td style="width: 20px;">User FirstName</td>
+                    <td style="width: 20px;">User LastName</td>
+                    <td style="width: 20px;">User Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model.Count > 0)
+                {
+                       @foreach (Ticket ticket in Model)
+                        {
+                            <tr>
+                                <td>@ticket.ticketId</td>
+                                <td>@ticket.userId</td>
+                                <td>@ticket.sessionId</td>
+                                <td>@ticket.sessionTime</td>
+                                <td>@ticket.seatId</td>
+                                <td>@ticket.cinemaHallName</td>
+                                <td>@ticket.movieName</td>
+                                <td>@ticket.userFirstName</td>
+                                <td>@ticket.userLastName</td>
+                                <td>@ticket.userEmail</td>
+
+                                @* <td>
+                                    <form action="/AdminMainPage/AdminSessions" method="POST" style="display: inline;">
+                                        <input type="hidden" name="sessionId" value="@session.sessionId">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    
+                                </td> *@
+                            </tr>
+                        }
+                }else{
+                    <div class="alert alert-warning">
+                        <h3>No Tickets!</h3>
+                    </div>
+                }
+            </tbody>
+        </table>
     </div>
+</div>
 
     
 

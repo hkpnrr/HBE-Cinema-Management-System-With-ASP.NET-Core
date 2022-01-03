@@ -22,8 +22,8 @@
 				<input name="Password" action="/Home/Login" type="password" placeholder="Password" required />
 				@if (@TempData["LoginError"] != null)
 				{
-					<h6 style="color: red; border: 2px solid red; padding:5px ; border-radius :3px;">
-						<strong>@TempData["LoginError"]</strong></h6>
+					<span style="color: red; border: 2px solid red; padding:5px ; margin-bottom:5px; border-radius :3px;">
+						<strong>@TempData["LoginError"]</strong></span>
 
 				}
 				<button type="submit">Sign In</button>
