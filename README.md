@@ -8,7 +8,7 @@ I and my friends Burak and Ekin developed Cinema Hall Management System with ASP
 ## This app features:
 
 ***IN CUSTOMER PANEL***
-*Display All Movies
+*Display All Movies\n
 *Display All Cinema Halls With Movies Which Are Showed At That Cinema Hall
 *Buy Ticket
 *Add Movies To Watched Movies List Of User
