@@ -301,7 +301,7 @@ namespace Cinema.Management.System.Data
             comm = new SqlCommand("SELECT * FROM MOVIES_WATCHED WHERE userId = @userId AND movieId=@movieId", conn);
             comm.Parameters.AddWithValue("@userId", userId);
             comm.Parameters.AddWithValue("@movieId", movieId);
-
+            movieWatched=null;
             SqlDataReader reader;
 
             try
